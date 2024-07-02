@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+ <title>Waves | king ill music</title>
+
+<link rel="canonical" href="//localhost:1313/">
+
+<link rel="alternate" type="application/rss+xml" title="king ill music RSS" href="/index.xml">
+
+<link rel="stylesheet" type="text/css" href="/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="/css/base.css">
+<link rel="stylesheet" type="text/css" href="/css/music.css">
+
+<link rel="icon" href="/favicon.ico"><meta name="description" content="">
+
+<meta name="keywords" content="trap"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="robots" content="index, follow">
+<meta charset="utf-8">
+
+</head>
+<body>
+    <header>
+     
+    <div class="TitleBar">
+    <h1 id="SingleTitle">waves</h1>
+    <img src="/svg/share.svg" onclick="dcm()" alt="copy URL" class="Share">
+</div>
+
+<div id="ShareBox">
+    <text id="CopiedMessage" style="display:none">copied link!</text>
+</div>
+
+<script type="text/javascript" defer>
+dcm = () => {
+    const
+        sh = document.querySelector(".Share"),
+        cm = document.querySelector("#CopiedMessage"),
+        st = document.querySelector("#SingleTitle");
+    navigator.clipboard.writeText("//localhost:1313/" + st.innerText);
+    cm.style.display = "block";
+    setTimeout( () => { cm.style.display = "none" }, 1000) };
+</script>
+
+
+    </header>
+    <main>
+     
+    <script type="text/javascript" src="/js/single/copy.js" defer></script>
+<div class="Single">
+    <div>
+        <p>
+            This website is made entirely using open source software.
+            In that same spirit, I offer a kit which includes most of the sounds I
+            used in the making of each beat, available for free download.
+        </p>
+        <a href="/mp3/waves/waves_kit.zip" download>
+    	    <button value="waves_kit">download waves kit</button>
+        </a>
+    </div>
+    <div>
+        <div>
+            <p>
+                If you would like to contribute you can donate crypto or fiat,
+                or you can include me in your project as a collaborator:
+            </p>
+            <button
+                onclick="cxmr()"
+                value="82h5f8ZrqTniYswRkra2wCAtax521M7TpVicMDG2v7sGCzsXgyo9hR1ggKyDG4h3Tq5J55pg43sdvHfDWNahDiDkVEr3YwR\"
+                id="xmr">
+                    copy monero code
+            </button>
+            <text id="CopiedXMR" style="display:none">copied xmr code!</text>
+        </div>
+        <div>
+            <button
+                onclick="cbtc()"
+                value="bc1q0nng6c6529m2hsjjsvwr2npwr5fhgunllqj33t"
+                id="btc">
+                    copy bitcoin code
+            </button>
+            <text id="CopiedBTC" style="display:none">copied btc code!</text>
+        </div>
+        <div>
+            <button
+                onclick="cppl()"
+                value="paypal.me/illeezyh"
+                id="ppl">
+                    copy paypal.me
+            </button>
+            <text id="CopiedPPL" style="display:none">copied paypal.me!</text>
+        </div>
+    </div>
+    <div>
+        <p>
+            This is my page on BeatStars:
+        </p>
+        <a href="https://beatstars.com/kingillmusic">
+            <button> beatstars.com </button>
+        </a>
+    </div>
+</div>
+
+    
+
+<div id="nextprev">
+    
+        <a href="/one/"><div id="nextart">one</div></a>
+    
+        <a href="/smoke/"><div id="prevart">smoke</div></a>
+    
+</div>
+
+    <script type="text/javascript" src="/js/single/music.js" defer></script>
+<script type="text/javascript" src="/js/single/progress.js" defer></script>
+<div id="SinglePlayer">
+    <div id="SingleControls">
+        <span id="StartSingle">0:00</span>
+        <span id="Seek5">
+            5<img
+            id="Five"
+            src="/svg/prv5.svg"
+            alt="five sex back">
+        </span>
+        <img id="PlayerPlay" src="/svg/play.svg" alt="play/pause">
+        <span id="Seek15">
+            <img
+            id="Fifteen"
+            src="/svg/nxt15.svg"
+            alt="fifteen sex forward">15
+        </span>
+        <span id="EndSingle">0:00</span>
+        <audio
+            id="SingleAudio"
+            src="/svg/mp3/waves/waves.mp3"
+            preload="none"
+            type="audio/mp3">Your browser doesn't support embedded audio.
+        </audio>
+    </div>
+</div>
+
+
+    </main>
+    <footer>
+     <a href=" / ">prod by ill x eezyh</a>
+
+
+
+    </footer>
+</body>
+</html>

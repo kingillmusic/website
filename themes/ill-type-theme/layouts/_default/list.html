@@ -1,0 +1,10 @@
+{{ define "header" }}
+    {{ partial "titlebar.html" . }}
+    {{ partial "tagcloud.html" . }}
+    {{ partial "search.html" . }}
+{{ end }}
+
+{{ define "main" }}
+    {{ partial "tracks.html" . }}
+    {{ partial "player.html" . }}
+{{ end }}

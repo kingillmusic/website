@@ -1,0 +1,182 @@
+@font-face { font-family: "terminus" ; src: url('/fonts/TerminessNerdFont-Bold.ttf') }
+
+*
+{
+    -ms-user-select: none ;
+    -moz-user-select: none ;
+    -webkit-user-select: none ;
+    -ms-tap-highlight-color: transparent ;
+    -moz-tap-highlight-color: transparent ;
+    -webkit-tap-highlight-color: transparent ;
+}
+
+html, body
+{
+    max-width: 100% ;
+    overflow-x: hidden ;
+}
+
+body
+{
+    margin: auto ;
+    display: flex ;
+    color: #eeeeee ;
+    font-size: 125% ;
+    min-height: 100vh ;
+    font-family: terminus ;
+    margin-bottom: 20vmax ;
+    flex-direction: column;
+    background-image: url('/img/fond.png') ;
+}
+
+a
+{
+    color: #eeeeee ;
+    cursor: pointer ;
+	background: none ;
+    text-decoration: none ;
+}
+
+h1 { font-size: 4vmax } hr { color: #87ffff }
+
+.TitleBar
+{
+    width: 100% ;
+    z-index: 10 ;
+    display: flex ;
+    position: fixed ;
+    padding: 0.5em 0 ;
+    justify-content: center ;
+    border-bottom: solid 1px #87ffff ;
+    background-image: url('/img/fond.png') ;
+}
+
+#GotoTrack, #SingleTitle
+{
+    margin: 0 1% ;
+	color: #87ffff ;
+}
+
+.Share
+{
+    cursor: pointer ;
+    max-height: 1em ;
+}
+
+#share-box img
+{
+	width: 5% ;
+	max-height: 1.3em ;
+}
+
+#tagcloud
+{
+    z-index: 20 ;
+    margin: 3vmax 0 ;
+    text-align: center ;
+}
+
+#tagcloud span a
+{
+    z-index: 30 ;
+    margin: 0 5px ;
+    color: #87ffff ;
+    font-size: 90% ;
+}
+
+.taglist text
+{
+    font-size: 80%;
+    color: #888888 ;
+}
+
+#SearchBox
+{
+    outline: 0;
+    width: 100% ;
+    border: none ;
+    color: #87ffff ;
+    font-size: 100% ;
+    background: none ;
+    margin-top: 0.5em ;
+    text-align: center ;
+    font-family: terminus ;
+}
+
+.row
+{
+	display: flex ;
+    margin-bottom: 1rem ;
+	scroll-margin-top: 3em ;
+	justify-content: space-between ;
+}
+
+.row > div
+{
+	display: flex ;
+	cursor: pointer ;
+	align-items: center ;
+}
+
+.TrackMenu
+{
+	color: #87ffff ;
+	padding: 0 1rem ;
+}
+
+.MenuSVG
+{
+    max-height: 1.5em ;
+}
+
+.Single { margin: 10vmax 2vmax }
+
+button
+{
+    width: 100% ;
+	padding: 10px ;
+	margin: 10px 0 ;
+	color: #87ffff ;
+    cursor: pointer ;
+	font-size: 100% ;
+    background: #333333 ;
+	font-family: terminus ;
+    border: 2px solid #87ffff ;
+}
+
+#CopiedMessage, #CopiedBTC, #CopiedXMR, #CopiedPPL
+{
+    top: 50% ;
+    left: 50% ;
+    padding: 1rem ;
+    position: fixed ;
+    text-align: center ;
+    border: 4px solid #87ffff ;
+    background: url('/img/fond.png') ;
+    transform: translate(-50%, -50%) ;
+}
+
+#nextart { float: left ; color: black ; background: #87ffff ; padding: 0.5% 8% }
+#prevart { float: right ; color: black ; background: #87ffff ; padding: 0.5% 8% }
+
+footer
+{
+    bottom: 0 ;
+    width: 100% ;
+    z-index: 50 ;
+    display: flex ;
+    height: 4.5vmax ;
+    position: fixed ;
+    background: #87ffff ;
+    align-items: center ;
+    justify-content: center ;
+}
+
+footer a { color: black }
+
+@media only screen and (min-width: 1000px)
+{
+    body { font-size: 150% }
+    .Single { margin: 8vmax 2vmax }
+    footer { height: 3vmax }
+}

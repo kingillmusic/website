@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Edm on king ill music</title>
+    <link>//localhost:1313/tags/edm/</link>
+    <description>Recent content in Edm on king ill music</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 18 May 2024 19:24:27 +0300</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/edm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>dance</title>
+      <link>//localhost:1313/dance/</link>
+      <pubDate>Sat, 18 May 2024 19:24:27 +0300</pubDate>
+      <guid>//localhost:1313/dance/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>elk</title>
+      <link>//localhost:1313/elk/</link>
+      <pubDate>Sat, 18 May 2024 19:22:01 +0300</pubDate>
+      <guid>//localhost:1313/elk/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>zen</title>
+      <link>//localhost:1313/zen/</link>
+      <pubDate>Sat, 18 May 2024 19:21:42 +0300</pubDate>
+      <guid>//localhost:1313/zen/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>sonar</title>
+      <link>//localhost:1313/sonar/</link>
+      <pubDate>Sat, 18 May 2024 19:21:35 +0300</pubDate>
+      <guid>//localhost:1313/sonar/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>astral-lounge</title>
+      <link>//localhost:1313/astral-lounge/</link>
+      <pubDate>Sat, 18 May 2024 19:21:10 +0300</pubDate>
+      <guid>//localhost:1313/astral-lounge/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>kolonie</title>
+      <link>//localhost:1313/kolonie/</link>
+      <pubDate>Sat, 18 May 2024 18:38:52 +0300</pubDate>
+      <guid>//localhost:1313/kolonie/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>houston</title>
+      <link>//localhost:1313/houston/</link>
+      <pubDate>Sat, 18 May 2024 18:38:46 +0300</pubDate>
+      <guid>//localhost:1313/houston/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>organic</title>
+      <link>//localhost:1313/organic/</link>
+      <pubDate>Sat, 18 May 2024 18:35:36 +0300</pubDate>
+      <guid>//localhost:1313/organic/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>sober</title>
+      <link>//localhost:1313/sober/</link>
+      <pubDate>Sat, 18 May 2024 18:35:34 +0300</pubDate>
+      <guid>//localhost:1313/sober/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>under</title>
+      <link>//localhost:1313/under/</link>
+      <pubDate>Sat, 18 May 2024 18:35:27 +0300</pubDate>
+      <guid>//localhost:1313/under/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>casey</title>
+      <link>//localhost:1313/casey/</link>
+      <pubDate>Sat, 18 May 2024 18:35:25 +0300</pubDate>
+      <guid>//localhost:1313/casey/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

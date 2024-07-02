@@ -1,0 +1,89 @@
+.Track
+{
+	width: 80% ;
+	overflow: hidden ;
+	white-space: nowrap ;
+}
+
+.TrackPlay
+{
+	max-height: 1.3em ;
+	position: absolute ;
+}
+
+.TrackTitle
+{
+	font-weight: bold ;
+	margin-left: 1.7em ;
+}
+
+#MusicPlayer, #SinglePlayer
+{
+    bottom: 0 ;
+    width: 100% ;
+    display: flex ;
+    position: fixed ;
+    padding-bottom: 4vmax ;
+    background-image: url('/img/fond.png') ;
+}
+
+#MusicPlayer > div { width: 100% }
+#SinglePlayer > div { width: 100% }
+
+#PlayerControls, #SingleControls
+{
+    display: flex ;
+	align-items: center ;
+	justify-content: space-evenly
+}
+
+#PlayerPlay, #Next, #Previous, #Seek5, #Seek15, #GotoTrack, #Shuffle
+{
+    cursor: pointer ;
+	transition: all 0.1s ease
+}
+
+#PlayerPlay
+{
+	padding: 1% ;
+	max-height: 2.8em
+}
+
+#Next, #Previous
+{
+	padding: 1% ;
+	max-height: 1.8em ;
+}
+
+#Duration, #SingleDuration
+{
+    display: flex ;
+    margin: 0 -1em ;
+    align-items: center ;
+    justify-content: space-evenly ;
+}
+
+#StartDuration, #EndDuration, #StartSingle, #EndSingle, #Seek5, #Seek15
+{
+    font-size: 75% ;
+ 	color: #87ffff ;
+}
+
+#Five, #Fifteen, #Shuffle, #Repeat { max-height: 1.2em }
+
+@media only screen and (min-width: 400px)
+{
+    .Lease img { max-height: 2rem }
+    .TrackPlay { max-height: 1.4em }
+}
+
+@media only screen and (min-width: 600px) { #Duration, #SingleDuration { margin: 0 3em } }
+
+@media only screen and (min-width: 1000px)
+{
+    #MusicPlayer { background: none ; justify-content: space-evenly }
+    #SinglePlayer { background-image: url('/img/fond.png') }
+    #Duration, #SingleDuration { margin: 0 10em }
+    #PlayerControls, #SingleControls { margin: 0 10em }
+    .Track > div { scroll-margin-top: 3.5em }
+}

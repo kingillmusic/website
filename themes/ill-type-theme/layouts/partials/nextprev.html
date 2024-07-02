@@ -1,0 +1,11 @@
+{{ $pages := where .Site.RegularPages.ByWeight "Section" "beats" }}
+
+<div id="nextprev">
+    {{ with $pages.Next . }}
+        <a href="{{ .RelPermalink}}"><div id="nextart">{{.Title}}</div></a>
+    {{ end -}}
+
+    {{ with $pages.Prev . }}
+        <a href="{{ .RelPermalink}}"><div id="prevart">{{.Title}}</div></a>
+    {{ end }}
+</div>

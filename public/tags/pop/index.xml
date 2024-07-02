@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pop on king ill music</title>
+    <link>//localhost:1313/tags/pop/</link>
+    <description>Recent content in Pop on king ill music</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 18 May 2024 19:21:56 +0300</lastBuildDate>
+    <atom:link href="//localhost:1313/tags/pop/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>specialty</title>
+      <link>//localhost:1313/specialty/</link>
+      <pubDate>Sat, 18 May 2024 19:21:56 +0300</pubDate>
+      <guid>//localhost:1313/specialty/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>synthwave</title>
+      <link>//localhost:1313/synthwave/</link>
+      <pubDate>Sat, 18 May 2024 19:21:52 +0300</pubDate>
+      <guid>//localhost:1313/synthwave/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>thundergod</title>
+      <link>//localhost:1313/thundergod/</link>
+      <pubDate>Sat, 18 May 2024 19:17:08 +0300</pubDate>
+      <guid>//localhost:1313/thundergod/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>cozy</title>
+      <link>//localhost:1313/cozy/</link>
+      <pubDate>Sat, 18 May 2024 19:17:03 +0300</pubDate>
+      <guid>//localhost:1313/cozy/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>resonance</title>
+      <link>//localhost:1313/resonance/</link>
+      <pubDate>Sat, 18 May 2024 19:16:59 +0300</pubDate>
+      <guid>//localhost:1313/resonance/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>soul</title>
+      <link>//localhost:1313/soul/</link>
+      <pubDate>Sat, 18 May 2024 19:16:53 +0300</pubDate>
+      <guid>//localhost:1313/soul/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,19 @@
+<div class="TitleBar">
+    <h1 id="SingleTitle">{{ .Page.Title }}</h1>
+    <img src="/svg/share.svg" onclick="dcm()" alt="copy URL" class="Share">
+</div>
+
+<div id="ShareBox">
+    <text id="CopiedMessage" style="display:none">copied link!</text>
+</div>
+
+<script type="text/javascript" defer>
+dcm = () => {
+    const
+        sh = document.querySelector(".Share"),
+        cm = document.querySelector("#CopiedMessage"),
+        st = document.querySelector("#SingleTitle");
+    navigator.clipboard.writeText({{ .Site.BaseURL }} + st.innerText);
+    cm.style.display = "block";
+    setTimeout( () => { cm.style.display = "none" }, 1000) };
+</script>

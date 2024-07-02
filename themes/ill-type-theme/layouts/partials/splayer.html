@@ -1,0 +1,27 @@
+<script type="text/javascript" src="/js/single/music.js" defer></script>
+<script type="text/javascript" src="/js/single/progress.js" defer></script>
+<div id="SinglePlayer">
+    <div id="SingleControls">
+        <span id="StartSingle">0:00</span>
+        <span id="Seek5">
+            5<img
+            id="Five"
+            src="/svg/prv5.svg"
+            alt="five sex back">
+        </span>
+        <img id="PlayerPlay" src="/svg/play.svg" alt="play/pause">
+        <span id="Seek15">
+            <img
+            id="Fifteen"
+            src="/svg/nxt15.svg"
+            alt="fifteen sex forward">15
+        </span>
+        <span id="EndSingle">0:00</span>
+        <audio
+            id="SingleAudio"
+            src="/svg/mp3/{{ .Page.Title }}/{{ .Page.Title }}.mp3"
+            preload="none"
+            type="audio/mp3">Your browser doesn't support embedded audio.
+        </audio>
+    </div>
+</div>

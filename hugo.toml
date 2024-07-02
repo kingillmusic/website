@@ -1,0 +1,4 @@
+baseURL = 'kingillmusic.com'
+languageCode = 'en-us'
+title = 'king ill music'
+theme = 'ill-type-theme'
