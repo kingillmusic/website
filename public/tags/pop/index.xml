@@ -2,52 +2,52 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Pop on king ill music</title>
-    <link>kingillmusic.com/tags/pop/</link>
+    <link>//localhost:43015/tags/pop/</link>
     <description>Recent content in Pop on king ill music</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 18 May 2024 19:21:56 +0300</lastBuildDate>
-    <atom:link href="kingillmusic.com/tags/pop/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:43015/tags/pop/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>specialty</title>
-      <link>kingillmusic.com/specialty/</link>
+      <link>//localhost:43015/specialty/</link>
       <pubDate>Sat, 18 May 2024 19:21:56 +0300</pubDate>
-      <guid>kingillmusic.com/specialty/</guid>
+      <guid>//localhost:43015/specialty/</guid>
       <description></description>
     </item>
     <item>
       <title>synthwave</title>
-      <link>kingillmusic.com/synthwave/</link>
+      <link>//localhost:43015/synthwave/</link>
       <pubDate>Sat, 18 May 2024 19:21:52 +0300</pubDate>
-      <guid>kingillmusic.com/synthwave/</guid>
+      <guid>//localhost:43015/synthwave/</guid>
       <description></description>
     </item>
     <item>
       <title>thundergod</title>
-      <link>kingillmusic.com/thundergod/</link>
+      <link>//localhost:43015/thundergod/</link>
       <pubDate>Sat, 18 May 2024 19:17:08 +0300</pubDate>
-      <guid>kingillmusic.com/thundergod/</guid>
+      <guid>//localhost:43015/thundergod/</guid>
       <description></description>
     </item>
     <item>
       <title>cozy</title>
-      <link>kingillmusic.com/cozy/</link>
+      <link>//localhost:43015/cozy/</link>
       <pubDate>Sat, 18 May 2024 19:17:03 +0300</pubDate>
-      <guid>kingillmusic.com/cozy/</guid>
+      <guid>//localhost:43015/cozy/</guid>
       <description></description>
     </item>
     <item>
       <title>resonance</title>
-      <link>kingillmusic.com/resonance/</link>
+      <link>//localhost:43015/resonance/</link>
       <pubDate>Sat, 18 May 2024 19:16:59 +0300</pubDate>
-      <guid>kingillmusic.com/resonance/</guid>
+      <guid>//localhost:43015/resonance/</guid>
       <description></description>
     </item>
     <item>
       <title>soul</title>
-      <link>kingillmusic.com/soul/</link>
+      <link>//localhost:43015/soul/</link>
       <pubDate>Sat, 18 May 2024 19:16:53 +0300</pubDate>
-      <guid>kingillmusic.com/soul/</guid>
+      <guid>//localhost:43015/soul/</guid>
       <description></description>
     </item>
   </channel>

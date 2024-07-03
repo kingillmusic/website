@@ -2,87 +2,87 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Edm on king ill music</title>
-    <link>kingillmusic.com/tags/edm/</link>
+    <link>//localhost:43015/tags/edm/</link>
     <description>Recent content in Edm on king ill music</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 18 May 2024 19:24:27 +0300</lastBuildDate>
-    <atom:link href="kingillmusic.com/tags/edm/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:43015/tags/edm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>dance</title>
-      <link>kingillmusic.com/dance/</link>
+      <link>//localhost:43015/dance/</link>
       <pubDate>Sat, 18 May 2024 19:24:27 +0300</pubDate>
-      <guid>kingillmusic.com/dance/</guid>
+      <guid>//localhost:43015/dance/</guid>
       <description></description>
     </item>
     <item>
       <title>elk</title>
-      <link>kingillmusic.com/elk/</link>
+      <link>//localhost:43015/elk/</link>
       <pubDate>Sat, 18 May 2024 19:22:01 +0300</pubDate>
-      <guid>kingillmusic.com/elk/</guid>
+      <guid>//localhost:43015/elk/</guid>
       <description></description>
     </item>
     <item>
       <title>zen</title>
-      <link>kingillmusic.com/zen/</link>
+      <link>//localhost:43015/zen/</link>
       <pubDate>Sat, 18 May 2024 19:21:42 +0300</pubDate>
-      <guid>kingillmusic.com/zen/</guid>
+      <guid>//localhost:43015/zen/</guid>
       <description></description>
     </item>
     <item>
       <title>sonar</title>
-      <link>kingillmusic.com/sonar/</link>
+      <link>//localhost:43015/sonar/</link>
       <pubDate>Sat, 18 May 2024 19:21:35 +0300</pubDate>
-      <guid>kingillmusic.com/sonar/</guid>
+      <guid>//localhost:43015/sonar/</guid>
       <description></description>
     </item>
     <item>
       <title>astral-lounge</title>
-      <link>kingillmusic.com/astral-lounge/</link>
+      <link>//localhost:43015/astral-lounge/</link>
       <pubDate>Sat, 18 May 2024 19:21:10 +0300</pubDate>
-      <guid>kingillmusic.com/astral-lounge/</guid>
+      <guid>//localhost:43015/astral-lounge/</guid>
       <description></description>
     </item>
     <item>
       <title>kolonie</title>
-      <link>kingillmusic.com/kolonie/</link>
+      <link>//localhost:43015/kolonie/</link>
       <pubDate>Sat, 18 May 2024 18:38:52 +0300</pubDate>
-      <guid>kingillmusic.com/kolonie/</guid>
+      <guid>//localhost:43015/kolonie/</guid>
       <description></description>
     </item>
     <item>
       <title>houston</title>
-      <link>kingillmusic.com/houston/</link>
+      <link>//localhost:43015/houston/</link>
       <pubDate>Sat, 18 May 2024 18:38:46 +0300</pubDate>
-      <guid>kingillmusic.com/houston/</guid>
+      <guid>//localhost:43015/houston/</guid>
       <description></description>
     </item>
     <item>
       <title>organic</title>
-      <link>kingillmusic.com/organic/</link>
+      <link>//localhost:43015/organic/</link>
       <pubDate>Sat, 18 May 2024 18:35:36 +0300</pubDate>
-      <guid>kingillmusic.com/organic/</guid>
+      <guid>//localhost:43015/organic/</guid>
       <description></description>
     </item>
     <item>
       <title>sober</title>
-      <link>kingillmusic.com/sober/</link>
+      <link>//localhost:43015/sober/</link>
       <pubDate>Sat, 18 May 2024 18:35:34 +0300</pubDate>
-      <guid>kingillmusic.com/sober/</guid>
+      <guid>//localhost:43015/sober/</guid>
       <description></description>
     </item>
     <item>
       <title>under</title>
-      <link>kingillmusic.com/under/</link>
+      <link>//localhost:43015/under/</link>
       <pubDate>Sat, 18 May 2024 18:35:27 +0300</pubDate>
-      <guid>kingillmusic.com/under/</guid>
+      <guid>//localhost:43015/under/</guid>
       <description></description>
     </item>
     <item>
       <title>casey</title>
-      <link>kingillmusic.com/casey/</link>
+      <link>//localhost:43015/casey/</link>
       <pubDate>Sat, 18 May 2024 18:35:25 +0300</pubDate>
-      <guid>kingillmusic.com/casey/</guid>
+      <guid>//localhost:43015/casey/</guid>
       <description></description>
     </item>
   </channel>

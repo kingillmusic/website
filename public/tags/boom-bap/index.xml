@@ -2,45 +2,45 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Boom-Bap on king ill music</title>
-    <link>kingillmusic.com/tags/boom-bap/</link>
+    <link>//localhost:43015/tags/boom-bap/</link>
     <description>Recent content in Boom-Bap on king ill music</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 18 May 2024 19:24:31 +0300</lastBuildDate>
-    <atom:link href="kingillmusic.com/tags/boom-bap/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:43015/tags/boom-bap/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>achc</title>
-      <link>kingillmusic.com/achc/</link>
+      <link>//localhost:43015/achc/</link>
       <pubDate>Sat, 18 May 2024 19:24:31 +0300</pubDate>
-      <guid>kingillmusic.com/achc/</guid>
+      <guid>//localhost:43015/achc/</guid>
       <description></description>
     </item>
     <item>
       <title>love-trip</title>
-      <link>kingillmusic.com/love%20trip/</link>
+      <link>//localhost:43015/love%20trip/</link>
       <pubDate>Sat, 18 May 2024 19:19:31 +0300</pubDate>
-      <guid>kingillmusic.com/love%20trip/</guid>
+      <guid>//localhost:43015/love%20trip/</guid>
       <description></description>
     </item>
     <item>
       <title>senin</title>
-      <link>kingillmusic.com/senin/</link>
+      <link>//localhost:43015/senin/</link>
       <pubDate>Sat, 18 May 2024 19:18:25 +0300</pubDate>
-      <guid>kingillmusic.com/senin/</guid>
+      <guid>//localhost:43015/senin/</guid>
       <description></description>
     </item>
     <item>
       <title>aliens</title>
-      <link>kingillmusic.com/aliens/</link>
+      <link>//localhost:43015/aliens/</link>
       <pubDate>Sat, 18 May 2024 18:39:39 +0300</pubDate>
-      <guid>kingillmusic.com/aliens/</guid>
+      <guid>//localhost:43015/aliens/</guid>
       <description></description>
     </item>
     <item>
       <title>no-body</title>
-      <link>kingillmusic.com/no-body/</link>
+      <link>//localhost:43015/no-body/</link>
       <pubDate>Sat, 18 May 2024 18:31:28 +0300</pubDate>
-      <guid>kingillmusic.com/no-body/</guid>
+      <guid>//localhost:43015/no-body/</guid>
       <description></description>
     </item>
   </channel>

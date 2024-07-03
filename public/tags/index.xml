@@ -2,66 +2,66 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on king ill music</title>
-    <link>kingillmusic.com/tags/</link>
+    <link>//localhost:43015/tags/</link>
     <description>Recent content in Tags on king ill music</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 18 May 2024 19:24:58 +0300</lastBuildDate>
-    <atom:link href="kingillmusic.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:43015/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Exp</title>
-      <link>kingillmusic.com/tags/exp/</link>
+      <link>//localhost:43015/tags/exp/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>kingillmusic.com/tags/exp/</guid>
+      <guid>//localhost:43015/tags/exp/</guid>
       <description></description>
     </item>
     <item>
       <title>Trap</title>
-      <link>kingillmusic.com/tags/trap/</link>
+      <link>//localhost:43015/tags/trap/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>kingillmusic.com/tags/trap/</guid>
+      <guid>//localhost:43015/tags/trap/</guid>
       <description></description>
     </item>
     <item>
       <title>Boom-Bap</title>
-      <link>kingillmusic.com/tags/boom-bap/</link>
+      <link>//localhost:43015/tags/boom-bap/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>kingillmusic.com/tags/boom-bap/</guid>
+      <guid>//localhost:43015/tags/boom-bap/</guid>
       <description></description>
     </item>
     <item>
       <title>Edm</title>
-      <link>kingillmusic.com/tags/edm/</link>
+      <link>//localhost:43015/tags/edm/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>kingillmusic.com/tags/edm/</guid>
+      <guid>//localhost:43015/tags/edm/</guid>
       <description></description>
     </item>
     <item>
       <title>Kondzilla</title>
-      <link>kingillmusic.com/tags/kondzilla/</link>
+      <link>//localhost:43015/tags/kondzilla/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>kingillmusic.com/tags/kondzilla/</guid>
+      <guid>//localhost:43015/tags/kondzilla/</guid>
       <description></description>
     </item>
     <item>
       <title>Pop</title>
-      <link>kingillmusic.com/tags/pop/</link>
+      <link>//localhost:43015/tags/pop/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>kingillmusic.com/tags/pop/</guid>
+      <guid>//localhost:43015/tags/pop/</guid>
       <description></description>
     </item>
     <item>
       <title>Drill</title>
-      <link>kingillmusic.com/tags/drill/</link>
+      <link>//localhost:43015/tags/drill/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>kingillmusic.com/tags/drill/</guid>
+      <guid>//localhost:43015/tags/drill/</guid>
       <description></description>
     </item>
     <item>
       <title>Dabke</title>
-      <link>kingillmusic.com/tags/dabke/</link>
+      <link>//localhost:43015/tags/dabke/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>kingillmusic.com/tags/dabke/</guid>
+      <guid>//localhost:43015/tags/dabke/</guid>
       <description></description>
     </item>
   </channel>

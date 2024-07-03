@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Kondzilla on king ill music</title>
-    <link>kingillmusic.com/tags/kondzilla/</link>
+    <link>//localhost:43015/tags/kondzilla/</link>
     <description>Recent content in Kondzilla on king ill music</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 18 May 2024 19:24:22 +0300</lastBuildDate>
-    <atom:link href="kingillmusic.com/tags/kondzilla/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:43015/tags/kondzilla/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>dirty</title>
-      <link>kingillmusic.com/dirty/</link>
+      <link>//localhost:43015/dirty/</link>
       <pubDate>Sat, 18 May 2024 19:24:22 +0300</pubDate>
-      <guid>kingillmusic.com/dirty/</guid>
+      <guid>//localhost:43015/dirty/</guid>
       <description></description>
     </item>
     <item>
       <title>damage</title>
-      <link>kingillmusic.com/damage/</link>
+      <link>//localhost:43015/damage/</link>
       <pubDate>Sat, 18 May 2024 18:37:19 +0300</pubDate>
-      <guid>kingillmusic.com/damage/</guid>
+      <guid>//localhost:43015/damage/</guid>
       <description></description>
     </item>
     <item>
       <title>slide</title>
-      <link>kingillmusic.com/slide/</link>
+      <link>//localhost:43015/slide/</link>
       <pubDate>Sat, 18 May 2024 18:35:45 +0300</pubDate>
-      <guid>kingillmusic.com/slide/</guid>
+      <guid>//localhost:43015/slide/</guid>
       <description></description>
     </item>
   </channel>

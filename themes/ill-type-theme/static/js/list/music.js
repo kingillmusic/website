@@ -46,13 +46,13 @@ window.onload = r => {
 	row.forEach (r => {
 		let t = r.querySelector(".TrackPlay");
     	r.querySelector(".Track").addEventListener("click", () => {
-        	t.getAttribute("src") === "/play.svg" ?
+        	t.getAttribute("src") === "/svg/play.svg" ?
             (soa(), n = trp.indexOf(t), pause(), load(), play()) : pause() }) }) };
 
 const pause = () => {
     for (let e = 0; e < row.length; e++)
-        tro[e].pause(), trp[e].src = "/play.svg",
-        po.pause(), pp.src = "/play.svg" },
+        tro[e].pause(), trp[e].src = "/svg/play.svg",
+        po.pause(), pp.src = "/svg/play.svg" },
 
 next = () => {
     n < a.length - 1 ?
@@ -66,8 +66,8 @@ previous = () => {
 
 play = () => {
     po.play(),
-	pp.src = "/pause.svg",
-    trp[trn].src = "/stop.svg" };
+	pp.src = "/svg/pause.svg",
+    trp[trn].src = "/svg/stop.svg" };
 
 go.addEventListener("click", () => { row[trn].scrollIntoView({ behavior:"smooth" }) }),
 ba.addEventListener("click", () => { po.currentTime -= 5 }),

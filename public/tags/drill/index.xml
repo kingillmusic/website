@@ -2,59 +2,59 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Drill on king ill music</title>
-    <link>kingillmusic.com/tags/drill/</link>
+    <link>//localhost:43015/tags/drill/</link>
     <description>Recent content in Drill on king ill music</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 18 May 2024 19:21:01 +0300</lastBuildDate>
-    <atom:link href="kingillmusic.com/tags/drill/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="//localhost:43015/tags/drill/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>red</title>
-      <link>kingillmusic.com/red/</link>
+      <link>//localhost:43015/red/</link>
       <pubDate>Sat, 18 May 2024 19:21:01 +0300</pubDate>
-      <guid>kingillmusic.com/red/</guid>
+      <guid>//localhost:43015/red/</guid>
       <description></description>
     </item>
     <item>
       <title>origin</title>
-      <link>kingillmusic.com/origin/</link>
+      <link>//localhost:43015/origin/</link>
       <pubDate>Sat, 18 May 2024 19:20:54 +0300</pubDate>
-      <guid>kingillmusic.com/origin/</guid>
+      <guid>//localhost:43015/origin/</guid>
       <description></description>
     </item>
     <item>
       <title>bow</title>
-      <link>kingillmusic.com/bow/</link>
+      <link>//localhost:43015/bow/</link>
       <pubDate>Sat, 18 May 2024 19:20:12 +0300</pubDate>
-      <guid>kingillmusic.com/bow/</guid>
+      <guid>//localhost:43015/bow/</guid>
       <description></description>
     </item>
     <item>
       <title>ambience</title>
-      <link>kingillmusic.com/ambience/</link>
+      <link>//localhost:43015/ambience/</link>
       <pubDate>Sat, 18 May 2024 18:39:57 +0300</pubDate>
-      <guid>kingillmusic.com/ambience/</guid>
+      <guid>//localhost:43015/ambience/</guid>
       <description></description>
     </item>
     <item>
       <title>west</title>
-      <link>kingillmusic.com/west/</link>
+      <link>//localhost:43015/west/</link>
       <pubDate>Sat, 18 May 2024 18:36:34 +0300</pubDate>
-      <guid>kingillmusic.com/west/</guid>
+      <guid>//localhost:43015/west/</guid>
       <description></description>
     </item>
     <item>
       <title>coogee</title>
-      <link>kingillmusic.com/coogee/</link>
+      <link>//localhost:43015/coogee/</link>
       <pubDate>Sat, 18 May 2024 18:35:47 +0300</pubDate>
-      <guid>kingillmusic.com/coogee/</guid>
+      <guid>//localhost:43015/coogee/</guid>
       <description></description>
     </item>
     <item>
       <title>big-opps</title>
-      <link>kingillmusic.com/big%20opps/</link>
+      <link>//localhost:43015/big%20opps/</link>
       <pubDate>Sat, 18 May 2024 18:33:12 +0300</pubDate>
-      <guid>kingillmusic.com/big%20opps/</guid>
+      <guid>//localhost:43015/big%20opps/</guid>
       <description></description>
     </item>
   </channel>

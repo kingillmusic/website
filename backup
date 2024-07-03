@@ -1,0 +1,7 @@
+#!/bin/sh
+
+DIR=/mnt/Lin-Mac/public   # the directory where your web site files should go
+
+# mount -o uid=1000,gid=1000 /dev/sdc11 /mnt/Lin-Mac
+
+hugo && rsync -avz --delete public/ ${DIR} # this will delete everything on the server that's not in the local public folder
