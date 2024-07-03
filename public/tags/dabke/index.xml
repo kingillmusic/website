@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Dabke on king ill music</title>
-    <link>//localhost:1313/tags/dabke/</link>
+    <link>kingillmusic.com/tags/dabke/</link>
     <description>Recent content in Dabke on king ill music</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 18 May 2024 18:38:05 +0300</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/dabke/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="kingillmusic.com/tags/dabke/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>revamp-pt-2</title>
-      <link>//localhost:1313/revamp2/</link>
+      <link>kingillmusic.com/revamp2/</link>
       <pubDate>Sat, 18 May 2024 18:38:05 +0300</pubDate>
-      <guid>//localhost:1313/revamp2/</guid>
+      <guid>kingillmusic.com/revamp2/</guid>
       <description></description>
     </item>
     <item>
       <title>revamp</title>
-      <link>//localhost:1313/revamp/</link>
+      <link>kingillmusic.com/revamp/</link>
       <pubDate>Sat, 18 May 2024 18:36:23 +0300</pubDate>
-      <guid>//localhost:1313/revamp/</guid>
+      <guid>kingillmusic.com/revamp/</guid>
       <description></description>
     </item>
   </channel>
