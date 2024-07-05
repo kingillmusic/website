@@ -1,8 +1,16 @@
+email = () => {
+    const
+    ce = document.querySelector("#CopiedEmail"),
+    em = document.querySelector("#email");
+    navigator.clipboard.writeText(em.value);
+    ce.style.display = "block";
+    setTimeout( () => { ce.style.display = "none" }, 1000); };
+
 cbtc = () => {
     const
     cbc = document.querySelector("#CopiedBTC"),
-	btc = document.querySelector("#btc");	        // Get the text field
-    navigator.clipboard.writeText(btc.value);	    // Copy the text inside the text field
+	btc = document.querySelector("#btc");
+    navigator.clipboard.writeText(btc.value);
     cbc.style.display = "block";
     setTimeout( () => { cbc.style.display = "none" }, 1000); };
 
