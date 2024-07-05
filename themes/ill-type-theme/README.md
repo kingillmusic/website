@@ -13,16 +13,16 @@ echo "theme = 'ill-type-theme'" >> hugo.toml
 
 ## features
 
-- title bar with clickable song title that scrolls down to song location.
-- share button that copies song link.
-- tag menu which i used to display the list of genres available at the top of the page.
-- search bar.
-- `taglist.html` displays track genre next to it's title.
-- music player with next and previous buttons as well as repeat and shuffle options.
-- separate music players for list and singles with the appropriate features for each.
-- single page includes buttons that copy crypto or paypal link for donation purposes.
+- `titlebar.html` clickable song title that scrolls down to song location in the tracklist.
+- share button that copies song link, positioned in the title bar.
+- `tagcloud.html` is the tag menu displayed at the top of the page.
+- `search.html` search bar.
+- `taglist.html` displays tags next to track title.
+- `player.html` music player with next, previous, repeat and shuffle options.
+- `splayer.html` separate music players single tracks with the less features.
+- `donate.html` single track page includes buttons that copy donation info.
 - `nextprev.html` adds links to the next and previous tracks to the bottom of a page.
 
 ## TODO
 
-- set up store and payment systems - all progress made is included in theme.
+- Pretty much done. Most of it taken from hugocodex.org/add-ons/webshop/ but needed editing to fit beat market style cart and shopping. All progress made is included in theme.
