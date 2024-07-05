@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pays on king ill music</title>
+    <link>//localhost:1313/pay/</link>
+    <description>Recent content in Pays on king ill music</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <atom:link href="//localhost:1313/pay/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>cart</title>
+      <link>//localhost:1313/cart/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/cart/</guid>
+      <description> &amp;dollar;0.00 go back checkout </description>
+    </item>
+    <item>
+      <title>checkout</title>
+      <link>//localhost:1313/cart/checkout/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/cart/checkout/</guid>
+      <description>payment total: Payments are 100% secure etc.</description>
+    </item>
+    <item>
+      <title>pay</title>
+      <link>//localhost:1313/cart/checkout/pay/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/cart/checkout/pay/</guid>
+      <description>Choose your payment method You will be paying &amp;lsquo;Usecue&amp;rsquo; and you will see your order number as a reference. You will have to pay $.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,7 @@
+#!/bin/sh
+#
+# This is a script that prints out identical sku's on to the command line.
+# SKU has to be unique for each variant if you intend on using the web-market options.
+# You can copy this script and replace "sku" with "productID" if you want.
+#
+grep -r sku beats | sort -k 2 | uniq -Df 2 && grep -r sku beats | uniq -Df 2

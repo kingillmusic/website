@@ -1,0 +1,44 @@
+{{ define "header" }}
+    <h1>{{ .Title }}</h1>
+{{ end }}
+      <div id="shoppingcart">
+          <table celpadding="0" cellspacing="0">
+              <thead>
+                  <tr>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th class="Price">{{ i18n "Price" }}</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td class="CartContent"
+                          colspan="6"
+                          style="text-align: center;"
+                          >
+                          {{ i18n "Your shopping cart is currently empty."}}
+                      </td>
+                  </tr>
+              </tbody>
+          </table>
+          <div>
+              &dollar;<span class="carttotal">0.00</span>
+          </div>
+          <h3>
+              <a
+                  type="submit"
+                  id="back"
+                  href="/"
+                  >
+                  {{ "go back" }}
+              </a>
+              <a
+                  type="submit"
+                  id="check"
+                  href="/cart/checkout"
+                  >
+                  {{ "checkout" }}
+              </a>
+          </h3>
+      </div>

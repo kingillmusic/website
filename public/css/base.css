@@ -1,3 +1,5 @@
+/* CSS page for general appearance, beginners must look up z-index  */
+
 @font-face { font-family: "terminus" ; src: url('/fonts/TerminessNerdFont-Bold.ttf') }
 
 *
@@ -13,7 +15,7 @@
 html, body
 {
     max-width: 100% ;
-    overflow-x: hidden ;
+    overflow-x: hidden ; /* prevents overlap of text on smaller screens */
 }
 
 body
