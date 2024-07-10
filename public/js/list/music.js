@@ -31,13 +31,13 @@ fy = (a,b,c,d) => { // minified fisher-yates shuffle algo.
 sha = () => {
     sh=!0,
         fy(a = na(tro.length)),
-       	sb.style.border = "2px dotted #87ffff",
+       	sb.style.border = "4px dotted #87ffff",
         po.paused ? load() : addEventListener("ended", load) },
 
 rpt = () => {
     rpb = !0,
 		po.addEventListener("ended", () => { po.currentTime = 0 }),
-       	rp.style.border = "2px dotted #87ffff",
+       	rp.style.border = "4px dotted #87ffff",
         po.addEventListener("ended", play) },
 
 drpt = () => { rpb = !1, rp.style.border = "none" },
@@ -45,14 +45,15 @@ drpt = () => { rpb = !1, rp.style.border = "none" },
 window.onload = r => {
 	row.forEach (r => {
 		let t = r.querySelector(".TrackPlay");
-    	r.querySelector(".Track").addEventListener("click", () => {
+        r.querySelector(".Track").addEventListener("click", () => {
         	t.getAttribute("src") === "/svg/play.svg" ?
-            (soa(), n = trp.indexOf(t), pause(), load(), play()) : pause() }) }) };
+                (soa(), n = trp.indexOf(t), pause(), load(), play()) : pause() }) }) };
 
 const pause = () => {
-    for (let e = 0; e < row.length; e++)
-        tro[e].pause(), trp[e].src = "/svg/play.svg",
-        po.pause(), pp.src = "/svg/play.svg" },
+    for (let s = 0; s < row.length; s++)
+        po.pause(),
+        pp.src = "/svg/play.svg",
+        trp[s].src = "/svg/play.svg" },
 
 next = () => {
     n < a.length - 1 ?
