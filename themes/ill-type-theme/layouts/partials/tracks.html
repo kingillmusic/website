@@ -8,7 +8,7 @@
             <text class="TrackTitle">{{ .Title }}</text>&nbsp;
             {{ partial "taglist.html" . }}
         </div>
-
+		
 		{{ range .Params.audio }}
         <audio class="TrackAudio" src="{{ . }}" preload="none" type="audio/mpeg">
 				Your browser doesn't support embedded audio.
@@ -20,6 +20,6 @@
                 <img class="MenuSVG" src="/svg/menu.svg" alt="click for more">
             </a>
         </div>
-
+    
     </div>
 {{ end }}
