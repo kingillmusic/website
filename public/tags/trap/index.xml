@@ -6,8 +6,22 @@
     <description>Recent content in Trap on king ill music</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 18 May 2024 19:24:34 +0300</lastBuildDate>
+    <lastBuildDate>Mon, 07 Oct 2024 17:41:08 +0300</lastBuildDate>
     <atom:link href="//localhost:1313/tags/trap/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>drain</title>
+      <link>//localhost:1313/drain/</link>
+      <pubDate>Mon, 07 Oct 2024 17:41:08 +0300</pubDate>
+      <guid>//localhost:1313/drain/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>cow</title>
+      <link>//localhost:1313/cow/</link>
+      <pubDate>Mon, 07 Oct 2024 17:40:26 +0300</pubDate>
+      <guid>//localhost:1313/cow/</guid>
+      <description></description>
+    </item>
     <item>
       <title>buzz</title>
       <link>//localhost:1313/buzz/</link>
