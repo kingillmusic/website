@@ -6,8 +6,15 @@
     <description>Recent content in Exp on king ill music</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 05 Jul 2024 13:50:58 +0300</lastBuildDate>
+    <lastBuildDate>Mon, 14 Oct 2024 18:18:32 +0300</lastBuildDate>
     <atom:link href="//localhost:1313/tags/exp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>bend</title>
+      <link>//localhost:1313/bend/</link>
+      <pubDate>Mon, 14 Oct 2024 18:18:32 +0300</pubDate>
+      <guid>//localhost:1313/bend/</guid>
+      <description></description>
+    </item>
     <item>
       <title>spin</title>
       <link>//localhost:1313/spin/</link>
