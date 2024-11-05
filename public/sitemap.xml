@@ -2,16 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>//localhost:1313/tags/edm/</loc>
+    <lastmod>2024-11-05T21:47:06+02:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/</loc>
+    <lastmod>2024-11-05T21:47:06+02:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/slump/</loc>
+    <lastmod>2024-11-05T21:47:06+02:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/</loc>
+    <lastmod>2024-11-05T21:47:06+02:00</lastmod>
+  </url><url>
     <loc>//localhost:1313/tags/exp/</loc>
     <lastmod>2024-10-26T20:24:28+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/</loc>
-    <lastmod>2024-10-26T20:24:28+03:00</lastmod>
-  </url><url>
     <loc>//localhost:1313/mopt/</loc>
-    <lastmod>2024-10-26T20:24:28+03:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/tags/</loc>
     <lastmod>2024-10-26T20:24:28+03:00</lastmod>
   </url><url>
     <loc>//localhost:1313/halftime/</loc>
@@ -60,9 +66,6 @@
     <lastmod>2024-05-18T19:24:31+03:00</lastmod>
   </url><url>
     <loc>//localhost:1313/dance/</loc>
-    <lastmod>2024-05-18T19:24:27+03:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/tags/edm/</loc>
     <lastmod>2024-05-18T19:24:27+03:00</lastmod>
   </url><url>
     <loc>//localhost:1313/dirty/</loc>
