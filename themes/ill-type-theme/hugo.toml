@@ -3,8 +3,6 @@ baseURL = ''
 languageCode = ''
 
 [params]
-  favicon = "/favicon.ico"
-
   #footer items
   nextprev = true
   taglist = true

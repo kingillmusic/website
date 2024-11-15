@@ -7,7 +7,7 @@
 ```sh
 hugo new site new-site
 cd new-site
-git clone https://github.com/kingillmusic/ill-type-theme themes/lugo
+git clone https://github.com/kingillmusic/ill-type-theme themes/
 echo "theme = 'ill-type-theme'" >> hugo.toml
 ```
 
