@@ -67,7 +67,7 @@ previous = () => {
 
 play = () => {
     po.play(),
-	pp.src = "/svg/pause.svg",
+    pp.src = "/svg/pause.svg",
     trp[trn].src = "/svg/stop.svg" };
 
 go.addEventListener("click", () => { row[trn].scrollIntoView({ behavior:"smooth" }) }),
