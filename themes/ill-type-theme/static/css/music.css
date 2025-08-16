@@ -83,8 +83,8 @@
 
 @media only screen and (min-width: 1000px)
 {
-    #MusicPlayer { background: none ; justify-content: space-evenly }
-    #SinglePlayer { background-image: url('/img/fond.png') }
+    #MusicPlayer { padding-bottom: 2vmax; background: none ; justify-content: space-evenly }
+    #SinglePlayer { padding-bottom: 2vmax; background-image: url('/img/fond.png') }
     #Duration, #SingleDuration { margin: 0 10em }
     #PlayerControls, #SingleControls { margin: 0 10em }
     .Track > div { scroll-margin-top: 3.5em }

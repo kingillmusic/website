@@ -74,7 +74,7 @@ h1 { font-size: 4vmax } hr { color: #87ffff }
 #tagcloud
 {
     z-index: 20 ;
-    margin: 3vmax 0 ;
+    margin: 2.5vmax 0 ;
     text-align: center ;
 }
 
@@ -176,9 +176,9 @@ footer
 
 footer a { color: black }
 
-@media only screen and (min-width: 1000px)
+@media only screen and (min-width: 950px)
 {
     body { font-size: 150% }
     .Single { margin: 8vmax 2vmax }
-    footer { height: 3vmax }
+    footer { font-size: 80%; height: 2.5vmax; }
 }
