@@ -9,14 +9,14 @@
 
 .TrackPlay
 {
-	max-height: 1.3em ;
+	max-height: 1.2em ;
 	position: absolute ;
 }
 
 .TrackTitle
 {
 	font-weight: bold ;
-	margin-left: 1.7em ;
+	margin-left: 1.5em ;
 }
 
 #MusicPlayer, #SinglePlayer
@@ -76,7 +76,7 @@
 @media only screen and (min-width: 400px)
 {
     .Lease img { max-height: 2rem }
-    .TrackPlay { max-height: 1.4em }
+    /* .TrackPlay { max-height: 1.2em } */
 }
 
 @media only screen and (min-width: 600px) { #Duration, #SingleDuration { margin: 0 3em } }

@@ -179,6 +179,7 @@ footer a { color: black }
 @media only screen and (min-width: 950px)
 {
     body { font-size: 150% }
+    .TitleBar { padding: .25em }
     .Single { margin: 8vmax 2vmax }
-    footer { font-size: 80%; height: 2.5vmax; }
+    footer { font-size: 80%; height: 2vmax; }
 }
