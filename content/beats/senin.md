@@ -9,7 +9,7 @@ url = '/senin'
 
 audio = ['/mp3/senin/senin.mp3']
 
-tags = ['boom-bap']
+tags = ['chill']
 
 type = 'products'
 

@@ -7,9 +7,9 @@ draft = false
 
 url = '/no-body'
 
-audio = ['/mp3/no body/no-body.mp3']
+audio = ['/mp3/no-body/no-body.mp3']
 
-tags = ['boom-bap']
+tags = ['exp']
 
 type = 'products'
 

@@ -9,7 +9,7 @@ url = '/animate'
 
 audio = ['/mp3/animate/animate.mp3']
 
-tags = ['drill']
+tags = ['exp']
 
 type = 'products'
 

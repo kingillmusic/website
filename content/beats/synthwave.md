@@ -9,7 +9,7 @@ url = '/synthwave'
 
 audio = ['/mp3/synthwave/synthwave.mp3']
 
-tags = ['pop']
+tags = ['chill']
 
 type = 'products'
 

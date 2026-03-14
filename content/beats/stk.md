@@ -9,7 +9,7 @@ url = '/stk'
 
 audio = ['/mp3/stk/stk.mp3']
 
-tags = ['exp']
+tags = ['chill']
 
 type = 'products'
 

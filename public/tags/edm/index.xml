@@ -6,8 +6,36 @@
     <description>Recent content in Edm on king ill music</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Nov 2024 21:47:06 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 14 Mar 2026 17:32:34 +0000</lastBuildDate>
     <atom:link href="//localhost:1313/tags/edm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>wet</title>
+      <link>//localhost:1313/wet/</link>
+      <pubDate>Sat, 14 Mar 2026 17:32:34 +0000</pubDate>
+      <guid>//localhost:1313/wet/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>mighty</title>
+      <link>//localhost:1313/mighty/</link>
+      <pubDate>Sat, 14 Mar 2026 17:27:04 +0000</pubDate>
+      <guid>//localhost:1313/mighty/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>nata</title>
+      <link>//localhost:1313/nata/</link>
+      <pubDate>Sat, 14 Mar 2026 17:23:30 +0000</pubDate>
+      <guid>//localhost:1313/nata/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>ukbass</title>
+      <link>//localhost:1313/ukbass/</link>
+      <pubDate>Sat, 14 Mar 2026 17:06:30 +0000</pubDate>
+      <guid>//localhost:1313/ukbass/</guid>
+      <description></description>
+    </item>
     <item>
       <title>slump</title>
       <link>//localhost:1313/slump/</link>
@@ -27,6 +55,13 @@
       <link>//localhost:1313/elk/</link>
       <pubDate>Sat, 18 May 2024 19:22:01 +0300</pubDate>
       <guid>//localhost:1313/elk/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>underground</title>
+      <link>//localhost:1313/underground/</link>
+      <pubDate>Sat, 18 May 2024 19:21:47 +0300</pubDate>
+      <guid>//localhost:1313/underground/</guid>
       <description></description>
     </item>
     <item>
@@ -83,13 +118,6 @@
       <link>//localhost:1313/under/</link>
       <pubDate>Sat, 18 May 2024 18:35:27 +0300</pubDate>
       <guid>//localhost:1313/under/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>casey</title>
-      <link>//localhost:1313/casey/</link>
-      <pubDate>Sat, 18 May 2024 18:35:25 +0300</pubDate>
-      <guid>//localhost:1313/casey/</guid>
       <description></description>
     </item>
   </channel>

@@ -9,7 +9,7 @@ url = '/opia'
 
 audio = ['/mp3/opia/opia.mp3']
 
-tags = ['exp']
+tags = ['chill']
 
 type = 'products'
 

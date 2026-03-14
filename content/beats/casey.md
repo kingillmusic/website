@@ -9,7 +9,7 @@ url = '/casey'
 
 audio = ['/mp3/casey/casey.mp3']
 
-tags = ['edm']
+tags = ['chill']
 
 type = 'products'
 

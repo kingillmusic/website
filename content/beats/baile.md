@@ -9,7 +9,7 @@ url = '/baile'
 
 audio = ['/mp3/baile/baile.mp3']
 
-tags = ['trap']
+tags = ['exp']
 
 type = 'products'
 

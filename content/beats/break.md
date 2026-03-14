@@ -9,7 +9,7 @@ url = '/break'
 
 audio = ['/mp3/break/break.mp3']
 
-tags = ['kondzilla']
+tags = ['afro']
 
 # This functionality is needed for proper web-market functionality.
 # SKU has to be unique for each contract/lease, which is what the sku script is for.

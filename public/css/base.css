@@ -15,54 +15,74 @@
 html, body
 {
     max-width: 100% ;
-    overflow-x: hidden ; /* prevents overlap of text on smaller screens */
 }
 
 body
 {
-    margin: auto ;
-    display: flex ;
-    color: #eeeeee ;
-    font-size: 125% ;
-    min-height: 100vh ;
-    font-family: terminus ;
-    margin-bottom: 20vmax ;
-    flex-direction: column;
-    background-image: url('/img/fond.png') ;
+	margin: auto ;
+	font-size: 125% ;
+	min-height: 100vh ;
+	margin-bottom: 20vmax ;
 }
+
+main
+{
+	/*
+	display: inline-grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+	width: 100%;
+	*/
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
 
 a
 {
-    color: #eeeeee ;
+    color: #000 ;
     cursor: pointer ;
 	background: none ;
     text-decoration: none ;
 }
 
-h1 { font-size: 4vmax } hr { color: #87ffff }
+h1 
+{ 
+	font-size: 3.1vmax; 
+} 
 
 .TitleBar
 {
+	display: flex;
+	position: fixed;
     width: 100% ;
-    z-index: 10 ;
-    display: flex ;
-    position: fixed ;
-    padding: 0.5em 0 ;
+	padding: 0.5em 0em ;
     justify-content: center ;
-    border-bottom: solid 1px #87ffff ;
-    background-image: url('/img/fond.png') ;
+	align-items: center;
+    border-bottom: solid 1px #000000 ;
+	background: #ffffff;
+	text-transform: uppercase;
+	height: 4vh;
+}
+
+#name
+{
+	font-size: 70%;
+	cursor: pointer;
+	border-bottom: 1px solid black;
 }
 
 #GotoTrack, #SingleTitle
 {
+	/*color: #87a0f1;*/
+	/*color: #000000;*/
     margin: 0 1% ;
-	color: #87ffff ;
 }
 
 .Share
 {
     cursor: pointer ;
-    max-height: 1em ;
+    max-height: 0.6em ;
 }
 
 #share-box img
@@ -74,112 +94,105 @@ h1 { font-size: 4vmax } hr { color: #87ffff }
 #tagcloud
 {
     z-index: 20 ;
-    margin: 2.5vmax 0 ;
+    margin: 2vmax 0 ;
     text-align: center ;
+	text-transform: uppercase;
 }
 
 #tagcloud span a
 {
-    z-index: 30 ;
-    margin: 0 5px ;
-    color: #87ffff ;
-    font-size: 90% ;
+	z-index: 30 ;
+	margin: 0 10px ;
+	font-size: 80% ;
+	color:#000000;
 }
 
-.taglist text
+#SearchContainer
 {
-    font-size: 80%;
-    color: #888888 ;
+	display: flex;
+	justify-content: center;
+	align-items: center ;
 }
 
 #SearchBox
 {
-    outline: 0;
-    width: 100% ;
-    border: none ;
-    color: #87ffff ;
-    font-size: 100% ;
-    background: none ;
-    margin-top: 0.5em ;
-    text-align: center ;
-    font-family: terminus ;
+	margin: 0 10px;
+	width: 100%;
+	border: 2px solid #87ffff ;
+	background: #efefef;
+	padding: 8px;
+	font-style: italic;
+	text-transform: uppercase;
+	scroll-margin-top: 10em;
 }
 
-.row
-{
-	display: flex ;
-    margin-bottom: 1rem ;
-	scroll-margin-top: 3em ;
-	justify-content: space-between ;
-}
-
-.row > div
-{
-	display: flex ;
-	cursor: pointer ;
-	align-items: center ;
-}
-
-.TrackMenu
-{
-	color: #87ffff ;
-	padding: 0 1rem ;
-}
-
+/*
 .MenuSVG
 {
     max-height: 1.5em ;
 }
+*/
 
 .Single { margin: 10vmax 2vmax }
 
-button
+
+#CopiedMessage /*, #CopiedBTC, #CopiedXMR, #CopiedPPL, #CopiedEmail */
 {
-    width: 100% ;
-	padding: 10px ;
-	margin: 10px 0 ;
-	color: #87ffff ;
-    cursor: pointer ;
-	font-size: 100% ;
-    background: #333333 ;
-	font-family: terminus ;
-    border: 2px solid #87ffff ;
+	top: 50% ;
+	left: 50% ;
+	padding: 1rem ;
+	position: fixed ;
+	border: 3px solid #000000 ;
+	background: #fff;
+	text-transform: uppercase;
+	transform: translate(-50%, -50%) ;
+	font-size: 80%;
+	width: 280px;
 }
 
-#CopiedMessage, #CopiedBTC, #CopiedXMR, #CopiedPPL, #CopiedEmail
+#email
 {
-    top: 50% ;
-    left: 50% ;
-    padding: 1rem ;
-    position: fixed ;
-    text-align: center ;
-    border: 3px solid #87ffff ;
-    background: url('/img/fond.png') ;
-    transform: translate(-50%, -50%) ;
+	cursor: pointer ;
+	font-size: 50% ;
+    background: none;
+    border: none;
+	text-transform: uppercase;
+	text-align: left;
 }
 
 #nextart { float: left ; color: black ; background: #87ffff ; padding: 0.5% 8% }
 #prevart { float: right ; color: black ; background: #87ffff ; padding: 0.5% 8% }
 
+
 footer
 {
-    bottom: 0 ;
-    width: 100% ;
-    z-index: 50 ;
-    display: flex ;
-    height: 4.5vmax ;
-    position: fixed ;
-    background: #87ffff ;
-    align-items: center ;
-    justify-content: center ;
+	display: flex;
+	align-items: center;
+	position: fixed;
+	bottom: 10vh;
+	left: 3vh;
+	z-index: 500;
 }
 
-footer a { color: black }
 
-@media only screen and (min-width: 950px)
+footer p 
+{ 
+	background: #e7ffff;
+	padding: 10% 25%;
+	max-height: 1.3em;
+	cursor: pointer;
+	border-radius: 50%;
+	border: 2px solid #97ffff;
+}
+
+
+@media only screen and (min-width: 700px)
 {
     body { font-size: 150% }
-    .TitleBar { padding: .25em }
-    .Single { margin: 8vmax 2vmax }
-    footer { font-size: 80%; height: 2vmax; }
+    footer 
+	{ 
+		left: 5vh;
+		bottom: 2.5vh;
+	}
+
 }

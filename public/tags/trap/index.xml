@@ -6,20 +6,34 @@
     <description>Recent content in Trap on king ill music</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 07 Oct 2024 17:41:08 +0300</lastBuildDate>
+    <lastBuildDate>Sat, 14 Mar 2026 17:46:33 +0000</lastBuildDate>
     <atom:link href="//localhost:1313/tags/trap/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>fog</title>
+      <link>//localhost:1313/fog/</link>
+      <pubDate>Sat, 14 Mar 2026 17:46:33 +0000</pubDate>
+      <guid>//localhost:1313/fog/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>liv</title>
+      <link>//localhost:1313/liv/</link>
+      <pubDate>Sat, 14 Mar 2026 17:35:16 +0000</pubDate>
+      <guid>//localhost:1313/liv/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>lake</title>
+      <link>//localhost:1313/lake/</link>
+      <pubDate>Sat, 14 Mar 2026 17:30:30 +0000</pubDate>
+      <guid>//localhost:1313/lake/</guid>
+      <description></description>
+    </item>
     <item>
       <title>drain</title>
       <link>//localhost:1313/drain/</link>
       <pubDate>Mon, 07 Oct 2024 17:41:08 +0300</pubDate>
       <guid>//localhost:1313/drain/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>cow</title>
-      <link>//localhost:1313/cow/</link>
-      <pubDate>Mon, 07 Oct 2024 17:40:26 +0300</pubDate>
-      <guid>//localhost:1313/cow/</guid>
       <description></description>
     </item>
     <item>
@@ -296,6 +310,13 @@
       <description></description>
     </item>
     <item>
+      <title>ambience</title>
+      <link>//localhost:1313/ambience/</link>
+      <pubDate>Sat, 18 May 2024 18:39:57 +0300</pubDate>
+      <guid>//localhost:1313/ambience/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>arcade</title>
       <link>//localhost:1313/arcade/</link>
       <pubDate>Sat, 18 May 2024 18:39:52 +0300</pubDate>
@@ -307,13 +328,6 @@
       <link>//localhost:1313/nostalgia/</link>
       <pubDate>Sat, 18 May 2024 18:39:27 +0300</pubDate>
       <guid>//localhost:1313/nostalgia/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>boom</title>
-      <link>//localhost:1313/boom/</link>
-      <pubDate>Sat, 18 May 2024 18:39:23 +0300</pubDate>
-      <guid>//localhost:1313/boom/</guid>
       <description></description>
     </item>
     <item>
@@ -436,24 +450,10 @@
       <description></description>
     </item>
     <item>
-      <title>smoke</title>
-      <link>//localhost:1313/smoke/</link>
-      <pubDate>Sat, 18 May 2024 18:32:10 +0300</pubDate>
-      <guid>//localhost:1313/smoke/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>chile</title>
       <link>//localhost:1313/chile/</link>
       <pubDate>Sat, 18 May 2024 18:31:49 +0300</pubDate>
       <guid>//localhost:1313/chile/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>baile</title>
-      <link>//localhost:1313/baile/</link>
-      <pubDate>Sat, 18 May 2024 18:31:19 +0300</pubDate>
-      <guid>//localhost:1313/baile/</guid>
       <description></description>
     </item>
     <item>

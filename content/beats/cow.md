@@ -9,7 +9,7 @@ url = '/cow'
 
 audio = ['/mp3/cow/cow.mp3']
 
-tags = ['trap']
+tags = ['exp']
 
 # This functionality is needed for proper web-market functionality.
 # SKU has to be unique for each contract/lease, which is what the sku script is for.

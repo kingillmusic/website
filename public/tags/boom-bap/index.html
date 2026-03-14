@@ -7,13 +7,13 @@
 
 <link rel="alternate" type="application/rss+xml" title="king ill music RSS" href="/index.xml">
 
-<link rel="stylesheet" type="text/css" href="/css/fonts.css">
 <link rel="stylesheet" type="text/css" href="/css/base.css">
 <link rel="stylesheet" type="text/css" href="/css/music.css">
 
 <meta name="description" content="">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
 <meta name="robots" content="index, follow">
 <meta charset="utf-8">
 
@@ -22,191 +22,143 @@
     <header>
      
     <div class="TitleBar">
+	<span id="StartDuration">0:00</span>
+	<span id="EndDuration">0:00</span>
+	&nbsp;
     <h1 id="GotoTrack"></h1>
-    <img src="/svg/share.svg" onclick="dcm()" alt="copy URL" class="Share">
+	<div onclick="dcm()">
+		<small id="name">x eezyh</small>
+		<img src="/svg/share.svg" alt="copy URL" class="Share">
+	</div>
 </div>
 <br>
 <div id="ShareBox">
-    <text id="CopiedMessage" style="display:none">copied link!</text>
+    <text id="CopiedMessage" style="display:none">
+		<p>
+			Copied song link for sharing
+		</p>
+		<hr>
+		<p>
+			<a style="color:#87a0f1" target="_blank" href="https://beatstars.com/kingillmusic">
+				BeatStars
+			</a>
+		</p>
+		<p>
+			<a style="color:#87a0f1" target="_blank" href="https://paypal.me/illeezyh">
+				PayPal
+			</a>
+		</p>
+		<p>
+			ezh at keemail dot me
+		</p>
+		<hr>
+		<p>Thank you for listening</p>
+	</text>
 </div>
+
 <br>
+
+
+
 <script type="text/javascript" defer>
+let outsideClickHandler = null;
+let escapeHandler = null;
+
 dcm = () => {
-    const
-        sh = document.querySelector(".Share"),
-        cm = document.querySelector("#CopiedMessage");
-    navigator.clipboard.writeText("//localhost:1313/" + go.innerText);
+    const cm = document.querySelector("#CopiedMessage");
+    
+    
+    if (typeof go === 'undefined' || !go.innerText) {
+        console.error('go element not found or empty');
+        return;
+    }
+    const link = '\/\/localhost:1313\/' + go.innerText;
+    navigator.clipboard.writeText(link).catch(err => console.error('Copy failed:', err));
+    
+    
     cm.style.display = "block";
-    setTimeout( () => { cm.style.display = "none" }, 1000) };
+    console.log('Popup shown'); 
+
+    
+    if (outsideClickHandler) {
+        document.removeEventListener('click', outsideClickHandler);
+        outsideClickHandler = null;
+    }
+    if (escapeHandler) {
+        document.removeEventListener('keydown', escapeHandler);
+        escapeHandler = null;
+    }
+
+    
+    outsideClickHandler = (event) => {
+        
+        if (!cm.contains(event.target)) {
+            closePopup(cm);
+        }
+    };
+
+    
+    escapeHandler = (event) => {
+        if (event.key === 'Escape') {
+            closePopup(cm);
+        }
+    };
+
+    
+    setTimeout(() => {
+        document.addEventListener('click', outsideClickHandler);
+        document.addEventListener('keydown', escapeHandler);
+    }, 10); 
+
+    
+    function closePopup(popupElement) {
+        popupElement.style.display = "none";
+        console.log('Popup closed'); 
+        
+        document.removeEventListener('click', outsideClickHandler);
+        document.removeEventListener('keydown', escapeHandler);
+        outsideClickHandler = null;
+        escapeHandler = null;
+    }
+};
 </script>
 
     
 <div id="tagcloud">
-    <span><a href="//localhost:1313/tags/boom-bap" id="tag_boom-bap">boom-bap</a></span>
+    <span><a href="//localhost:1313/tags/afro" id="tag_afro">afro</a></span>
+    <span><a href="//localhost:1313/tags/chill" id="tag_chill">chill</a></span>
     <span><a href="//localhost:1313/tags/dabke" id="tag_dabke">dabke</a></span>
     <span><a href="//localhost:1313/tags/drill" id="tag_drill">drill</a></span>
     <span><a href="//localhost:1313/tags/edm" id="tag_edm">edm</a></span>
     <span><a href="//localhost:1313/tags/exp" id="tag_exp">exp</a></span>
-    <span><a href="//localhost:1313/tags/kondzilla" id="tag_kondzilla">kondzilla</a></span>
-    <span><a href="//localhost:1313/tags/pop" id="tag_pop">pop</a></span>
     <span><a href="//localhost:1313/tags/trap" id="tag_trap">trap</a></span>
     </div>
 
     <script type="text/javascript" src="/js/list/search.js" defer></script>
-<div>
-    <input id="SearchBox" type="text" placeholder="search for a beat..."/>
+<div id="SearchContainer">
+   <input id="SearchBox" type="text" placeholder="search tracks..."/>
 </div>
-<hr>
+
 
 
     </header>
     <main>
      
     <script type="text/javascript" src="/js/list/music.js" defer></script>
+<script type="text/javascript" src="/js/list/waveform.js" defer></script>
 
-
-    <div class="row">
-
-        <div class="Track">
-            <img src="/svg/play.svg" class="TrackPlay" alt="play">
-            <text class="TrackTitle">achc</text>&nbsp;
-            <div style="clear:both" class=taglist><text id="tag_boom-bap">&lpar;boom-bap&rpar;</text></div>
-
-        </div>
-		
-		
-        <audio class="TrackAudio" src="/mp3/achc/achc.mp3" preload="none" type="audio/mpeg">
-				Your browser doesn't support embedded audio.
-		</audio>
-		 
-
-        <div class="TrackMenu">
-            <a href="/achc/">
-                <img class="MenuSVG" src="/svg/menu.svg" alt="click for more">
-            </a>
-        </div>
-    
-    </div>
-
-    <div class="row">
-
-        <div class="Track">
-            <img src="/svg/play.svg" class="TrackPlay" alt="play">
-            <text class="TrackTitle">love-trip</text>&nbsp;
-            <div style="clear:both" class=taglist><text id="tag_boom-bap">&lpar;boom-bap&rpar;</text></div>
-
-        </div>
-		
-		
-        <audio class="TrackAudio" src="/mp3/love-trip/love-trip.mp3" preload="none" type="audio/mpeg">
-				Your browser doesn't support embedded audio.
-		</audio>
-		 
-
-        <div class="TrackMenu">
-            <a href="/love%20trip/">
-                <img class="MenuSVG" src="/svg/menu.svg" alt="click for more">
-            </a>
-        </div>
-    
-    </div>
-
-    <div class="row">
-
-        <div class="Track">
-            <img src="/svg/play.svg" class="TrackPlay" alt="play">
-            <text class="TrackTitle">senin</text>&nbsp;
-            <div style="clear:both" class=taglist><text id="tag_boom-bap">&lpar;boom-bap&rpar;</text></div>
-
-        </div>
-		
-		
-        <audio class="TrackAudio" src="/mp3/senin/senin.mp3" preload="none" type="audio/mpeg">
-				Your browser doesn't support embedded audio.
-		</audio>
-		 
-
-        <div class="TrackMenu">
-            <a href="/senin/">
-                <img class="MenuSVG" src="/svg/menu.svg" alt="click for more">
-            </a>
-        </div>
-    
-    </div>
-
-    <div class="row">
-
-        <div class="Track">
-            <img src="/svg/play.svg" class="TrackPlay" alt="play">
-            <text class="TrackTitle">aliens</text>&nbsp;
-            <div style="clear:both" class=taglist><text id="tag_boom-bap">&lpar;boom-bap&rpar;</text></div>
-
-        </div>
-		
-		
-        <audio class="TrackAudio" src="/mp3/aliens/aliens.mp3" preload="none" type="audio/mpeg">
-				Your browser doesn't support embedded audio.
-		</audio>
-		 
-
-        <div class="TrackMenu">
-            <a href="/aliens/">
-                <img class="MenuSVG" src="/svg/menu.svg" alt="click for more">
-            </a>
-        </div>
-    
-    </div>
-
-    <div class="row">
-
-        <div class="Track">
-            <img src="/svg/play.svg" class="TrackPlay" alt="play">
-            <text class="TrackTitle">no-body</text>&nbsp;
-            <div style="clear:both" class=taglist><text id="tag_boom-bap">&lpar;boom-bap&rpar;</text></div>
-
-        </div>
-		
-		
-        <audio class="TrackAudio" src="/mp3/no%20body/no-body.mp3" preload="none" type="audio/mpeg">
-				Your browser doesn't support embedded audio.
-		</audio>
-		 
-
-        <div class="TrackMenu">
-            <a href="/no-body/">
-                <img class="MenuSVG" src="/svg/menu.svg" alt="click for more">
-            </a>
-        </div>
-    
-    </div>
 
 
     <script type="text/javascript" src="/js/list/progress.js" defer></script>
 <div id="MusicPlayer">
-    <div>
-        <div id="Duration">
-            <span id="StartDuration">0:00</span>
-            <span id="Seek5">
-                5<img
-                    id="Five"
-                    src="/svg/prv5.svg"
-                    alt="five sex back">
-            </span>
-            <span id="Seek15">
-                <img
-                    id="Fifteen"
-                    src="/svg/nxt15.svg"
-                    alt="fifteen sex forward">15
-            </span>
-            <span id="EndDuration">0:00</span>
-        </div>
-        <div id="PlayerControls">
-            <img id="Shuffle" src="/svg/shuffle.svg" alt="shuffle">
-            <img id="Previous" src="/svg/prv.svg" alt="previous track">
-            <img id="PlayerPlay" src="/svg/play.svg" alt="play/pause">
-            <img id="Next" src="/svg/nxt.svg" alt="next track">
-            <img id="Repeat" src="/svg/rpt.svg" alt="repeat track">
-        </div>
+	<div id="PlayerControls">
+
+		<img id="Shuffle" src="/svg/shuffle.svg" alt="shuffle">
+		<img id="Previous" src="/svg/prv.svg" alt="previous track">
+		<img id="PlayerPlay" src="/svg/play.svg" alt="play/pause">
+		<img id="Next" src="/svg/nxt.svg" alt="next track">
+		<img id="Repeat" src="/svg/rpt.svg" alt="repeat track">
+
         <audio id="PlayerAudio" preload="none" type="audio/mp3">
             Your browser doesn't support embedded audio.
         </audio>
@@ -216,7 +168,11 @@ dcm = () => {
 
     </main>
     <footer>
-     <a href=" / ">ill x eezyh</a>
+     
+
+
+<p id="top">&uArr;</p>
+
 
 
 

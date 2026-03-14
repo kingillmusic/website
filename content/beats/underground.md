@@ -9,7 +9,7 @@ url = '/underground'
 
 audio = ['/mp3/underground/underground.mp3']
 
-tags = ['exp']
+tags = ['edm']
 
 type = 'products'
 

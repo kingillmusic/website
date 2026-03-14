@@ -2,20 +2,95 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>//localhost:1313/tags/edm/</loc>
-    <lastmod>2024-11-05T21:47:06+02:00</lastmod>
+    <loc>//localhost:1313/tags/afro/</loc>
+    <lastmod>2026-03-14T17:50:44+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/drift/</loc>
+    <lastmod>2026-03-14T17:50:44+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/</loc>
-    <lastmod>2024-11-05T21:47:06+02:00</lastmod>
+    <lastmod>2026-03-14T17:50:44+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/</loc>
+    <lastmod>2026-03-14T17:50:44+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/coron/</loc>
+    <lastmod>2026-03-14T17:49:37+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/exp/</loc>
+    <lastmod>2026-03-14T17:49:37+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/fog/</loc>
+    <lastmod>2026-03-14T17:46:33+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/trap/</loc>
+    <lastmod>2026-03-14T17:46:33+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/forever/</loc>
+    <lastmod>2026-03-14T17:43:03+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/chill/</loc>
+    <lastmod>2026-03-14T17:41:59+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/p6/</loc>
+    <lastmod>2026-03-14T17:41:59+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/trap2/</loc>
+    <lastmod>2026-03-14T17:40:55+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/liv/</loc>
+    <lastmod>2026-03-14T17:35:16+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/edm/</loc>
+    <lastmod>2026-03-14T17:32:34+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/wet/</loc>
+    <lastmod>2026-03-14T17:32:34+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/lake/</loc>
+    <lastmod>2026-03-14T17:30:30+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/mighty/</loc>
+    <lastmod>2026-03-14T17:27:04+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/nata/</loc>
+    <lastmod>2026-03-14T17:23:30+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/image/</loc>
+    <lastmod>2026-03-14T17:22:31+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/crash/</loc>
+    <lastmod>2026-03-14T17:17:06+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/yy/</loc>
+    <lastmod>2026-03-14T17:15:35+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/oss/</loc>
+    <lastmod>2026-03-14T17:08:50+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/ukbass/</loc>
+    <lastmod>2026-03-14T17:06:30+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/alc/</loc>
+    <lastmod>2026-03-14T17:02:36+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/blanco/</loc>
+    <lastmod>2026-03-14T16:59:41+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/fav/</loc>
+    <lastmod>2026-03-14T16:52:21+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/wave2/</loc>
+    <lastmod>2026-03-14T16:47:23+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/first/</loc>
+    <lastmod>2026-03-14T16:42:38+00:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/back/</loc>
+    <lastmod>2026-03-14T16:38:20+00:00</lastmod>
   </url><url>
     <loc>//localhost:1313/slump/</loc>
     <lastmod>2024-11-05T21:47:06+02:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/tags/</loc>
-    <lastmod>2024-11-05T21:47:06+02:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/tags/exp/</loc>
-    <lastmod>2024-10-26T20:24:28+03:00</lastmod>
   </url><url>
     <loc>//localhost:1313/mopt/</loc>
     <lastmod>2024-10-26T20:24:28+03:00</lastmod>
@@ -29,22 +104,13 @@
     <loc>//localhost:1313/drain/</loc>
     <lastmod>2024-10-07T17:41:08+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/tags/trap/</loc>
-    <lastmod>2024-10-07T17:41:08+03:00</lastmod>
-  </url><url>
     <loc>//localhost:1313/cow/</loc>
     <lastmod>2024-10-07T17:40:26+03:00</lastmod>
   </url><url>
     <loc>//localhost:1313/break/</loc>
     <lastmod>2024-09-20T13:59:09+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/tags/kondzilla/</loc>
-    <lastmod>2024-09-20T13:59:09+03:00</lastmod>
-  </url><url>
     <loc>//localhost:1313/animate/</loc>
-    <lastmod>2024-07-05T13:51:09+03:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/tags/drill/</loc>
     <lastmod>2024-07-05T13:51:09+03:00</lastmod>
   </url><url>
     <loc>//localhost:1313/spin/</loc>
@@ -60,9 +126,6 @@
     <lastmod>2024-05-18T19:24:34+03:00</lastmod>
   </url><url>
     <loc>//localhost:1313/achc/</loc>
-    <lastmod>2024-05-18T19:24:31+03:00</lastmod>
-  </url><url>
-    <loc>//localhost:1313/tags/boom-bap/</loc>
     <lastmod>2024-05-18T19:24:31+03:00</lastmod>
   </url><url>
     <loc>//localhost:1313/dance/</loc>
@@ -134,9 +197,6 @@
     <loc>//localhost:1313/elk/</loc>
     <lastmod>2024-05-18T19:22:01+03:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/tags/pop/</loc>
-    <lastmod>2024-05-18T19:21:56+03:00</lastmod>
-  </url><url>
     <loc>//localhost:1313/specialty/</loc>
     <lastmod>2024-05-18T19:21:56+03:00</lastmod>
   </url><url>
@@ -157,6 +217,9 @@
   </url><url>
     <loc>//localhost:1313/found/</loc>
     <lastmod>2024-05-18T19:21:05+03:00</lastmod>
+  </url><url>
+    <loc>//localhost:1313/tags/drill/</loc>
+    <lastmod>2024-05-18T19:21:01+03:00</lastmod>
   </url><url>
     <loc>//localhost:1313/red/</loc>
     <lastmod>2024-05-18T19:21:01+03:00</lastmod>
@@ -500,14 +563,6 @@
     <loc>//localhost:1313/</loc>
     <lastmod>2024-02-26T15:24:22+02:00</lastmod>
   </url><url>
-    <loc>//localhost:1313/cart/</loc>
-  </url><url>
     <loc>//localhost:1313/categories/</loc>
-  </url><url>
-    <loc>//localhost:1313/cart/checkout/</loc>
-  </url><url>
-    <loc>//localhost:1313/cart/checkout/pay/</loc>
-  </url><url>
-    <loc>//localhost:1313/pay/</loc>
   </url>
 </urlset>

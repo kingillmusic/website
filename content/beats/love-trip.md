@@ -9,7 +9,7 @@ url = '/love trip'
 
 audio = ['/mp3/love-trip/love-trip.mp3']
 
-tags = ['boom-bap']
+tags = ['chill']
 
 type = 'products'
 

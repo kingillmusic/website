@@ -9,7 +9,7 @@ url = '/aliens'
 
 audio = ['/mp3/aliens/aliens.mp3']
 
-tags = ['boom-bap']
+tags = ['exp']
 
 type = 'products'
 
