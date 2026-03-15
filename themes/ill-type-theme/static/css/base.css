@@ -178,7 +178,7 @@ footer
 footer p 
 { 
 	background: #e7ffff;
-	padding: 10% 30%;
+	padding: .5vh 1.1vh;
 	max-height: 1.3em;
 	cursor: pointer;
 	border-radius: 50%;
