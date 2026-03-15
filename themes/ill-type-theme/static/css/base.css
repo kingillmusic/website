@@ -155,7 +155,6 @@ footer > div
 	left: 3vh;
 	right: 3vh;
 	bottom: 12vh;
-	z-index: 500;
 }
 
 #top
@@ -173,6 +172,7 @@ footer > div
 	display: block;
 	max-height: 1em;
 	padding: 0.8vh 1vh;
+	z-index: 30;
 }
 
 #favicon

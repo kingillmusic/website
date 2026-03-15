@@ -72,6 +72,7 @@
 	transform: translate(-50%, -50%);
 	background: #97ffff;
 	opacity: 0.9;
+	z-index: 100;
 }
 
 #PlayerPlay, #Next, #Previous, #Shuffle, #Repeat
