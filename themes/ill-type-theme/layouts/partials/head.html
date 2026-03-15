@@ -1,8 +1,7 @@
-<title>{{ if not .IsHome }}{{ .Title | title }} | {{ end }}{{ .Site.Title }}</title>
+<!--<title>{{ if not .IsHome }}{{ .Title | title }} | {{ end }}{{ .Site.Title }}</title>-->
+<title>{{ .Site.Title | lower }}</title>
 
 <link rel="canonical" href="{{ .Site.BaseURL }}">
-
-<link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }} RSS" href="/index.xml">
 
 <link rel="stylesheet" type="text/css" href="/css/base.css">
 <link rel="stylesheet" type="text/css" href="/css/music.css">

@@ -1,4 +1,7 @@
 baseURL = 'kingillmusic.com'
 languageCode = 'en-us'
-title = 'king ill music'
+title = 'ill x eezyh'
 theme = 'ill-type-theme'
+
+[params]
+  favicon = '/favicon.png'
