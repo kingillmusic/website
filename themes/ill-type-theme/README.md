@@ -13,16 +13,14 @@ echo "theme = 'ill-type-theme'" >> hugo.toml
 
 ## features
 
-- `titlebar.html` clickable song title that scrolls down to song location in the tracklist.
-- share button that copies song link, positioned in the title bar.
-- `tagcloud.html` is the tag menu displayed at the top of the page.
+- `titlebar.html` or header, clickable song title that scrolls down to song location in the tracklist.
+- share button that copies song link, positioned next to song title and includes artist name (i.e. x eezyh), displays pop up with links.
+- `tagcloud.html` tags displayed at the top of the page, automatically get removed or added based on your tag variable in content/beats/*.md.
 - `search.html` search bar.
+- `tracks.html` all content added to static/mp3 automatically show up, no need to touch it unless you want to change the play button svg.
 - `taglist.html` displays tags next to track title.
 - `player.html` music player with next, previous, repeat and shuffle options.
-- `splayer.html` separate music players single tracks with the less features.
-- `donate.html` single track page includes buttons that copy donation info.
-- `nextprev.html` adds links to the next and previous tracks to the bottom of a page.
 
 ## TODO
 
-- Pretty much done. Most of it taken from hugocodex.org/add-ons/webshop/ but needed editing to fit beat market style cart and shopping. All progress made is included in theme.
+- Pretty much done. Most of it taken from hugocodex.org/add-ons/webshop/ but needed editing to fit beat market style cart and shopping.
