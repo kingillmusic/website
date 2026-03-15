@@ -83,16 +83,15 @@ h1
 
 #tagcloud
 {
-    z-index: 20 ;
-    margin: 2vmax 0 ;
-    text-align: center ;
+	margin: 2.5vh 0;
+	text-align: center;
 	text-transform: uppercase;
 }
 
 #tagcloud span a
 {
-	z-index: 30 ;
-	margin: 0 10px ;
+	z-index: 30;
+	margin: 0 15px ;
 	font-size: 80% ;
 	color:#000000;
 }
@@ -146,38 +145,47 @@ h1
 #nextart { float: left ; color: black ; background: #87ffff ; padding: 0.5% 8% }
 #prevart { float: right ; color: black ; background: #87ffff ; padding: 0.5% 8% }
 
-footer
+
+footer > div
 {
 	display: flex;
-	align-items: center;
 	position: fixed;
-	bottom: 10vh;
+	justify-content: space-between;
+	align-items: center;
 	left: 3vh;
+	right: 3vh;
+	bottom: 12vh;
 	z-index: 500;
-	text-align: center;
 }
 
-footer p 
+#top
 { 
-	font-size: 23px;
-	background: #e7ffff;
-	padding: .5vh 0.9vh;
-	max-height: 1.3em;
 	cursor: pointer;
-	border-radius: 50%;
 	border: 2px solid #97ffff;
-	width: 1.8ch;
 	box-shadow: 0px 2px 3px 1px;
 	opacity: 0.9;
+	border-radius: 50%;
+	background: #e7ffff;
 }
 
+#top > img
+{
+	display: block;
+	max-height: 1em;
+	padding: 0.8vh 1vh;
+}
+
+#favicon
+{
+	max-height: 1.2em;
+	margin-top: 15px;
+}
 
 @media only screen and (min-width: 700px)
 {
     body { font-size: 150% }
-    footer 
+    footer > div
 	{ 
-		left: 5vh;
-		bottom: 2.5vh;
+		bottom: 6vh;
 	}
 }

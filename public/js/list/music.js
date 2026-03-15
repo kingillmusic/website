@@ -65,13 +65,15 @@ const pause = () => {
 next = () => {
     n < a.length - 1 ?
         (load(n++), pause(), play()) :
-        (load(n=0), pause(), play()) 
+        (load(n=0), pause(), play()),
+		row[trn].scrollIntoView({ behavior:"smooth" })
 },
 
 previous = () => {
     n > 0 ?
         (load(n--), pause(), play()) :
-        (load(n = a.length-1), pause(), play()) 
+        (load(n = a.length-1), pause(), play()), 
+		row[trn].scrollIntoView({ behavior:"smooth" })
 },
 
 play = () => {
