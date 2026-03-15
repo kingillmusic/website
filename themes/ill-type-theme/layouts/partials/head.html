@@ -1,18 +1,17 @@
-<!--<title>{{ if not .IsHome }}{{ .Title | title }} | {{ end }}{{ .Site.Title }}</title>-->
-<title>{{ .Site.Title | lower }}</title>
-
-<link rel="canonical" href="{{ .Site.BaseURL }}">
+<script type="text/javascript" src="/js/list/waveform.js" defer></script>
+<script type="text/javascript" src="/js/list/music.js" defer></script>
+<script type="text/javascript" src="/js/list/progress.js" defer></script>
+<script type="text/javascript" src="/js/list/search.js" defer></script>
+<script type="text/javascript" src="/js/list/popup.js" defer></script>
 
 <link rel="stylesheet" type="text/css" href="/css/base.css">
 <link rel="stylesheet" type="text/css" href="/css/music.css">
 
+<title>{{ .Site.Title | lower }}</title>
+{{ if isset .Params "tags" }}<meta name="keywords" content="{{ with .Params.tags }}{{ delimit . ", " }}{{ end }}">{{ end -}}
 {{ with .Site.Params.favicon }}<link rel="icon" href="{{ . }}">{{ end -}}
 
-<meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}">
-
-{{ if isset .Params "tags" }}<meta name="keywords" content="{{ with .Params.tags }}{{ delimit . ", " }}{{ end }}">{{ end -}}
-
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-
 <meta name="robots" content="index, follow">
 <meta charset="utf-8">
+

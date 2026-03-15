@@ -1,23 +1,20 @@
-<script type="text/javascript" src="/js/list/music.js" defer></script>
-<script type="text/javascript" src="/js/list/waveform.js" defer></script>
-
 {{ range (.Paginator 200).Pages }}
     <div class="row">
 		<div class="waveform-per-track">
 			<canvas class="track-waveform"></canvas>
 		</div>
 
-        <div class="Track">
-            <img src="/svg/play.svg" class="TrackPlay" alt="play">
+		<div class="Track">
+			<img src="/svg/play.svg" class="TrackPlay" alt="play">
 			<text class="TrackTitle">{{ .Title }}</text>
 			{{ partial "taglist.html" . }}
 			&nbsp;
 		</div>
 
 		{{ range .Params.audio }}
-        <audio class="TrackAudio" src="{{ . }}" preload="none" type="audio/mpeg">
+		<audio class="TrackAudio" src="{{ . }}" preload="none" type="audio/mpeg">
 				Your browser doesn't support embedded audio.
 		</audio>
 		{{ end }} {{/* range .Params.audio */}}
-    </div>
+	</div>
 {{ end }}
