@@ -130,7 +130,6 @@ h1
 	transform: translate(-50%, -50%) ;
 	font-size: 80%;
 	width: 280px;
-
 	box-shadow: 0px 0px 5px 1px;
 }
 
@@ -158,9 +157,9 @@ footer
 	text-align: center;
 }
 
-
 footer p 
 { 
+	font-size: 23px;
 	background: #e7ffff;
 	padding: .5vh 0.9vh;
 	max-height: 1.3em;

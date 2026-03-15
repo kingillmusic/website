@@ -23,26 +23,26 @@ fy = (a,b,c,d) => { // minified fisher-yates shuffle algo.
 (soa = () => {
     sh=!1,
         fy(a = na(tro.length)),
-       	sb.style.border = "none",
-        a.sort((x,y) => { return x - y });
+       	sb.style.background = "none",
+       a.sort((x,y) => { return x - y });
         po.paused ? load() : addEventListener("ended", load)
 })(),
 
 sha = () => {
     sh=!0,
         fy(a = na(tro.length)),
-       	sb.style.border = "4px solid #ffffff",
-        po.paused ? load() : addEventListener("ended", load)
+       	sb.style.background = "#eeeeee",
+		po.paused ? load() : addEventListener("ended", load)
 },
 
 rpt = () => {
     rpb = !0,
 		po.addEventListener("ended", () => { po.currentTime = 0 }),
-		rp.style.border = "4px solid #ffffff",
+		rp.style.background = "#eeeeee",
         po.addEventListener("ended", play)
 },
 
-drpt = () => { rpb = !1, rp.style.border = "none" },
+drpt = () => { rpb = !1, rp.style.background = "none" },
 
 window.onload = r => {
 	row.forEach (r => {
