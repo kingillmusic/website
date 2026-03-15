@@ -1,17 +1,15 @@
 const
-    po = document.querySelector("#PlayerAudio"),
-    go = document.querySelector("#GotoTrack"),
-    //ba = document.querySelector("#Seek5"),
-    pr = document.querySelector("#Previous"),
-    pp = document.querySelector("#PlayerPlay"),
-    nx = document.querySelector("#Next"),
-    //fo = document.querySelector("#Seek15"),
-    sb = document.querySelector("#Shuffle"),
-    rp = document.querySelector("#Repeat"),
-    row = Array.from(document.querySelectorAll(".row")),
-    trp = Array.from(document.querySelectorAll(".TrackPlay")),
-    tro = Array.from(document.querySelectorAll(".TrackAudio")),
-    trt = Array.from(document.querySelectorAll(".TrackTitle"));
+	po = document.querySelector("#PlayerAudio"),
+	go = document.querySelector("#GotoTrack"),
+	pr = document.querySelector("#Previous"),
+	pp = document.querySelector("#PlayerPlay"),
+	nx = document.querySelector("#Next"),
+	sb = document.querySelector("#Shuffle"),
+	rp = document.querySelector("#Repeat"),
+	row = Array.from(document.querySelectorAll(".row")),
+	trp = Array.from(document.querySelectorAll(".TrackPlay")),
+	tro = Array.from(document.querySelectorAll(".TrackAudio")),
+	trt = Array.from(document.querySelectorAll(".TrackTitle"));
 
 let sh = !1, rpb = !1, a = [], n = 0;
 
@@ -84,12 +82,9 @@ play = () => {
 };
 
 go.addEventListener("click", () => { row[trn].scrollIntoView({ behavior:"smooth" }) }),
-//ba.addEventListener("click", () => { po.currentTime -= 5 }),
 pr.addEventListener("click", () => { sh ? previous() : n = trn, previous() }),
 pp.addEventListener("click", () => { po.paused ? play() : pause() }),
-//go.addEventListener("click", () => { po.paused ? play() : pause() }),
 nx.addEventListener("click", () => { sh ? next() : (n = trn, next()) }),
-//fo.addEventListener("click", () => { po.currentTime += 15 }),
 sb.addEventListener("click", () => { sh ? soa() : sha() }),
 rp.addEventListener("click", () => { rpb ? drpt() : rpt() }),
 po.addEventListener("ended", () => { rpb ? rpt() : next() });

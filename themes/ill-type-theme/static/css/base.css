@@ -1,7 +1,5 @@
 /* CSS page for general appearance, beginners must look up z-index  */
 
-@font-face { font-family: "terminus" ; src: url('/fonts/TerminessNerdFont-Bold.ttf') }
-
 *
 {
     -ms-user-select: none ;
@@ -27,16 +25,10 @@ body
 
 main
 {
-	/*
-	display: inline-grid;
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-	width: 100%;
-	*/
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
-
 
 a
 {
@@ -74,8 +66,6 @@ h1
 
 #GotoTrack, #SingleTitle
 {
-	/*color: #87a0f1;*/
-	/*color: #000000;*/
     margin: 0 1% ;
 }
 
@@ -126,28 +116,22 @@ h1
 	scroll-margin-top: 10em;
 }
 
-/*
-.MenuSVG
-{
-    max-height: 1.5em ;
-}
-*/
-
 .Single { margin: 10vmax 2vmax }
 
-
-#CopiedMessage /*, #CopiedBTC, #CopiedXMR, #CopiedPPL, #CopiedEmail */
+#CopiedMessage
 {
 	top: 50% ;
 	left: 50% ;
 	padding: 1rem ;
 	position: fixed ;
-	border: 3px solid #000000 ;
+	border: 2px solid #97ffff ;
 	background: #fff;
 	text-transform: uppercase;
 	transform: translate(-50%, -50%) ;
 	font-size: 80%;
 	width: 280px;
+
+	box-shadow: 0px 0px 5px 1px;
 }
 
 #email
@@ -163,7 +147,6 @@ h1
 #nextart { float: left ; color: black ; background: #87ffff ; padding: 0.5% 8% }
 #prevart { float: right ; color: black ; background: #87ffff ; padding: 0.5% 8% }
 
-
 footer
 {
 	display: flex;
@@ -172,17 +155,21 @@ footer
 	bottom: 10vh;
 	left: 3vh;
 	z-index: 500;
+	text-align: center;
 }
 
 
 footer p 
 { 
 	background: #e7ffff;
-	padding: .5vh 1.1vh;
+	padding: .5vh 0.9vh;
 	max-height: 1.3em;
 	cursor: pointer;
 	border-radius: 50%;
 	border: 2px solid #97ffff;
+	width: 1.8ch;
+	box-shadow: 0px 2px 3px 1px;
+	opacity: 0.9;
 }
 
 
@@ -194,5 +181,4 @@ footer p
 		left: 5vh;
 		bottom: 2.5vh;
 	}
-
 }
