@@ -4,9 +4,9 @@ body {
 	font-size: 150%;
 	min-height: 100vh;
 	margin: 0 0 20vmax 0;
-    -ms-tap-highlight-color: transparent;
-    -moz-tap-highlight-color: transparent;
-    -webkit-tap-highlight-color: transparent;
+	-ms-tap-highlight-color: transparent;
+	-moz-tap-highlight-color: transparent;
+	-webkit-tap-highlight-color: transparent;
 }
 
 main {
@@ -39,7 +39,7 @@ h1 { font-size: 3.1vmax; }
 
 #name { font-size: 70%; cursor: pointer; border-bottom: 1px solid black; }
 
-#GotoTrack { margin: 0 1%; }
+#GotoTrack { cursor: pointer; margin: 0 1%; }
 
 .Share { cursor: pointer; max-height: 0.6em; }
 
