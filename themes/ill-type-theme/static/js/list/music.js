@@ -44,6 +44,7 @@ rpt = () => {
 
 drpt = () => { rpb = !1, rp.style.background = "none" },
 
+/*
 window.onload = r => {
 	row.forEach (r => {
 		let t = r.querySelector(".TrackPlay");
@@ -52,6 +53,41 @@ window.onload = r => {
 			(soa(), n = trp.indexOf(t), pause(), load(), play()) : pause() 
 		}) 
 	}) 
+};
+*/
+
+/*
+window.onload = r => {
+    for (let i = 0; i < row.length; i++) {
+		let element = row[i];
+		let t = element.querySelector(".TrackPlay");
+		element.querySelector(".Track").addEventListener("click", () => {
+				t.getAttribute("src") === "/svg/play.svg" ?
+				(soa(), n = trp.indexOf(t), pause(), load(), play()) : pause()
+		});
+	}
+};
+*/
+
+window.onload = () => {
+    // Assume there's a common parent that contains all your track rows.
+	// Replace 'document' with the actual container (e.g., '#tracklist') for better performance.
+	const container = document.querySelector('main'); // or document if no container
+
+	container.addEventListener('click', e => {
+		// Find the closest element with class "Track" that was clicked
+		const track = e.target.closest('.Track');
+		if (!track) return; // Ignore clicks outside .Track elements
+
+		// Within that track, find the associated ".TrackPlay" element
+		const t = track.querySelector('.TrackPlay');
+		if (!t) return; // Safety check
+
+		// Original logic
+		t.getAttribute('src') === '/svg/play.svg'
+		? (soa(), n = trp.indexOf(t), pause(), load(), play())
+		: pause();
+	});
 };
 
 const pause = () => {

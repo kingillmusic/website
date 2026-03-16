@@ -1,0 +1,3 @@
+#!/bin/sh
+
+for d in static/*; do cd $d; git rm --cached *.zip; done
