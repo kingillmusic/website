@@ -2,6 +2,6 @@
 <div id="tagcloud">
     {{ range $name, $items := .Site.Taxonomies.tags }}{{ $url := printf "%s/%s" "tags" ($name | urlize | lower)}}<span><a href="{{ $url | absURL }}" id="tag_{{ $name }}">{{ $name | title | lower }}</a></span>
     {{ end }}
-	<a href="/"><img id="favicon" src="/svg/favicon.svg"></a>
+	<a href="/"><img alt="favicon" id="favicon" src="/svg/favicon.svg"></a>
 </div>{{ end }}{{ end }}
 

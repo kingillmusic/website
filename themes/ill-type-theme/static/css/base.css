@@ -1,110 +1,70 @@
 /* CSS page for general appearance, beginners must look up z-index  */
 
-*
-{
-    -ms-user-select: none ;
-    -moz-user-select: none ;
-    -webkit-user-select: none ;
-    -ms-tap-highlight-color: transparent ;
-    -moz-tap-highlight-color: transparent ;
-    -webkit-tap-highlight-color: transparent ;
+body {
+	font-size: 150%;
+	min-height: 100vh;
+	margin: 0 0 20vmax 0;
+    -ms-tap-highlight-color: transparent;
+    -moz-tap-highlight-color: transparent;
+    -webkit-tap-highlight-color: transparent;
 }
 
-html, body
-{
-    max-width: 100% ;
-}
-
-body
-{
-	margin: auto ;
-	font-size: 125% ;
-	min-height: 100vh ;
-	margin-bottom: 20vmax ;
-}
-
-main
-{
+main {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
 
-a
-{
-    color: #000 ;
-    cursor: pointer ;
-	background: none ;
-    text-decoration: none ;
+a {
+    color: #000;
+    cursor: pointer;
+	background: none;
+    text-decoration: none;
 }
 
-h1 
-{ 
-	font-size: 3.1vmax; 
-} 
+h1 { font-size: 3.1vmax; } 
 
-.TitleBar
-{
+.TitleBar {
 	display: flex;
 	position: fixed;
-    width: 100% ;
-	padding: 0.5em 0em ;
-    justify-content: center ;
+    width: 100%;
+	padding: 0.5em 0em;
+    justify-content: center;
 	align-items: center;
-    border-bottom: solid 1px #000000 ;
+    border-bottom: solid 1px #000000;
 	background: #ffffff;
 	text-transform: uppercase;
 	height: 4vh;
 }
 
-#name
-{
-	font-size: 70%;
-	cursor: pointer;
-	border-bottom: 1px solid black;
-}
+#name { font-size: 70%; cursor: pointer; border-bottom: 1px solid black; }
 
-#GotoTrack, #SingleTitle
-{
-    margin: 0 1% ;
-}
+#GotoTrack { margin: 0 1%; }
 
-.Share
-{
-    cursor: pointer ;
-    max-height: 0.6em ;
-}
+.Share { cursor: pointer; max-height: 0.6em; }
 
-#share-box img
-{
-	width: 5% ;
-	max-height: 1.3em ;
-}
+#share-box img { width: 5%; max-height: 1.3em; }
 
-#tagcloud
-{
+#tagcloud {
 	margin: 2.5vh 0;
 	text-align: center;
 	text-transform: uppercase;
 }
 
-#tagcloud span a
-{
+#tagcloud span a {
 	z-index: 30;
 	margin: 0 15px ;
 	font-size: 80% ;
 	color:#000000;
 }
 
-#SearchContainer
-{
+#SearchContainer {
 	display: flex;
 	justify-content: center;
 	align-items: center ;
 }
 
-#SearchBox
-{
+#SearchBox {
 	margin: 0 10px;
 	width: 100%;
 	border: 2px solid #87ffff ;
@@ -115,10 +75,7 @@ h1
 	scroll-margin-top: 10em;
 }
 
-.Single { margin: 10vmax 2vmax }
-
-#CopiedMessage
-{
+#CopiedMessage {
 	top: 50% ;
 	left: 50% ;
 	padding: 1rem ;
@@ -132,8 +89,7 @@ h1
 	box-shadow: 0px 0px 5px 1px;
 }
 
-#email
-{
+#email {
 	cursor: pointer ;
 	font-size: 50% ;
     background: none;
@@ -142,23 +98,17 @@ h1
 	text-align: left;
 }
 
-#nextart { float: left ; color: black ; background: #87ffff ; padding: 0.5% 8% }
-#prevart { float: right ; color: black ; background: #87ffff ; padding: 0.5% 8% }
-
-
-footer > div
-{
+footer > div {
 	display: flex;
 	position: fixed;
 	justify-content: space-between;
 	align-items: center;
 	left: 3vh;
 	right: 3vh;
-	bottom: 12vh;
+	bottom: 14vh;
 }
 
-#top
-{ 
+#top { 
 	cursor: pointer;
 	border: 2px solid #97ffff;
 	box-shadow: 0px 2px 3px 1px;
@@ -167,24 +117,15 @@ footer > div
 	background: #e7ffff;
 }
 
-#top > img
-{
+#top > img {
 	display: block;
 	max-height: 1em;
 	padding: 0.8vh 1vh;
 	z-index: 30;
 }
 
-#favicon
-{
-	max-height: 1.2em;
-}
+#favicon { max-height: 1.2em; }
 
-@media only screen and (min-width: 700px)
-{
-    body { font-size: 150% }
-    footer > div
-	{ 
-		bottom: 6vh;
-	}
+@media only screen and (min-width: 700px) {
+    footer > div { bottom: 6vh; }
 }

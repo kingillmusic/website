@@ -1,17 +1,17 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
+<meta name="robots" content="index, follow">
+<meta name="description" content="Official website of music producer ill x eezyh aka king ill music, which displays the artists entire discography of instrumentals or beats, accessible for listening purposes through a music player with waveform visualization, the genres of these tracks are: Afro Chill Dabke Drill EDM Experimental and Trap.">
+
 <script type="text/javascript" src="/js/list/waveform.js" defer></script>
 <script type="text/javascript" src="/js/list/music.js" defer></script>
 <script type="text/javascript" src="/js/list/progress.js" defer></script>
 <script type="text/javascript" src="/js/list/search.js" defer></script>
 <script type="text/javascript" src="/js/list/popup.js" defer></script>
 
-<link rel="stylesheet" type="text/css" href="/css/base.css">
-<link rel="stylesheet" type="text/css" href="/css/music.css">
+<link rel="stylesheet preload" as="style" type="text/css" href="/css/base.css">
+<link rel="stylesheet preload" as="style" type="text/css" href="/css/music.css">
 
 <title>{{ .Site.Title | lower }}</title>
 {{ if isset .Params "tags" }}<meta name="keywords" content="{{ with .Params.tags }}{{ delimit . ", " }}{{ end }}">{{ end -}}
 {{ with .Site.Params.favicon }}<link rel="icon" href="{{ . }}">{{ end -}}
-
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="robots" content="index, follow">
-<meta charset="utf-8">
-

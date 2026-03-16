@@ -1,71 +1,49 @@
 /* CSS for anything related to the music functionality */
 
-.row
-{
+.row {
 	width: 100%;
 	scroll-margin-top: 2.9em;
 	border: 4px solid black;
-	border-radius: 2px;
 	margin: 10px;
-
 }
 
-.row > div
-{
+.row > div {
 	display: flex;
 	align-items: center;
 	cursor: pointer;
 	justify-content: space-between;
 }
 
-.Track 
-{
-	background: #eeeeee;
-	gap: 5px;
-}
+.Track { background: #eeeeee; gap: 5px; }
 
-.TrackPlay
-{
-	max-height: 1.2em;
-}
+.TrackPlay { max-height: 1.2em; }
 
-.TrackTitle
-{
+.TrackTitle {
 	font-size: 100%;
 	text-transform: uppercase;
 	font-weight: 700;
 }
 
-.taglist text
-{
-    font-size: 70%;
-}
+.taglist text { font-size: 70%; }
 
-.waveform-per-track 
-{
+.waveform-per-track {
 	height: 100px;
 	width: 100%;
 	border-radius: 4px;
 }
 
-.track-waveform 
-{
+.track-waveform {
 	width: 100%;
 	height: 100%;
 	border-radius: 4px;
 }
 
-#MusicPlayer > div, #SinglePlayer > div
-{
+#PlayerControls {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
 	position: fixed;
-	width: 95% 
-}
-
-#PlayerControls, #SingleControls
-{
+	width: 95%; 
 	border-radius: 8px;
 	bottom: 0;
 	left: 50%;
@@ -75,45 +53,25 @@
 	z-index: 100;
 }
 
-#PlayerPlay, #Next, #Previous, #Shuffle, #Repeat
-{
+#PlayerControls > img {
 	border-radius: 50%;
 	background: #97ffff;
 	box-shadow: 0px 2px 2px 1px;
-}
+	cursor: pointer; 
+} 
 
-#PlayerPlay
-{
-	max-height: 2.5em
-}
+#PlayerPlay:active, #Next:active, #Previous:active, #Shuffle:active, #Repeat:active { box-shadow: 0px 1px 2px 1px; }
 
-#PlayerPlay:active, #Next:active, #Previous:active, #Shuffle:active, #Repeat:active
-{
-	box-shadow: 0px 1px 2px 1px;
-}
+#PlayerPlay { max-height: 2.5em }
 
-#Next, #Previous
-{
-	max-height: 1.8em;
-}
+#Next, #Previous { max-height: 1.8em; }
 
-#StartDuration, #EndDuration, #StartSingle, #EndSingle
-{
-	font-size: 0.6em;
-} #EndDuration { display: none }
+#StartDuration { font-size: 0.6em; } 
+#EndDuration { display: none; }
 
 #Shuffle, #Repeat { max-height: 1.2em }
 
-@media only screen and (min-width: 700px)
-{
-	.row
-	{
-		display: grid;
-		grid-template-columns: none;
-		width: unset;
-	}
-	#MusicPlayer > div, #SinglePlayer > div
-	{
-		width: 40%;
-	}
+@media only screen and (min-width: 700px) {
+	.row { display: grid; grid-template-columns: none; width: unset; }
+	#PlayerControls { width: 40%; }
 }

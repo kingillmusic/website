@@ -115,11 +115,11 @@
         if (!ctx || !canvas) return;
 
         // Update canvas dimensions to match container (handles resize)
-        const container = canvas.parentElement;
-        if (container) {
-            canvas.width = container.clientWidth;
-            canvas.height = container.clientHeight;
-        }
+        //const container = canvas.parentElement;
+       // if (container) {
+         //   canvas.width = container.clientWidth;
+          //  canvas.height = container.clientHeight;
+       // }
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
