@@ -1,221 +1,424 @@
 (function() {
-    const globalAudio = document.getElementById('PlayerAudio');
-    if (!globalAudio) {
-        console.error('Waveform: PlayerAudio not found');
-        return;
-    }
 
-    // --- Configuration -------------------------------------------------
-    const TARGET_POINTS = 2000;          // number of amplitude samples per track
-    const BAR_WIDTH = 2;                  // width of each bar in pixels
-    const BAR_SPACING = 2;                 // gap between bars
-    const CONCURRENT_DECODES = 3;          // max simultaneous fetch/decode operations
+	// pAudio (#PlayerAudio) is defined in music.js
+	if (!pAudio) {
+		console.error('Waveform: PlayerAudio not found');
+		return;
+	}
 
-    // --- State ---------------------------------------------------------
-    const waveformCache = new Map();       // in‑memory cache (src → amplitudes)
-    const waveforms = [];                   // per‑row objects { canvas, ctx, src, waveformData, barWidth, barSpacing }
+/*-------CONFIG-------*/
 
-    const decodeQueue = [];                 // queue of srcs to process
-    let activeDecodes = 0;
+	const 
+		TARGET_POINTS = 2000,
+		BAR_WIDTH = 2,
+		BAR_SPACING = 2,
+		CONCURRENT_DECODES = 3;
 
-    // --- Initialisation: find existing canvases -----------------------
-    function initWaveforms() {
-        const rows = document.querySelectorAll('.row');
-        rows.forEach((row) => {
-            const trackAudio = row.querySelector('.TrackAudio');
-            const canvas = row.querySelector('.track-waveform');
-            if (!trackAudio || !canvas) return;
+/*-------STATE-------*/
 
-            waveforms.push({
-                canvas,
-                ctx: canvas.getContext('2d'),
-                src: trackAudio.src,
-                waveformData: null,           // will be filled after decoding
-                barWidth: BAR_WIDTH,
-                barSpacing: BAR_SPACING
-            });
+	const 
+		waveforms = [],
+		waveformCache = new Map(),
+		srcIndexMap = new Map(),
+		decodeQueue = [];
 
-            canvas.addEventListener('click', (e) => handleSeek(e, canvas));
-        });
+	let activeDecodes = 0;
+	let rafPlaying = false;
 
-        // Start preloading all waveforms (no cache, just memory)
-        preloadAllWaveforms();
-        drawAllStatic(); // show random while loading
-    }
+/*-------AUDIO CONTEXT-------*/
 
-    // --- Preload all waveforms (concurrent but limited) ---------------
-    function preloadAllWaveforms() {
-        const srcs = [...new Set(waveforms.map(w => w.src))];
-        srcs.forEach(src => decodeQueue.push(src));
-        processDecodeQueue();
-    }
+	let audioContext = null;
 
-    function processDecodeQueue() {
-        while (activeDecodes < CONCURRENT_DECODES && decodeQueue.length > 0) {
-            const src = decodeQueue.shift();
-            activeDecodes++;
-            decodeWaveform(src).finally(() => {
-                activeDecodes--;
-                processDecodeQueue();
-            });
-        }
-    }
+	function getAudioContext() {
+		if (!audioContext) {
+			audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    	}
+    	return audioContext;
+	}
 
-    async function decodeWaveform(src) {
-        try {
-            const response = await fetch(src);
-            const arrayBuffer = await response.arrayBuffer();
+	function closeAudioContext() {
 
-            // Create a temporary AudioContext for decoding
-            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-            const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
+	    if (audioContext && audioContext.state !== 'closed'){
+			audioContext.close().catch(() => {});
+			audioContext = null;
+    	}
+	}
 
-            const numChannels = audioBuffer.numberOfChannels;
-            const length = audioBuffer.length;
-            const points = TARGET_POINTS;
-            const blockSize = Math.floor(length / points);
-            const amplitudes = new Array(points).fill(0);
+/*-------TIME DISPLAY-------*/
 
-            for (let ch = 0; ch < numChannels; ch++) {
-                const channelData = audioBuffer.getChannelData(ch);
-                for (let i = 0; i < points; i++) {
-                    const start = i * blockSize;
-                    const end = Math.min(start + blockSize, length);
-                    let max = 0;
-                    for (let j = start; j < end; j++) {
-                        const abs = Math.abs(channelData[j]);
-                        if (abs > max) max = abs;
-                    }
-                    amplitudes[i] += max;
-                }
-            }
+	// sDuration & eDuration (#StartDuration & #EndDuration) is defined in progress.js
+	function updateTimeDisplay() {
 
-            for (let i = 0; i < points; i++) {
-                amplitudes[i] = amplitudes[i] / numChannels;
-            }
+	    if (!pAudio.duration || !isFinite(pAudio.duration)) return;
 
-            waveformCache.set(src, amplitudes);
+	    if (eDuration && typeof formatTime === "function") {
+			eDuration.textContent = formatTime(pAudio.duration);
+		}
 
-            // Update all canvases with this src
-            waveforms.forEach(w => {
-                if (w.src === src) {
-                    w.waveformData = amplitudes;
-                    drawStaticWaveform(w);
-                }
-            });
-        } catch (e) {
-            console.warn(`Waveform: failed to decode ${src}`, e);
-            // Mark as failed (will keep random)
-        }
-    }
+		if (sDuration && typeof formatTime === "function") {
+			const remaining = pAudio.duration - pAudio.currentTime;
+			sDuration.textContent = formatTime(remaining);
+    	}
+	}
 
-    // --- Drawing (same as before, but uses external CSS for dimensions)
-    function drawStaticWaveform(w) {
-        const { ctx, canvas, barWidth, barSpacing, src, waveformData } = w;
-        if (!ctx || !canvas) return;
+/*-------INITIALIZATION-------*/
 
-        // Update canvas dimensions to match container (handles resize)
-        //const container = canvas.parentElement;
-       // if (container) {
-         //   canvas.width = container.clientWidth;
-          //  canvas.height = container.clientHeight;
-       // }
+	function initWaveforms() {
 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+	    const rows = document.querySelectorAll('.row');
 
-        const totalBarWidth = barWidth + barSpacing;
-        const barCount = Math.max(1, Math.floor(canvas.width / totalBarWidth));
+	    for (let i = 0; i < rows.length; i++) {
 
-        let amplitudes;
-        if (waveformData && waveformData.length > 0) {
-            amplitudes = interpolateArray(waveformData, barCount);
-        } else {
-            amplitudes = Array.from({ length: barCount }, () => Math.random() * 0.5 + 0.3);
-        }
+        	const
+				trackAudio = rows[i].querySelector('.TrackAudio'),
+        		canvas = rows[i].querySelector('.track-waveform');
 
-        const isActiveTrack = (src === globalAudio.src && globalAudio.duration && isFinite(globalAudio.duration));
-        let playedBarIndex = -1;
-        if (isActiveTrack) {
-            const progress = globalAudio.currentTime / globalAudio.duration;
-            playedBarIndex = Math.floor(progress * barCount);
-        }
+	        if (!trackAudio || !canvas) continue;
 
-        amplitudes.forEach((value, i) => {
-            const x = i * totalBarWidth;
-            const barHeight = value * canvas.height * 0.8;
-            const y = (canvas.height - barHeight) / 2;
+	        const container = canvas.parentElement;
 
-            let fillStyle;
-            if (isActiveTrack && i <= playedBarIndex) {
-                const gradient = ctx.createLinearGradient(x, y, x + barWidth, y + barHeight);
-                gradient.addColorStop(0, '#87ffff');
-                gradient.addColorStop(1, '#87ffff');
-                fillStyle = gradient;
-            } else {
-                fillStyle = '#bbbbbb';
-            }
+	        if (container) {
+            	canvas.width = container.clientWidth;
+            	canvas.height = container.clientHeight;
+        	}
 
-            ctx.fillStyle = fillStyle;
-            ctx.fillRect(x, y, barWidth, barHeight);
-        });
-    }
+	        const barCount = Math.max(1, Math.floor(canvas.width / (BAR_WIDTH + BAR_SPACING)));
 
-    function interpolateArray(src, dstLen) {
-        if (src.length === dstLen) return src.slice();
-        const step = (src.length - 1) / (dstLen - 1);
-        const dst = [];
-        for (let i = 0; i < dstLen; i++) {
-            const pos = i * step;
-            const idx1 = Math.floor(pos);
-            const idx2 = Math.min(idx1 + 1, src.length - 1);
-            const frac = pos - idx1;
-            dst.push(src[idx1] * (1 - frac) + src[idx2] * frac);
-        }
-        return dst;
-    }
+	        waveforms.push ({
+				canvas:canvas,
+				ctx:canvas.getContext('2d'),
+				src:trackAudio.src,
+				waveformData:null,
+				bitmapGray:null,
+				bitmapProgress:null,
+				barCount:barCount
+        	});
 
-    function drawAllStatic() {
-        waveforms.forEach(w => drawStaticWaveform(w));
-    }
+	        canvas.dataset.waveformIndex = i;
 
-    function redrawAll() {
-        waveforms.forEach(w => drawStaticWaveform(w));
-    }
+	        srcIndexMap.set(trackAudio.src,i);
 
-    // --- Seeking --------------------------------------------------------
-    function handleSeek(e, canvas) {
-        if (!globalAudio.duration) return;
-        const rect = canvas.getBoundingClientRect();
-        const clickX = e.clientX - rect.left;
-        const seekPercent = clickX / canvas.width;
-        globalAudio.currentTime = seekPercent * globalAudio.duration;
-    }
+	    }
 
-    // --- Audio event listeners (same) ----------------------------------
-    function updateActiveWaveform() {
-        waveforms.forEach(w => drawStaticWaveform(w));
-    }
+	    drawPlaceholders();
 
-    globalAudio.addEventListener('play', updateActiveWaveform);
-    globalAudio.addEventListener('pause', updateActiveWaveform);
-    globalAudio.addEventListener('ended', updateActiveWaveform);
-    globalAudio.addEventListener('loadedmetadata', updateActiveWaveform);
-    globalAudio.addEventListener('timeupdate', () => {
-        const active = waveforms.find(w => w.src === globalAudio.src);
-        if (active) drawStaticWaveform(active);
-    });
+		prepareDecodeQueue();
+		processDecodeQueue();
 
-    window.addEventListener('resize', () => {
-        waveforms.forEach(w => {
-            const container = w.canvas.parentElement;
-            if (container) {
-                w.canvas.width = container.clientWidth;
-                w.canvas.height = container.clientHeight;
-            }
-        });
-        redrawAll();
-    });
+	    if (pAudio.readyState >= 1) {
+        	updateTimeDisplay();
+    	}
+	}
 
-    // Start
-    initWaveforms();
+/*-------EVENT DELEGATION-------*/
+
+	document.addEventListener('click',function(e) {
+		const canvas = e.target.closest('.track-waveform');
+    	if(!canvas) return;
+    	handleSeek(e,canvas);
+	});
+
+/*-------PLACEHOLDER WAVEFORMS-------*/
+
+	function drawPlaceholders() {
+		for (let w of waveforms) {
+
+        const 
+			ctx = w.ctx,
+			canvas = w.canvas,
+			total = BAR_WIDTH + BAR_SPACING,
+			seed = w.src.length;
+
+			for (let i = 0; i < w.barCount; i++) {
+   	        	const 
+					value = (Math.sin(i * 0.1 + seed) * 0.5 + 0.5) * 0.5 + 0.3,
+					h = value * canvas.height * 0.8,
+   	        		x = i * total,
+   	        		y = (canvas.height - h) / 2;
+
+				ctx.fillStyle = '#bbbbbb';
+				ctx.fillRect(x,y,BAR_WIDTH,h);
+			}
+    	}
+	}
+
+/*-------DECODE QUEUE-------*/
+
+	function prepareDecodeQueue() {
+
+	    const srcs = [...new Set(waveforms.map(w => w.src))];
+
+	    for(let i = 0; i < srcs.length; i++) {
+			decodeQueue.push(srcs[i]);
+    	}
+	}
+
+	function processDecodeQueue() {
+		while(activeDecodes<CONCURRENT_DECODES && decodeQueue.length){
+	        const src = decodeQueue.shift();
+	        activeDecodes++;
+	        decodeWaveform(src).finally(() => {
+				activeDecodes--;
+            	processDecodeQueue();
+				if (activeDecodes === 0 && decodeQueue.length === 0) {
+					closeAudioContext();
+				}
+        	});
+    	}
+	}
+
+/*-------WAVEFORM DECODING-------*/
+
+	async function decodeWaveform(src) {
+
+		const context = getAudioContext();
+
+		try {
+			const 
+				response = await fetch(src),
+				buffer = await response.arrayBuffer(),
+				audioBuffer = await context.decodeAudioData(buffer),
+				channels = audioBuffer.numberOfChannels,
+				length = audioBuffer.length,
+				blockSize = Math.floor(length / TARGET_POINTS),
+				amplitudes = new Float32Array(TARGET_POINTS);
+
+			for (let ch = 0; ch < channels; ch++) {
+
+				const data = audioBuffer.getChannelData(ch);
+
+				for (let i = 0; i < TARGET_POINTS; i++) {
+
+					const 
+						start = i*blockSize,
+						end = Math.min(start + blockSize,length);
+
+					let max = 0;
+	
+					for (let j = start; j < end; j++) {
+						const abs = Math.abs(data[j]);
+						if (abs > max) max = abs;
+					}
+				amplitudes[i] += max;
+				}
+			}
+			for (let i = 0; i < TARGET_POINTS; i++) {
+				amplitudes[i] /= channels;
+			}
+
+			waveformCache.set(src,amplitudes);
+
+			for(let w of waveforms) {
+				if(w.src === src){
+					w.waveformData = amplitudes;
+					await prerenderWaveformBitmaps(w);
+					drawBitmapWaveform(w);
+				}
+			}
+
+		} catch(e) {
+			console.warn('Waveform decode failed:',src,e);
+		}
+	}
+
+/*-------OFFSCREEN BITMAP RENDER-------*/
+
+	async function prerenderWaveformBitmaps(w){
+
+		const 
+			width = w.canvas.width,
+			height = w.canvas.height,
+			offGray = new OffscreenCanvas(width,height),
+			offProgress = new OffscreenCanvas(width,height),
+			gctx = offGray.getContext('2d'),
+			pctx = offProgress.getContext('2d'),
+			total = BAR_WIDTH + BAR_SPACING;
+
+		let	amps = w.waveformData;
+		if (w.barCount !== TARGET_POINTS) {
+			amps = interpolateArray(w.waveformData, w.barCount);
+		}
+
+		for (let i = 0; i < w.barCount; i++) {
+
+			const 
+				val = amps[i],
+				barH = val * height * 0.8,
+				x = i * total,
+				y = (height - barH) / 2;
+
+			gctx.fillStyle = '#bbbbbb';
+			gctx.fillRect(x, y, BAR_WIDTH, barH);
+
+			pctx.fillStyle = '#87ffff';
+			pctx.fillRect(x, y, BAR_WIDTH, barH);
+		}
+		w.bitmapGray = await createImageBitmap(offGray);
+		w.bitmapProgress = await createImageBitmap(offProgress);
+	}
+
+/*-------DRAW BITMAP-------*/
+
+	function drawBitmapWaveform(w) {
+		if (!w.bitmapGray) return;
+		w.ctx.clearRect(0,0,w.canvas.width,w.canvas.height);
+		w.ctx.drawImage(w.bitmapGray,0,0);
+	}
+
+/*-------INTERPOLATION-------*/
+
+	function interpolateArray(src,dstLen) {
+
+		const 
+			step = (src.length - 1) / (dstLen - 1),
+			dst = new Float32Array(dstLen);
+
+		for (let i = 0; i < dstLen; i++) {
+
+		const
+			pos = i * step,
+			idx1 = Math.floor(pos),
+			idx2 = Math.min(idx1 + 1, src.length - 1),
+			frac = pos -idx1;
+
+			dst[i] = src[idx1] * (1 - frac) + src[idx2] * frac;
+		}
+		return dst;
+	}
+
+/*-------SEEK-------*/
+
+	function handleSeek(e, canvas) {
+
+	    if (!pAudio.duration) return;
+
+		// Get the waveform object associated with the clicked canvas
+		const index = canvas.dataset.waveformIndex;
+
+		if (index === undefined) return;
+
+		const w = waveforms[index];
+
+		// Only allow seeking if this is the currently playing track
+		if (w.src !== pAudio.src) return;
+
+		// Calculate click position
+		const 
+			rect = canvas.getBoundingClientRect(),
+			clickX = e.clientX - rect.left,
+			seekPercent = Math.max(0, Math.min(1, clickX / canvas.width));
+
+		pAudio.currentTime = seekPercent * pAudio.duration;
+
+		// Immediately update waveform progress
+		updateProgress();
+	}
+
+/*-------PROGRESS-------*/
+
+	function updateProgress() {
+
+		if(!pAudio.duration) return;
+
+		const index = srcIndexMap.get(pAudio.src);
+
+		if(index === undefined) return;
+
+		const 
+			w = waveforms[index],
+			ctx = w.ctx;
+
+		// If waveform bitmap not ready yet, skip progress rendering
+		if(!w.bitmapGray){
+			return;
+		}
+
+		ctx.clearRect(0,0,w.canvas.width,w.canvas.height);
+		ctx.drawImage(w.bitmapGray,0,0);
+
+		// If progress bitmap not ready yet, stop here
+		if(!w.bitmapProgress){
+			return;
+		}
+
+		const 
+			progress = pAudio.currentTime / pAudio.duration,
+			width = w.canvas.width * progress;
+
+		ctx.save();
+		ctx.beginPath();
+		ctx.rect(0,0,width,w.canvas.height);
+		ctx.clip();
+
+		ctx.drawImage(w.bitmapProgress,0,0);
+
+		ctx.restore();
+
+	}
+
+/*-------PLAYBACK LOOP-------*/
+
+	function playbackLoop() {
+
+		if (!rafPlaying) return;
+
+		updateTimeDisplay();
+		updateProgress();
+
+		requestAnimationFrame(playbackLoop);
+	}
+
+	pAudio.addEventListener('play',() => {
+		rafPlaying = true;
+		playbackLoop();
+	});
+
+	pAudio.addEventListener('pause',() => {
+		rafPlaying = false;
+	});
+
+	pAudio.addEventListener('ended',() => {
+		rafPlaying = false;
+	});
+
+/*-------RESIZE-------*/
+
+	let resizeTimeout;
+
+	window.addEventListener('resize', () => {
+		clearTimeout(resizeTimeout);
+
+		resizeTimeout = setTimeout(async () => {
+
+			for (let w of waveforms) {
+				const container = w.canvas.parentElement;
+				if (!container) continue;
+
+				// Update canvas size
+				w.canvas.width = container.clientWidth;
+				w.canvas.height = container.clientHeight;
+
+				// Recalculate barCount based on new width
+				w.barCount = Math.max(1, Math.floor(w.canvas.width / (BAR_WIDTH + BAR_SPACING)));
+
+				// Only rerender if waveformData exists
+					if (w.waveformData) {
+						await prerenderWaveformBitmaps(w); // regenerate bitmaps for new size
+						drawBitmapWaveform(w);             // redraw waveform
+						updateProgress();                  // update progress overlay if playing
+					}
+			}
+		}, 120);
+	});
+
+	window.addEventListener('beforeunload',closeAudioContext);
+
+/* -------------------------------------------------- */
+
+	if(document.readyState === 'loading'){
+		document.addEventListener('DOMContentLoaded',initWaveforms);
+	} else {
+		initWaveforms();
+	}
+
 })();

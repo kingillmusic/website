@@ -1,6 +1,6 @@
 const
-    sd = document.querySelector("#StartDuration"),
-    ed = document.querySelector("#EndDuration");
+    sDuration = document.getElementById("StartDuration"),
+    eDuration = document.getElementById("EndDuration");
 
 // Function to format seconds into mm:ss
 function formatTime(seconds) {
@@ -10,16 +10,16 @@ function formatTime(seconds) {
 }
 
 // When metadata is loaded, display the total duration in sd
-if (po.readyState >= 1) {
-    sd.textContent = formatTime(po.duration);
+if (pAudio.readyState >= 1) {
+    sDuration.textContent = formatTime(pAudio.duration);
 	} else {
-		po.addEventListener('loadedmetadata', () => {
-		sd.textContent = formatTime(po.duration);
+		pAudio.addEventListener('loadedmetadata', () => {
+		sDuration.textContent = formatTime(pAudio.duration);
 	});
 }
 
 // Countdown during playback
-po.ontimeupdate = () => {
-    let remaining = po.duration - po.currentTime;
-    sd.textContent = formatTime(remaining);
+pAudio.ontimeupdate = () => {
+    let remaining = pAudio.duration - pAudio.currentTime;
+    sDuration.textContent = formatTime(remaining);
 };

@@ -1,19 +1,19 @@
 const
-	po = document.querySelector("#PlayerAudio"),
-	go = document.querySelector("#GotoTrack"),
-	pr = document.querySelector("#Previous"),
-	pp = document.querySelector("#PlayerPlay"),
-	nx = document.querySelector("#Next"),
-	sb = document.querySelector("#Shuffle"),
-	rp = document.querySelector("#Repeat"),
-	row = Array.from(document.querySelectorAll(".row")),
-	trp = Array.from(document.querySelectorAll(".TrackPlay")),
-	tro = Array.from(document.querySelectorAll(".TrackAudio")),
-	trt = Array.from(document.querySelectorAll(".TrackTitle"));
+	pAudio = document.getElementById("PlayerAudio"),
+	go = document.getElementById("GotoTrack"),
+	pr = document.getElementById("Previous"),
+	pp = document.getElementById("PlayerPlay"),
+	nx = document.getElementById("Next"),
+	sb = document.getElementById("Shuffle"),
+	rp = document.getElementById("Repeat"),
+	row = Array.from(document.getElementsByClassName("row")),
+	trp = Array.from(document.getElementsByClassName("TrackPlay")),
+	tro = Array.from(document.getElementsByClassName("TrackAudio")),
+	trt = Array.from(document.getElementsByClassName("TrackTitle"));
 
 let sh = !1, rpb = !1, a = [], n = 0;
 
-load = () => { trn = a[n], po.src = tro[trn].src, go.innerHTML = trt[trn].innerHTML },
+load = () => { trn = a[n], pAudio.src = tro[trn].src, go.innerHTML = trt[trn].innerHTML },
 
 na = (e,t) => { for (t = []; e--;) t[e] = e; return t },
 
@@ -25,21 +25,21 @@ fy = (a,b,c,d) => { // minified fisher-yates shuffle algo.
         fy(a = na(tro.length)),
        	sb.style.background = "none",
        a.sort((x,y) => { return x - y });
-        po.paused ? load() : addEventListener("ended", load)
+        pAudio.paused ? load() : addEventListener("ended", load)
 })(),
 
 sha = () => {
     sh=!0,
         fy(a = na(tro.length)),
        	sb.style.background = "#eeeeee",
-		po.paused ? load() : addEventListener("ended", load)
+		pAudio.paused ? load() : addEventListener("ended", load)
 },
 
 rpt = () => {
     rpb = !0,
-		po.addEventListener("ended", () => { po.currentTime = 0 }),
+		pAudio.addEventListener("ended", () => { pAudio.currentTime = 0 }),
 		rp.style.background = "#eeeeee",
-        po.addEventListener("ended", play)
+        pAudio.addEventListener("ended", play)
 },
 
 drpt = () => { rpb = !1, rp.style.background = "none" },
@@ -56,7 +56,7 @@ window.onload = r => {
 
 const pause = () => {
     for (let s = 0; s < row.length; s++)
-        po.pause(),
+        pAudio.pause(),
         pp.src = "/svg/play.svg",
 		go.style.color = "#000",
 		trp[s].src = "/svg/play.svg" 
@@ -77,7 +77,7 @@ previous = () => {
 },
 
 play = () => {
-    po.play(),
+    pAudio.play(),
     pp.src = "/svg/pause.svg",
 	go.style.color = "#ff8d00",
     trp[trn].src = "/svg/stop.svg"
@@ -85,8 +85,8 @@ play = () => {
 
 go.addEventListener("click", () => { row[trn].scrollIntoView({ behavior:"smooth" }) }),
 pr.addEventListener("click", () => { sh ? previous() : n = trn, previous() }),
-pp.addEventListener("click", () => { po.paused ? play() : pause() }),
+pp.addEventListener("click", () => { pAudio.paused ? play() : pause() }),
 nx.addEventListener("click", () => { sh ? next() : (n = trn, next()) }),
 sb.addEventListener("click", () => { sh ? soa() : sha() }),
 rp.addEventListener("click", () => { rpb ? drpt() : rpt() }),
-po.addEventListener("ended", () => { rpb ? rpt() : next() });
+pAudio.addEventListener("ended", () => { rpb ? rpt() : next() });

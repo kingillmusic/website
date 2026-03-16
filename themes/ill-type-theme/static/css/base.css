@@ -1,7 +1,6 @@
 /* CSS page for general appearance, beginners must look up z-index  */
 
 body {
-	font-size: 150%;
 	min-height: 100vh;
 	margin: 0 0 20vmax 0;
 	-ms-tap-highlight-color: transparent;
@@ -22,31 +21,27 @@ a {
     text-decoration: none;
 }
 
-h1 { font-size: 3.1vmax; } 
-
 .TitleBar {
 	display: flex;
 	position: fixed;
-    width: 100%;
-	padding: 0.5em 0em;
-    justify-content: center;
+	width: 100%;
+	justify-content: center;
 	align-items: center;
     border-bottom: solid 1px #000000;
 	background: #ffffff;
 	text-transform: uppercase;
-	height: 4vh;
 }
 
-#name { font-size: 70%; cursor: pointer; border-bottom: 1px solid black; }
+#name { font-size: 1vmax; cursor: pointer; border-bottom: 1px solid black; }
 
-#GotoTrack { cursor: pointer; margin: 0 1%; }
+#GotoTrack { cursor: pointer; margin: 0 1%; font-size: 3vmax }
 
 .Share { cursor: pointer; max-height: 0.6em; }
 
 #share-box img { width: 5%; max-height: 1.3em; }
 
 #tagcloud {
-	margin: 2.5vh 0;
+	margin: 2% 0;
 	text-align: center;
 	text-transform: uppercase;
 }
@@ -54,7 +49,7 @@ h1 { font-size: 3.1vmax; }
 #tagcloud span a {
 	z-index: 30;
 	margin: 0 15px ;
-	font-size: 80% ;
+	font-size: 90% ;
 	color:#000000;
 }
 
@@ -62,10 +57,10 @@ h1 { font-size: 3.1vmax; }
 	display: flex;
 	justify-content: center;
 	align-items: center ;
+	margin: 10px;
 }
 
 #SearchBox {
-	margin: 0 10px;
 	width: 100%;
 	border: 2px solid #87ffff ;
 	background: #efefef;
