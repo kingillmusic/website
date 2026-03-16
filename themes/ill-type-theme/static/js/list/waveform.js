@@ -9,10 +9,10 @@
 /*-------CONFIG-------*/
 
 	const 
-		TARGET_POINTS = 2000,
+		TARGET_POINTS = 500,
 		BAR_WIDTH = 2,
 		BAR_SPACING = 2,
-		CONCURRENT_DECODES = 3;
+		CONCURRENT_DECODES = 5;
 
 /*-------STATE-------*/
 
