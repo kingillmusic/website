@@ -7,7 +7,7 @@ draft = false
 
 url = '/drift'
 
-audio = ['/mp3/drift/drift.m4a']
+audio = ['/mp3/drift/drift.mp3']
 
 tags = ['afro']
 

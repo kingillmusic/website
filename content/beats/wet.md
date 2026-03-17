@@ -7,7 +7,7 @@ draft = false
 
 url = '/wet'
 
-audio = ['/mp3/wet/wet.m4a']
+audio = ['/mp3/wet/wet.mp3']
 
 tags = ['edm']
 

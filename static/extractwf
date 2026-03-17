@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# This script extracts amplitude information using audiowaveform tool.
+# https://github.com/bbc/audiowaveform
+
+find mp3 -name "*.mp3" | while read mp3file; do
+    # Define the output JSON path
+    outfile="waveforms/${mp3file#mp3/}"
+    outfile="${outfile%.mp3}.json"
+    
+    # Create the output directory if it doesn't exist
+    mkdir -p "$(dirname "$outfile")"
+
+    # Check if the JSON file already exists
+    if [ -f "$outfile" ]; then
+        echo "Skipping $mp3file (JSON already exists)"
+    else
+        echo "Processing $mp3file -> $outfile"
+        audiowaveform -i "$mp3file" -o "$outfile"
+    fi
+done

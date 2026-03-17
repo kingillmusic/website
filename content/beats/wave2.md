@@ -7,7 +7,7 @@ draft = false
 
 url = '/wave2'
 
-audio = ['/mp3/wave2/wave2.m4a']
+audio = ['/mp3/wave2/wave2.mp3']
 
 tags = ['exp']
 

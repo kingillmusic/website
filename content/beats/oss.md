@@ -7,7 +7,7 @@ draft = false
 
 url = '/oss'
 
-audio = ['/mp3/oss/oss.m4a']
+audio = ['/mp3/oss/oss.mp3']
 
 tags = ['chill']
 

@@ -7,7 +7,7 @@ draft = false
 
 url = '/fav'
 
-audio = ['/mp3/fav/fav.m4a']
+audio = ['/mp3/fav/fav.mp3']
 
 tags = ['exp']
 
