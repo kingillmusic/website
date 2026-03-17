@@ -2,7 +2,7 @@
 
 .row {
 	width: 100%;
-	scroll-margin-top: 5vmax;
+	scroll-margin-top: 7vmax;
 	border: 4px solid black;
 	margin: 10px;
 }
@@ -14,7 +14,7 @@
 	cursor: pointer;
 }
 
-.Track { background: #eeeeee; gap: 5px; }
+.Track { background: #eeeeee; gap: 5px; font-size: 120%; }
 
 .TrackPlay { max-height: 1.2em; }
 
@@ -45,6 +45,7 @@
 	background: #97ffff;
 	opacity: 0.9;
 	z-index: 100;
+	font-size: 120%;
 }
 
 #PlayerControls > img {

@@ -30,18 +30,21 @@ a {
     border-bottom: solid 1px #000000;
 	background: #ffffff;
 	text-transform: uppercase;
+	padding: 0.6vmax 0;
 }
 
-#name { font-size: 1vmax; cursor: pointer; border-bottom: 1px solid black; }
 
-#GotoTrack { cursor: pointer; margin: 0 1%; font-size: 3vmax }
+#GotoTrack { cursor: pointer; margin: 0 1%; font-size: 3.5vmax }
 
-.Share { cursor: pointer; max-height: 0.6em; }
+#name { font-size: 1.2vmax; cursor: pointer; border-bottom: 1px solid black; }
+
+.Share { cursor: pointer; max-height: 0.7em; }
 
 #share-box img { width: 5%; max-height: 1.3em; }
 
 #tagcloud {
-	margin: 2% 0;
+	margin: 3% 0 2% 0;
+	font-size: 115%;
 	text-align: center;
 	text-transform: uppercase;
 }
@@ -57,7 +60,7 @@ a {
 	display: flex;
 	justify-content: center;
 	align-items: center ;
-	margin: 10px;
+	margin: 20px 10px 5px 10px;
 }
 
 #SearchBox {
@@ -67,7 +70,7 @@ a {
 	padding: 8px;
 	font-style: italic;
 	text-transform: uppercase;
-	scroll-margin-top: 10em;
+	scroll-margin-top: 25em;
 }
 
 #CopiedMessage {
