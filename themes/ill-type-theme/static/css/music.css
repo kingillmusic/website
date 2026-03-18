@@ -1,8 +1,8 @@
 /* CSS for anything related to the music functionality */
 
-.row { box-shadow: 0px 2px 4px 0px; scroll-margin-top: 15vh;  margin: 10px; }
+.row { box-shadow: 0px 1px 4px 0px; scroll-margin-top: 15vh;  margin: 10px; }
 .row > div { display: flex; align-items: center; justify-content: space-between; }
-.Track { cursor: pointer; background: #eeeeee; gap: 5px; font-size: 120%; }
+.Track { padding: 1%; cursor: pointer; background: #eeeeee; gap: 5px; font-size: 120%; }
 .TrackPlay { max-height: 1.2em; }
 .TrackTitle { text-transform: uppercase; font-weight: 700; }
 .taglist text { font-size: 70%; }
