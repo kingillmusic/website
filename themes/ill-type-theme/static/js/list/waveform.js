@@ -4,10 +4,10 @@
 
     /*-------CONFIG-------*/
     const 
-        BAR_WIDTH = 2,
+        BAR_WIDTH = 1,
         BAR_SPACING = 3,
         CONCURRENT_LOADS = 3,               // reduced for mobile
-        MAX_BAR_HEIGHT_FRAC = 0.6,
+        MAX_BAR_HEIGHT_FRAC = 0.7,
         RESAMPLE_METHOD = 'mean',            // 'max', 'mean', or 'interpolate'
         CONTRAST_EXPONENT = 2;                // >1 sharpens distinctions
 
@@ -190,9 +190,11 @@
     }
 
     /*-------JSON LOADING & WORKER OFFLOAD-------*/
-    function getJsonUrlFromAudioSrc(src) {
-        return src .replace('/mp3/', '/waveforms/') .replace(/\.mp3$/, '.json');
-    }
+    function getJsonUrlFromAudioSrc(src) {	
+        return src 
+		.replace('/mp3/', '/waveforms/') 	// replace /mp3/ with /waveforms/
+		.replace(/\.(mp3|ogg)$/, '.json');	// and .mp3/.ogg with .json
+	}
 
     async function loadWaveformJson(src) {
         const jsonUrl = getJsonUrlFromAudioSrc(src);

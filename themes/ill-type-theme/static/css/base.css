@@ -89,7 +89,7 @@ footer > div {
 	align-items: center;
 	left: 2vh;
 	right: 2vh;
-	bottom: 12vh;
+	bottom: 14vh;
 }
 
 #top, #share { 
@@ -100,8 +100,7 @@ footer > div {
 	background: #eeeeee;
 }
 
-#share > img { display: block; max-height: 1em; padding: 0.8vh 1vh; z-index: 2; }
-#top > img { display: block; max-height: 1em; padding: 0.8vh 1vh; z-index: 2; }
+#share > img, #top > img { display: block; max-height: 1.3em; padding: 0.8vh 1vh; z-index: 2; }
 
 #favicon { max-height: 1.2em; }
 
@@ -111,5 +110,5 @@ footer > div {
 
 @media only screen and (min-width: 1000px) {
    .TitleBar { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-	footer > div {justify-content: space-around; bottom: 4vh}
+	footer > div {justify-content: space-around; bottom: 6vh}
 }

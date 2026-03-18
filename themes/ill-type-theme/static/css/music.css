@@ -2,7 +2,7 @@
 
 .row { box-shadow: 0px 1px 4px 0px; scroll-margin-top: 15vh;  margin: 10px; }
 .row > div { display: flex; align-items: center; justify-content: space-between; }
-.Track { padding: 1%; cursor: pointer; background: #eeeeee; gap: 5px; font-size: 120%; }
+.Track { padding: 2%; cursor: pointer; background: #eeeeee; gap: 5px; font-size: 120%; }
 .TrackPlay { max-height: 1.2em; }
 .TrackTitle { text-transform: uppercase; font-weight: 700; }
 .taglist text { font-size: 70%; }
@@ -34,11 +34,11 @@
 } 
 
 #PlayerPlay:active, #Next:active, #Previous:active, #Shuffle:active, #Repeat:active { box-shadow: 0px 1px 2px 1px; }
-#PlayerPlay { max-height: 2.5em }
-#Next, #Previous { max-height: 1.8em; }
+#PlayerPlay { max-height: 3em }
+#Next, #Previous { max-height: 2em; }
 #StartDuration { font-size: 0.7em; } 
 #EndDuration { display: none; }
-#Shuffle, #Repeat { max-height: 1.2em }
+#Shuffle, #Repeat { max-height: 1.5em }
 
 @media only screen and (min-width: 700px) {
 	#PlayerControls { width: 40%; }

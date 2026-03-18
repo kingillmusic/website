@@ -82,7 +82,7 @@ self.onmessage = function(e) {
         const x = (N > 1) ? i * totalStep : (width - barWidth) / 2;
         const y = (height - barH) / 2;
 
-        gctx.fillStyle = '#aaaaaa';
+        gctx.fillStyle = '#777777';
         gctx.fillRect(x, y, barWidth, barH);
 
         pctx.fillStyle = '#87ffff';
