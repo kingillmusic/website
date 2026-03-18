@@ -26,7 +26,7 @@ dcm = () => {
         escapeHandler = null;
     }
 
-    // Define the outside\xe2\x80\x91click handler
+    // Define the outside click handler
     outsideClickHandler = (event) => {
         // If click is outside the popup, close it
         if (!cm.contains(event.target)) {
