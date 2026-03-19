@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# This script extracts amplitude information using audiowaveform tool.
+# https://github.com/bbc/audiowaveform
+
+for dir in waveforms/*/; do
+	for file in "$dir"*.json; do
+		[ -f "$file" ] && gzip -4 "$file"
+	done
+done

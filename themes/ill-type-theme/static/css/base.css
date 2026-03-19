@@ -10,7 +10,6 @@ span {
 }
 
 #touch { position: absolute; opacity: 0; height: 0; }
-
 #touch:checked + .slide { max-height: 400px } 
 
 .slide {
@@ -20,8 +19,14 @@ span {
 	margin: 0;
 	max-height: 0;
 	overflow: hidden;
-	transition: max-height .4s ease;
+	transition: max-height 0.3s ease, opacity 0.3s ease;
 	list-style: none;
+	opacity: 1;
+}
+
+#touch:not(:checked) + .slide {
+	max-height: 0;
+	opacity: 0;
 }
 
 .slide li a { 
@@ -29,7 +34,6 @@ span {
 	justify-content: space-between; 
 	padding: 5px;
 }
-
 
 body {
 	min-height: 100vh;
@@ -125,7 +129,7 @@ footer > div {
 	opacity: 0.7;
 	border-radius: 5px;
 	place-items: center;
-	background: #e7ffff;
+	background: #97ffff;
 	margin: 0 3%
 } 
 
