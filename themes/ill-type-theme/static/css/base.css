@@ -1,31 +1,64 @@
+#tagcloud { text-align: center; }
+
+nav { width : 95%; margin: 70px auto 10px auto; }
+
+span {
+	font-size : 1em;
+	text-transform: uppercase;
+	cursor : pointer;
+	display: block;
+}
+
+#touch { position: absolute; opacity: 0; height: 0; }
+
+#touch:checked + .slide { max-height: 400px } 
+
+.slide {
+	clear: both;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height .4s ease;
+	list-style: none;
+}
+
+.slide li a { 
+	display: flex; 
+	justify-content: space-between; 
+	border-radius: 5px;
+}
+
+
 body {
 	min-height: 100vh;
 	margin: 0 0 20vmax 0;
 	-ms-tap-highlight-color: transparent;
 	-moz-tap-highlight-color: transparent;
 	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none !important;
+	-webkit-user-select: none !important;
 }
 
-main {
-    display: grid; 
-	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-}
+main { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
 
 a { color: #000; cursor: pointer; background: none; text-decoration: none; }
+
+header { background: #ffefef;}
 
 .TitleBar {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 	place-items: center;
-	width: 100%;
 	justify-content: center;
+	width: 100%;
 	position: fixed;
     background: #ffffff;
 	text-transform: uppercase;
 	padding: 0.5vmax 0;
 	z-index: 1;
 	box-shadow: 0px 1px 4px 1px;
-
 }
 
 #GotoTrack { cursor: pointer; margin: 0; font-size: 2.2em }
@@ -33,30 +66,25 @@ a { color: #000; cursor: pointer; background: none; text-decoration: none; }
 #popup { font-size: 150%;}
 #popup img { width: 5%; max-height: 1.3em; }
 
-#tagcloud {
-	padding: 3.5em 0 1em 0;
+/*#tagcloud {
+	padding: 4em 0 1em 0;
 	font-size: 115%;
 	text-align: center;
-	text-transform: uppercase;
 }
 
-#tagcloud span a { z-index: 2; margin: 0 15px; font-size: 90%; }
-
-#SearchContainer {
-	display: flex;
-	justify-content: center;
-	align-items: center ;
-	margin: 20px 10px 5px 10px;
-}
+#tagcloud span a { z-index: 2; margin: 0 15px; font-size: 100%; }*/
+#SearchContainer { display: flex; justify-content: center; align-items: center; margin: 20px 0}
 
 #SearchBox {
 	width: 100%;
-	border: 2px solid #87ffff ;
-	background: #efefef;
-	padding: 8px;
+	border: none;
+	outline: none;
+	background: #efefff;
+	border-bottom: 1px solid #000 ;
+	box-shadow: 0 -2px 4px 0px;
+	padding: 10px;
 	font-style: italic;
 	text-transform: uppercase;
-	scroll-margin-top: 25em;
 }
 
 #CopiedMessage {
@@ -64,13 +92,11 @@ a { color: #000; cursor: pointer; background: none; text-decoration: none; }
 	left: 50% ;
 	padding: 1rem ;
 	position: fixed ;
-	border: 2px solid #97ffff ;
-	background: #fff;
 	text-transform: uppercase;
 	transform: translate(-50%, -50%) ;
 	font-size: 80%;
 	width: 280px;
-	box-shadow: 0px 4px 6px 1px;
+	box-shadow: 0px 1px 4px 1px;
 }
 
 #email {
@@ -100,9 +126,8 @@ footer > div {
 	background: #eeeeee;
 }
 
-#share > img, #top > img { display: block; max-height: 1.3em; padding: 0.8vh 1vh; z-index: 2; }
-
-#favicon { max-height: 1.2em; }
+#share > img, #top > img { display: block; max-height: 1.5em; padding: 0.8vh 1vh; z-index: 2; }
+#favicon { max-height: 1.5em; }
 
 @media only screen and (min-width: 500px) {
 	.TitleBar { grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); }

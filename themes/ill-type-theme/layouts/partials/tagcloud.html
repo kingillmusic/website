@@ -1,7 +1,29 @@
-{{ if isset .Site.Taxonomies "tags" }}{{ if not (eq (len .Site.Taxonomies.tags) 0) }}
+{{ if isset .Site.Taxonomies "tags" }}
+{{ if not (eq (len .Site.Taxonomies.tags) 0) }}
+
 <div id="tagcloud">
-    {{ range $name, $items := .Site.Taxonomies.tags }}{{ $url := printf "%s/%s" "tags" ($name | urlize | lower)}}<span><a href="{{ $url | absURL }}" id="tag_{{ $name }}">{{ $name | title | lower }}</a></span>
-    {{ end }}
-	<a href="/"><img alt="favicon" id="favicon" src="/svg/favicon.svg"></a>
-</div>{{ end }}{{ end }}
+	<nav>
+		<label for="touch"><span>genres</span><span>...</span></label>
+		<input type="checkbox" id="touch">
+		<ul class="slide">
+			{{ range $name, $items := .Site.Taxonomies.tags }}
+			{{ $url := printf "%s/%s" "tags" ($name | urlize | lower)}}
+			<li>
+				<a href="{{ $url | absURL }}" id="tag_{{ $name }}">
+					<span>{{ $name | title | upper }}</span>
+					<span>{{ .Pages.Len }}</span>
+				</a><hr>
+			</li>
+			{{ end }}
+			{{ end }}
+			{{ end }}
+			<li>
+				<a href="/">
+					<span>All</span>
+					<span>{{ .Pages.Len }}</span>
+				</a>
+			</li>
+		</ul>
+	</nav>
+</div>
 

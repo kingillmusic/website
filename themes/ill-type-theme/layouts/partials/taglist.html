@@ -4,7 +4,6 @@
         <div style="clear:both" class=taglist>
                 {{- range $k, $v := .Params.tags -}}
                 {{- $url := printf "tags/%s" (. | urlize | lower) -}}
-<!--                <text id="tag_{{ . | lower }}">&lpar;{{ . | title | upper }}&rpar;</text> -->
                 <text id="tag_{{ . | lower }}">{{ . | title | upper }}</text>
                 {{- end -}}
         </div>

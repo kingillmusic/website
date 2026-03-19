@@ -3,5 +3,54 @@ languageCode = 'en-us'
 title = 'ill x eezyh'
 theme = 'ill-type-theme'
 
+[menu]
+	[[menu.main]]
+		identifier = "All Genres"
+		name = "All Genres"
+		url = "/"
+		weight = 1
+	[[menu.main]]
+		identifier = "Afro"
+		name = "Afro"
+		url = "/tags/afro"
+		parent = "All Genres"
+		weight = 2
+	[[menu.main]]
+		identifier = "Chill"
+		name = "Chill"
+		url = "/tags/chill"
+		parent = "All Genres"
+		weight = 3
+	[[menu.main]]
+		identifier = "Dabke"
+		name = "Dabke"
+		url = "/tags/dabke"
+		parent = "All Genres"
+		weight = 4
+	[[menu.main]]
+		identifier = "Drill"
+		name = "Drill"
+		url = "/tags/drill"
+		parent = "All Genres"
+		weight = 5
+	[[menu.main]]
+		identifier = "EDM"
+		name = "EDM"
+		url = "/tags/edm"
+		parent = "All Genres"
+		weight = 6
+	[[menu.main]]
+		identifier = "Experimental"
+		name = "Experimental"
+		url = "/tags/exp"
+		parent = "All Genres"
+		weight = 7
+	[[menu.main]]
+		identifier = "Trap"
+		name = "Trap"
+		url = "/tags/trap"
+		parent = "All Genres"
+		weight = 8
+
 [params]
-  favicon = '/favicon.png'
+	favicon = '/favicon.png'

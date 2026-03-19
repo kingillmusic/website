@@ -10,5 +10,4 @@ const
 
 searchBox.addEventListener("keyup",search);
 
-scrollTop.addEventListener("click", () => { searchBox.scrollIntoView({ behavior:"smooth" }) });
-
+scrollTop.addEventListener("click", () => { searchBox.focus(); });
