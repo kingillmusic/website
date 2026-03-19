@@ -24,10 +24,10 @@
             waveformWorker.onmessage = handleWorkerMessage;
             waveformWorker.onerror = (err) => console.error('Waveform worker error:', err);
         } catch (e) {
-            console.warn('Failed to create waveform worker, falling back to main thread.', e);
+            console.error('Failed to create waveform worker.', e);
         }
     } else {
-        console.warn('Web Workers not supported, falling back to main thread.');
+        console.error('Web Workers not supported.');
     }
 
 	// Handle messages from the worker
@@ -55,6 +55,9 @@
 
     /*-------INITIALIZATION-------*/
 	function initWaveforms() {
+        // If worker isn't available, skip waveform rendering entirely
+        if (!waveformWorker) return;
+
 		const rows = document.querySelectorAll('.row');
 		const tempWaveforms = []; // temporary array to hold objects before pushing
 
@@ -101,7 +104,7 @@
 			srcIndexMap.set(d.trackAudio.src, d.index);
 		}
 
-		// Set up ResizeObserver (same as before)
+		// Set up ResizeObserver
 		if (window.ResizeObserver) {
 			resizeObserver = new ResizeObserver(handleResizeEntries);
 			waveforms.forEach(w => resizeObserver.observe(w.canvas));
@@ -135,28 +138,20 @@
                     w.canvas.height = height;
                     w.barCount = Math.max(1, Math.floor(width / (BAR_WIDTH + BAR_SPACING)));
 
-                    if (w.waveformData) {
-                        // Regenerate waveform with new dimensions
-                        if (waveformWorker) {
-                            waveformWorker.postMessage({
-                                srcArray: w.waveformData,
-                                dstLen: w.barCount,
-                                method: RESAMPLE_METHOD,
-                                width: width,
-                                height: height,
-                                barWidth: BAR_WIDTH,
-                                barSpacing: BAR_SPACING,
-                                contrastExp: CONTRAST_EXPONENT,
-                                maxBarHeightFrac: MAX_BAR_HEIGHT_FRAC,
-                                index: index
-                            });
-                        } else {
-                            // Fallback on main thread
-                            prerenderWaveformBitmapsFallback(w).then(() => {
-                                drawBitmapWaveform(w);
-                                if (pAudio.src === w.src) updateProgressForWaveform(w);
-                            });
-                        }
+                    // Regenerate waveform with new dimensions – only if worker exists
+                    if (w.waveformData && waveformWorker) {
+                        waveformWorker.postMessage({
+                            srcArray: w.waveformData,
+                            dstLen: w.barCount,
+                            method: RESAMPLE_METHOD,
+                            width: width,
+                            height: height,
+                            barWidth: BAR_WIDTH,
+                            barSpacing: BAR_SPACING,
+                            contrastExp: CONTRAST_EXPONENT,
+                            maxBarHeightFrac: MAX_BAR_HEIGHT_FRAC,
+                            index: index
+                        });
                     }
                 }
             }
@@ -220,9 +215,6 @@
                     .pipeThrough(new DecompressionStream('gzip'));
                 const decompressedBuffer = await new Response(stream).arrayBuffer();
                 jsonText = new TextDecoder('utf-8').decode(decompressedBuffer);
-            } else {
-                // Not gzipped – treat as plain JSON text
-                jsonText = new TextDecoder('utf-8').decode(arrayBuffer);
             }
 
             const json = JSON.parse(jsonText);
@@ -254,8 +246,8 @@
                     }
                     w.barCount = Math.max(1, Math.floor(w.canvas.width / (BAR_WIDTH + BAR_SPACING)));
 
+                    // Only send to worker if it exists
                     if (waveformWorker) {
-                        // Send job to worker
                         waveformWorker.postMessage({
                             srcArray: amplitudes,
                             dstLen: w.barCount,
@@ -268,10 +260,6 @@
                             maxBarHeightFrac: MAX_BAR_HEIGHT_FRAC,
                             index: i
                         });
-                    } else {
-                        // Fallback: process on main thread
-                        await prerenderWaveformBitmapsFallback(w);
-                        drawBitmapWaveform(w);
                     }
                 }
             }
