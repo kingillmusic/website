@@ -188,7 +188,7 @@
     function getJsonUrlFromAudioSrc(src) {	
         return src 
 		.replace('/mp3/', '/waveforms/') 	// replace /mp3/ with /waveforms/
-		.replace(/\.(mp3|ogg)$/, '.json.gz');	// and .mp3/.ogg with .json
+		.replace(/\.(mp3|ogg|opus)$/, '.json.gz');	// and .mp3/.ogg with .json
 	}
 
     async function loadWaveformJson(src) {
