@@ -189,11 +189,11 @@
         }
     }
 
-    /*-------JSON LOADING & WORKER OFFLOAD (with automatic gzip decompression)-------*/
+    /*-------JSON LOADING & WORKER OFFLOAD-------*/
     function getJsonUrlFromAudioSrc(src) {	
         return src 
 		.replace('/mp3/', '/waveforms/') 	// replace /mp3/ with /waveforms/
-		.replace(/\.(mp3|ogg)$/, '.json.gz');	// and .mp3/.ogg with .json
+		.replace(/\.(mp3|ogg)$/, '.json');	// and .mp3/.ogg with .json
 	}
 
     async function loadWaveformJson(src) {
@@ -202,30 +202,7 @@
         try {
             const response = await fetch(jsonUrl);
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-            const arrayBuffer = await response.arrayBuffer();
-            let jsonText;
-
-            // Check for gzip magic number (first two bytes: 0x1F 0x8B)
-            const isGzipped = arrayBuffer.byteLength >= 2 &&
-                new Uint8Array(arrayBuffer, 0, 2)[0] === 0x1F &&
-                new Uint8Array(arrayBuffer, 0, 2)[1] === 0x8B;
-
-            if (isGzipped) {
-                // Decompress using native browser API
-                if (!('DecompressionStream' in window)) {
-                    throw new Error('DecompressionStream not supported. Please use a modern browser.');
-                }
-                const stream = new Response(arrayBuffer).body
-                    .pipeThrough(new DecompressionStream('gzip'));
-                const decompressedBuffer = await new Response(stream).arrayBuffer();
-                jsonText = new TextDecoder('utf-8').decode(decompressedBuffer);
-            } else {
-                // Not gzipped – treat as plain JSON text
-                jsonText = new TextDecoder('utf-8').decode(arrayBuffer);
-            }
-
-            const json = JSON.parse(jsonText);
+            const json = await response.json();
 
             let peaks;
             if (json.peaks) {
