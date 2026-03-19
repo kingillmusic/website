@@ -23,8 +23,8 @@ fy = (a,b,c,d) => { // minified fisher-yates shuffle algo.
 (soa = () => {
     sh=!1,
         fy(a = na(tro.length)),
-       	sb.style.background = "none",
-       a.sort((x,y) => { return x - y });
+       	sb.style.background = "#97ffff",
+		a.sort((x,y) => { return x - y });
         pAudio.paused ? load() : addEventListener("ended", load)
 })(),
 
@@ -42,7 +42,7 @@ rpt = () => {
         pAudio.addEventListener("ended", play)
 },
 
-drpt = () => { rpb = !1, rp.style.background = "none" },
+drpt = () => { rpb = !1, rp.style.background = "#97ffff" },
 
 window.onload = () => {
 	const container = document.querySelector('main');
