@@ -1,10 +1,15 @@
 {{ define "header" }}
-    {{ partial "titlebar.html" . }}
-    {{ partial "tagcloud.html" . }}
-    {{ partial "search.html" . }}
+	{{ partial "titlebar.html" . }}
+	{{ partial "nav.html" . }}
+	{{ partial "search.html" . }}
 {{ end }}
 
 {{ define "main" }}
-    {{ partial "tracks.html" . }}
-    {{ partial "player.html" . }}
+	{{ partial "tracks.html" . }}
+{{ end }}
+
+{{ define "footer" }}
+	{{ partial "popup.html" . }}
+	{{ partial "buttons.html" . }}
+	{{ partial "player.html" . }}
 {{ end }}

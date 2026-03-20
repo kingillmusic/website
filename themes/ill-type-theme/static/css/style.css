@@ -1,0 +1,217 @@
+/*----BASE----*/
+
+body {
+	margin: 0 0 20vmax 0;
+	-ms-tap-highlight-color: transparent;
+	-moz-tap-highlight-color: transparent;
+	-webkit-tap-highlight-color: transparent;
+	-webkit-touch-callout: none !important;
+	-webkit-user-select: none !important;
+}
+
+main {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+}
+
+a { color: #000; cursor: pointer; background: none; text-decoration: none; }
+
+/*----TITLE----*/
+
+header { background: #ffefef;}
+
+.TitleBar {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+	place-items: center;
+	justify-content: center;
+	width: 100%;
+	position: position;
+	top: 0;
+    background: #ffffff;
+	text-transform: uppercase;
+	padding: 0.5vmax 0;
+	z-index: 1;
+	box-shadow: 0px 1px 4px 1px;
+}
+
+#GotoTrack { cursor: pointer; margin: 0; font-size: 2.2em }
+#name { font-size: 0.7em; }
+
+/*----NAV----*/
+
+#tagcloud { text-align: center; }
+
+nav { width : 95%; margin: 25px auto 0 auto; }
+
+span {
+	font-size : 1em;
+	text-transform: uppercase;
+	cursor : pointer;
+	display: block;
+}
+
+#touch { position: absolute; opacity: 0; height: 0; }
+
+#touch:checked + .slide { max-height: 400px } 
+
+.slide {
+	clear: both;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.3s ease, opacity 0.3s ease;
+	list-style: none;
+	opacity: 1;
+}
+
+#touch:not(:checked) + .slide {
+	max-height: 0;
+	opacity: 0;
+}
+
+.slide li a { 
+	display: flex; 
+	justify-content: space-between; 
+	padding: 5px;
+}
+
+/*----SEARCH----*/
+
+#SearchContainer { display: flex; justify-content: center; align-items: center; margin: 20px 0 }
+
+#SearchBox {
+	width: 100%;
+	border: none;
+	outline: none;
+	box-shadow: 0 -3px 4px 0px;
+	padding: 15px;
+	font-style: italic;
+	text-transform: uppercase;
+	scroll-margin-top: 20em;
+}
+
+/*----TRACKS----*/
+
+.row { box-shadow: 0px 1px 4px 1px; scroll-margin-top: 3vh;  margin: 10px; }
+.row > div { display: flex; align-items: center; justify-content: space-between; }
+.Track { padding: 2%; cursor: pointer; background: #eee; gap: 5px; font-size: 120%; }
+.TrackPlay { max-height: 1.2em; }
+.TrackTitle { text-transform: uppercase; font-weight: 700; }
+.taglist text { font-size: 70%; }
+
+.waveform-container {
+	position: relative;
+	background: #fff; 
+	height: 100px; 
+	width: 100%; 
+	overflow: hidden;
+}
+
+.waveform-bg, .waveform-progress {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%; 
+	display: block;
+}
+
+.waveform-progress { 
+	pointer-events: none; 
+    clip-path: inset(0 100% 0 0);   /* initially hidden */
+}
+
+/*----FOOTER----*/
+
+footer > div {
+	display: flex;
+	justify-content: space-between;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 12vh;
+}
+
+/*----BUTTONS----*/
+
+#top, #share { 
+	cursor: pointer;
+	width: 125px;
+	box-shadow: 0px 1px 4px 1px;
+	opacity: 0.7;
+	border-radius: 5px;
+	place-items: center;
+	background: #97ffff;
+	margin: 0 3%
+} #share > img, #top > img { display: block; max-height: 1.5em; padding: 0.8vh 1vh; z-index: 2; } 
+
+#CopiedMessage {
+	display: none;
+	top: 50%;
+	left: 50%;
+	padding: 1rem;
+	position: fixed;
+	text-transform: uppercase;
+	transform: translate(-50%, -50%) ;
+	font-size: 120%;
+	width: 280px;
+	box-shadow: 0px 1px 4px 1px;
+	background: #fff;
+} #beatstars, #paypal {color: #87a0f1}
+
+#email {
+	cursor: pointer ;
+	font-size: 50% ;
+    background: none;
+    border: none;
+	text-transform: uppercase;
+	text-align: left;
+}
+
+/*----MUSIC PLAYER----*/
+
+#PlayerControls {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	position: fixed;
+	width: 95%; 
+	border-radius: 8px;
+	bottom: 0;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: #97ffff;
+	opacity: 0.7;
+	font-size: 120%;
+	box-shadow: 0px 1px 4px 1px;
+	z-index: 1;
+}
+
+#PlayerControls > img {
+	border-radius: 50%;
+	background: #97ffff;
+	box-shadow: 0px 2px 2px 1px;
+	cursor: pointer; 
+} 
+
+#PlayerPlay:active, #Next:active, #Previous:active, #Shuffle:active, #Repeat:active { box-shadow: 0px 1px 2px 1px; }
+#PlayerPlay { max-height: 3em }
+#Next, #Previous { max-height: 2em; }
+#StartDuration { font-size: 0.7em; } 
+#EndDuration { display: none; }
+#Shuffle, #Repeat { max-height: 1.5em }
+
+@media only screen and (min-width: 500px) {
+	.TitleBar { grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); }
+}
+
+@media only screen and (min-width: 700px) {
+	#PlayerControls { width: 40%; }
+}
+
+@media only screen and (min-width: 1000px) {
+   .TitleBar { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+   footer > div { bottom: 6vh; }
+}

@@ -9,8 +9,7 @@
 <script type="text/javascript" src="/js/list/search.js" defer></script>
 <script type="text/javascript" src="/js/list/popup.js" defer></script>
 
-<link rel="stylesheet preload" as="style" type="text/css" href="/css/base.css">
-<link rel="stylesheet preload" as="style" type="text/css" href="/css/music.css">
+<link rel="stylesheet preload" as="style" type="text/css" href="/css/style.css">
 
 <title>{{ .Site.Title | lower }}</title>
 {{ if isset .Params "tags" }}<meta name="keywords" content="{{ with .Params.tags }}{{ delimit . ", " }}{{ end }}">{{ end -}}

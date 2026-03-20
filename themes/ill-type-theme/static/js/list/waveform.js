@@ -27,8 +27,8 @@
     function getWaveformColors() {
         const style = getComputedStyle(document.documentElement);
         return {
-            gray: style.getPropertyValue('--waveform-gray').trim() || '#777777',
-            progress: style.getPropertyValue('--waveform-progress').trim() || '#87ffff'
+            gray: '#777777',
+            progress: '#87ffff'
         };
     }
 

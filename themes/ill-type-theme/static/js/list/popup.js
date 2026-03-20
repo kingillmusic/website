@@ -14,8 +14,7 @@ dcm = () => {
 
     // Show the popup
     cm.style.display = "block";
-    console.log('Popup shown'); // for debugging
-
+   
     // Remove any previously attached handlers (cleanup from previous popup)
     if (outsideClickHandler) {
         document.removeEventListener('click', outsideClickHandler);
@@ -45,13 +44,12 @@ dcm = () => {
     setTimeout(() => {
         document.addEventListener('click', outsideClickHandler);
         document.addEventListener('keydown', escapeHandler);
-    }, 10); // 10ms delay
+    }, 10);
 
     // Helper function to close the popup and remove listeners
     function closePopup(popupElement) {
         popupElement.style.display = "none";
-        console.log('Popup closed'); // for debugging
-        // Remove both listeners
+		// Remove both listeners
         document.removeEventListener('click', outsideClickHandler);
         document.removeEventListener('keydown', escapeHandler);
         outsideClickHandler = null;
