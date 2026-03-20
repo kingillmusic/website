@@ -131,7 +131,7 @@ footer > div {
 	position: fixed;
 	left: 0;
 	right: 0;
-	bottom: 12vh;
+	bottom: 14vh;
 }
 
 /*----BUTTONS----*/
@@ -213,5 +213,5 @@ footer > div {
 
 @media only screen and (min-width: 1000px) {
    .TitleBar { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-   footer > div { bottom: 6vh; }
+   footer > div { bottom: 4.5vh; }
 }
