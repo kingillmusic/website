@@ -1,0 +1,79 @@
+#!/bin/sh
+
+# replace_mp3_with_opus.sh – Replace MP3s with Opus files when directory structure differs
+# Usage: ./replace_mp3_with_opus.sh /path/to/base_directory
+
+if [ $# -ne 1 ]; then
+    echo "Usage: $0 base_directory" >&2
+    echo "Expects base_directory to contain 'mp3/' and 'output/' subdirectories." >&2
+    exit 1
+fi
+
+base_dir="$1"
+mp3_root="$base_dir/mp3"
+opus_root="$base_dir/output"
+
+# Validate required directories
+if [ ! -d "$mp3_root" ]; then
+    echo "Error: MP3 directory '$mp3_root' not found." >&2
+    exit 1
+fi
+if [ ! -d "$opus_root" ]; then
+    echo "Error: Opus directory '$opus_root' not found." >&2
+    exit 1
+fi
+
+# Loop over each subdirectory inside mp3_root
+for songdir in "$mp3_root"/*/; do
+    # Skip if no subdirectories exist (the pattern will be literal '*/')
+    [ -d "$songdir" ] || continue
+
+    # Remove trailing slash to get the directory name
+    songdir="${songdir%/}"
+    # Extract the song name (the last component of the path)
+    songname="${songdir##*/}"
+
+    # Look for an MP3 file inside this directory that matches the song name
+    # Possible extensions: .mp3 or .MP3 (case‑sensitive globs)
+    mp3_file=""
+    for ext in mp3 MP3; do
+        candidate="$songdir/$songname.$ext"
+        if [ -f "$candidate" ]; then
+            mp3_file="$candidate"
+            break
+        fi
+    done
+
+    if [ -z "$mp3_file" ]; then
+        echo "Warning: No MP3 file named '$songname.mp3' or '$songname.MP3' found in '$songdir'. Skipping." >&2
+        continue
+    fi
+
+    # Expected Opus file in the output directory
+    opus_file="$opus_root/$songname.opus"
+
+    if [ ! -f "$opus_file" ]; then
+        echo "No matching Opus file for '$songname' (expected '$opus_file'). Skipping." >&2
+        continue
+    fi
+
+    # Destination for the Opus: same directory as the MP3, with .opus extension
+    opus_dest="$songdir/$songname.opus"
+
+    echo "Replacing '$mp3_file' with '$opus_file'"
+
+    # Move the Opus file into the song directory
+    if mv -f "$opus_file" "$opus_dest"; then
+        echo "Moved Opus to '$opus_dest'"
+        # Remove the original MP3
+        if rm "$mp3_file"; then
+            echo "Removed MP3: '$mp3_file'"
+        else
+            echo "Error: Could not remove '$mp3_file'" >&2
+        fi
+    else
+        echo "Error: Failed to move '$opus_file' to '$opus_dest'" >&2
+    fi
+done
+
+echo "Replacement process finished."

@@ -7,7 +7,7 @@ draft = false
 
 url = '/mighty'
 
-audio = ['/mp3/mighty/mighty.mp3']
+audio = ['/mp3/mighty/mighty.opus']
 
 tags = ['edm']
 

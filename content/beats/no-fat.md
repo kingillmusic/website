@@ -7,7 +7,7 @@ draft = false
 
 url = '/no-fat'
 
-audio = ['/mp3/no-fat/no-fat.mp3']
+audio = ['/mp3/no-fat/no-fat.opus']
 
 tags = ['exp']
 

@@ -7,7 +7,7 @@ draft = false
 
 url = '/squeeze'
 
-audio = ['/mp3/squeeze/squeeze.mp3']
+audio = ['/mp3/squeeze/squeeze.opus']
 
 tags = ['trap']
 

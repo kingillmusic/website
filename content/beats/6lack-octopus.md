@@ -7,7 +7,7 @@ draft = false
 
 url = '/6lack-octopus'
 
-audio = ['/mp3/6lack-octopus/6lack-octopus.mp3']
+audio = ['/mp3/6lack-octopus/6lack-octopus.opus']
 
 tags = ['trap']
 

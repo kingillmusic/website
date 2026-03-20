@@ -7,7 +7,7 @@ draft = false
 
 url = '/sonar'
 
-audio = ['/mp3/sonar/sonar.mp3']
+audio = ['/mp3/sonar/sonar.opus']
 
 tags = ['edm']
 

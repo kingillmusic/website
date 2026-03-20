@@ -7,7 +7,7 @@ draft = false
 
 url = '/revamp'
 
-audio = ['/mp3/revamp/revamp.mp3']
+audio = ['/mp3/revamp/revamp.opus']
 
 tags = ['dabke']
 

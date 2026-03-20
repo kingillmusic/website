@@ -7,7 +7,7 @@ draft = false
 
 url = '/synthwave'
 
-audio = ['/mp3/synthwave/synthwave.mp3']
+audio = ['/mp3/synthwave/synthwave.opus']
 
 tags = ['chill']
 

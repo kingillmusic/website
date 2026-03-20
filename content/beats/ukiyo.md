@@ -7,7 +7,7 @@ draft = false
 
 url = '/ukiyo'
 
-audio = ['/mp3/ukiyo/ukiyo.mp3']
+audio = ['/mp3/ukiyo/ukiyo.opus']
 
 tags = ['exp']
 

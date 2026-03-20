@@ -7,7 +7,7 @@ draft = false
 
 url = '/aliens'
 
-audio = ['/mp3/aliens/aliens.mp3']
+audio = ['/mp3/aliens/aliens.opus']
 
 tags = ['exp']
 

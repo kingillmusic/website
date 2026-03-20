@@ -7,7 +7,7 @@ draft = false
 
 url = '/git'
 
-audio = ['/mp3/git/git.mp3']
+audio = ['/mp3/git/git.opus']
 
 tags = ['exp']
 

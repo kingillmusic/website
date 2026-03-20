@@ -7,7 +7,7 @@ draft = false
 
 url = '/oshi'
 
-audio = ['/mp3/oshi/oshi.mp3']
+audio = ['/mp3/oshi/oshi.opus']
 
 tags = ['exp']
 

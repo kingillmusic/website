@@ -7,7 +7,7 @@ draft = false
 
 url = '/invisible'
 
-audio = ['/mp3/invisible/invisible.mp3']
+audio = ['/mp3/invisible/invisible.opus']
 
 tags = ['exp']
 

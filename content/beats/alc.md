@@ -7,7 +7,7 @@ draft = false
 
 url = '/alc'
 
-audio = ['/mp3/alc/alc.mp3']
+audio = ['/mp3/alc/alc.opus']
 
 tags = ['afro']
 

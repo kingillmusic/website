@@ -7,7 +7,7 @@ draft = false
 
 url = '/gospel'
 
-audio = ['/mp3/gospel/gospel.mp3']
+audio = ['/mp3/gospel/gospel.opus']
 
 tags = ['exp']
 

@@ -7,7 +7,7 @@ draft = false
 
 url = '/slump'
 
-audio = ['/mp3/slump/slump.mp3']
+audio = ['/mp3/slump/slump.opus']
 
 tags = ['edm']
 

@@ -7,7 +7,7 @@ draft = false
 
 url = '/yokai'
 
-audio = ['/mp3/yokai/yokai.mp3']
+audio = ['/mp3/yokai/yokai.opus']
 
 tags = ['trap']
 

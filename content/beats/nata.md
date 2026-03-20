@@ -7,7 +7,7 @@ draft = false
 
 url = '/nata'
 
-audio = ['/mp3/nata/nata.mp3']
+audio = ['/mp3/nata/nata.opus']
 
 tags = ['edm']
 

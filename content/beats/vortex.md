@@ -7,7 +7,7 @@ draft = false
 
 url = '/vortex'
 
-audio = ['/mp3/vortex/vortex.mp3']
+audio = ['/mp3/vortex/vortex.opus']
 
 tags = ['trap']
 

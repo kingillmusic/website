@@ -7,7 +7,7 @@ draft = false
 
 url = '/kolonie'
 
-audio = ['/mp3/kolonie/kolonie.mp3']
+audio = ['/mp3/kolonie/kolonie.opus']
 
 tags = ['edm']
 

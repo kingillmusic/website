@@ -7,7 +7,7 @@ draft = false
 
 url = '/astral-lounge'
 
-audio = ['/mp3/astral-lounge/astral-lounge.mp3']
+audio = ['/mp3/astral-lounge/astral-lounge.opus']
 
 tags = ['edm']
 

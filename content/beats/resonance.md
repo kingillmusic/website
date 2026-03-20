@@ -7,7 +7,7 @@ draft = false
 
 url = '/resonance'
 
-audio = ['/mp3/resonance/resonance.mp3']
+audio = ['/mp3/resonance/resonance.opus']
 
 tags = ['chill']
 

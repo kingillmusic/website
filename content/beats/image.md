@@ -7,7 +7,7 @@ draft = false
 
 url = '/image'
 
-audio = ['/mp3/image/image.mp3']
+audio = ['/mp3/image/image.opus']
 
 tags = ['exp']
 

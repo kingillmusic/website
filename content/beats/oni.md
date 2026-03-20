@@ -7,7 +7,7 @@ draft = false
 
 url = '/oni'
 
-audio = ['/mp3/oni/oni.mp3']
+audio = ['/mp3/oni/oni.opus']
 
 tags = ['exp']
 

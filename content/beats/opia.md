@@ -7,7 +7,7 @@ draft = false
 
 url = '/opia'
 
-audio = ['/mp3/opia/opia.mp3']
+audio = ['/mp3/opia/opia.opus']
 
 tags = ['chill']
 

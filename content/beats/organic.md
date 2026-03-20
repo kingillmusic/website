@@ -7,7 +7,7 @@ draft = false
 
 url = '/organic'
 
-audio = ['/mp3/organic/organic.mp3']
+audio = ['/mp3/organic/organic.opus']
 
 tags = ['edm']
 

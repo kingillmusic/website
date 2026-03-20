@@ -7,7 +7,7 @@ draft = false
 
 url = '/coron'
 
-audio = ['/mp3/coron/coron.mp3']
+audio = ['/mp3/coron/coron.opus']
 
 tags = ['exp']
 

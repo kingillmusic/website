@@ -7,7 +7,7 @@ draft = false
 
 url = '/decamp'
 
-audio = ['/mp3/decamp/decamp.mp3']
+audio = ['/mp3/decamp/decamp.opus']
 
 tags = ['exp']
 

@@ -7,7 +7,7 @@ draft = false
 
 url = '/cali'
 
-audio = ['/mp3/cali/cali.mp3']
+audio = ['/mp3/cali/cali.opus']
 
 tags = ['trap']
 

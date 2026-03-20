@@ -7,7 +7,7 @@ draft = false
 
 url = '/spin'
 
-audio = ['/mp3/spin/spin.mp3']
+audio = ['/mp3/spin/spin.opus']
 
 tags = ['exp']
 

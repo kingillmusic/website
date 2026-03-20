@@ -7,7 +7,7 @@ draft = false
 
 url = '/glow'
 
-audio = ['/mp3/glow/glow.mp3']
+audio = ['/mp3/glow/glow.opus']
 
 tags = ['trap']
 

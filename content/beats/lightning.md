@@ -7,7 +7,7 @@ draft = false
 
 url = '/lightning'
 
-audio = ['/mp3/lightning/lightning.mp3']
+audio = ['/mp3/lightning/lightning.opus']
 
 tags = ['exp']
 

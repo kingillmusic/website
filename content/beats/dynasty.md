@@ -7,7 +7,7 @@ draft = false
 
 url = '/dynasty'
 
-audio = ['/mp3/dynasty/dynasty.mp3']
+audio = ['/mp3/dynasty/dynasty.opus']
 
 tags = ['trap']
 

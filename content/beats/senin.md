@@ -7,7 +7,7 @@ draft = false
 
 url = '/senin'
 
-audio = ['/mp3/senin/senin.mp3']
+audio = ['/mp3/senin/senin.opus']
 
 tags = ['chill']
 

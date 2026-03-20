@@ -7,7 +7,7 @@ draft = false
 
 url = '/elk'
 
-audio = ['/mp3/elk/elk.mp3']
+audio = ['/mp3/elk/elk.opus']
 
 tags = ['edm']
 

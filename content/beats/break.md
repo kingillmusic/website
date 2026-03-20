@@ -7,7 +7,7 @@ draft = false
 
 url = '/break'
 
-audio = ['/mp3/break/break.mp3']
+audio = ['/mp3/break/break.opus']
 
 tags = ['afro']
 

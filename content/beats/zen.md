@@ -7,7 +7,7 @@ draft = false
 
 url = '/zen'
 
-audio = ['/mp3/zen/zen.mp3']
+audio = ['/mp3/zen/zen.opus']
 
 tags = ['edm']
 
