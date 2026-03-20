@@ -2,5 +2,5 @@ public/
 static/mp3/*/*.zip
 themes/ill-type-theme/static/js/list/waveform.js.bak
 themes/ill-type-theme/static/js/list/waveform.js.working
-static/mp3/replace_mp3
+static/replace_mp3
 
