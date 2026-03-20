@@ -1,26 +1,20 @@
 (function() {
-    // pAudio (#PlayerAudio) is defined in music.js
-	pAudio || console.error("Waveform: PlayerAudio not found");
+    pAudio || console.error("Waveform: PlayerAudio not found");
 
-    /*-------CONFIG-------*/
-    const 
-        BAR_WIDTH = 1,
-        BAR_SPACING = 3,
-        CONCURRENT_LOADS = 3,               // reduced for mobile
-        MAX_BAR_HEIGHT_FRAC = 0.7,
-        RESAMPLE_METHOD = 'mean',            // 'max', 'mean', or 'interpolate'
-        CONTRAST_EXPONENT = 2;                // >1 sharpens distinctions
+    const BAR_WIDTH = 1;
+    const BAR_SPACING = 3;
+    const MAX_BAR_HEIGHT_FRAC = 0.7;
+    const RESAMPLE_METHOD = 'mean';
+    const CONTRAST_EXPONENT = 2;
 
-    /*-------STATE-------*/
-    const waveforms = [], waveformCache = new Map(), srcIndexMap = new Map(), loadQueue = [];
-    let activeLoads = 0;
+    const waveforms = [];
+    const srcIndexMap = new Map();
     let resizeObserver = null;
-   
-    /*-------WEB WORKER (offload resampling & drawing)-------*/
     let waveformWorker = null;
+
     if (window.Worker) {
         try {
-            waveformWorker = new Worker('/js/list/waveform-worker.js'); // adjust path as needed
+            waveformWorker = new Worker('/js/list/waveform-worker.js');
             waveformWorker.onmessage = handleWorkerMessage;
             waveformWorker.onerror = (err) => console.error('Waveform worker error:', err);
         } catch (e) {
@@ -30,18 +24,33 @@
         console.error('Web Workers not supported.');
     }
 
-	// Handle messages from the worker
-	function handleWorkerMessage(e) {
-        const { index, grayBitmap, progressBitmap } = e.data;
-		const w = waveforms[index];
-		w && (grayBitmap && (w.bitmapGray = grayBitmap),
-		progressBitmap && (w.bitmapProgress = progressBitmap),
-		w.bitmapGray && (w.ctx.clearRect(0, 0, w.canvas.width, w.canvas.height),
-		w.ctx.drawImage (w.bitmapGray, 0, 0)),
-		pAudio.src === w.src && pAudio.duration && updateProgressForWaveform(w))
-	}
+    function getWaveformColors() {
+        const style = getComputedStyle(document.documentElement);
+        return {
+            gray: style.getPropertyValue('--waveform-gray').trim() || '#777777',
+            progress: style.getPropertyValue('--waveform-progress').trim() || '#87ffff'
+        };
+    }
 
-	/*-------TIME DISPLAY-------*/
+    function handleWorkerMessage(e) {
+        const { index, grayBitmap, progressBitmap } = e.data;
+        const w = waveforms[index];
+        if (!w) return;
+
+        w.bitmapGray = grayBitmap;
+        w.bitmapProgress = progressBitmap;
+
+        w.bgCtx.clearRect(0, 0, w.bgCanvas.width, w.bgCanvas.height);
+        w.bgCtx.drawImage(grayBitmap, 0, 0);
+
+        w.fgCtx.clearRect(0, 0, w.fgCanvas.width, w.fgCanvas.height);
+        w.fgCtx.drawImage(progressBitmap, 0, 0);
+
+        if (pAudio.src === w.src && pAudio.duration) {
+            updateProgressForWaveform(w);
+        }
+    }
+
     function updateTimeDisplay() {
         if (!pAudio.duration || !isFinite(pAudio.duration)) return;
         if (window.eDuration && typeof formatTime === "function") {
@@ -53,104 +62,108 @@
         }
     }
 
-    /*-------INITIALIZATION-------*/
-	function initWaveforms() {
-        // If worker isn't available, skip waveform rendering entirely
+    function initWaveforms() {
         if (!waveformWorker) return;
 
-		const rows = document.querySelectorAll('.row');
-		const tempWaveforms = []; // temporary array to hold objects before pushing
+        const rows = document.querySelectorAll('.row');
+        for (let i = 0; i < rows.length; i++) {
+            const trackAudio = rows[i].querySelector('.TrackAudio');
+            const bgCanvas = rows[i].querySelector('.waveform-bg');
+            const fgCanvas = rows[i].querySelector('.waveform-progress');
+            if (!trackAudio || !bgCanvas || !fgCanvas) continue;
 
-		// First pass: collect data without writing to canvas
-		for (let i = 0; i < rows.length; i++) {
-			const trackAudio = rows[i].querySelector('.TrackAudio');
-			const canvas = rows[i].querySelector('.track-waveform');
-			if (!trackAudio || !canvas) continue;
+            const container = bgCanvas.parentElement;
+            const width = container.clientWidth;
+            const height = container.clientHeight;
 
-			const container = canvas.parentElement;
-			// Store container and needed info for later
-			tempWaveforms.push({ canvas, container, trackAudio, index: i });
-		}
+            bgCanvas.width = width;
+            bgCanvas.height = height;
+            fgCanvas.width = width;
+            fgCanvas.height = height;
 
-		// Batch read container dimensions
-		const dimensions = tempWaveforms.map(item => ({
-			canvas: item.canvas,
-			container: item.container,
-			width: item.container ? item.container.clientWidth : 0,
-			height: item.container ? item.container.clientHeight : 0,
-			trackAudio: item.trackAudio,
-			index: item.index
-		}));
+            const barCount = Math.max(1, Math.floor(width / (BAR_WIDTH + BAR_SPACING)));
+            waveforms[i] = {
+                bgCanvas,
+                bgCtx: bgCanvas.getContext('2d'),
+                fgCanvas,
+                fgCtx: fgCanvas.getContext('2d'),
+                src: trackAudio.src,
+                waveformData: null,
+                bitmapGray: null,
+                bitmapProgress: null,
+                barCount
+            };
+            bgCanvas.dataset.waveformIndex = i;
+            srcIndexMap.set(trackAudio.src, i);
 
-		// Batch write canvas sizes and populate waveforms array
-		for (let d of dimensions) {
-			const canvas = d.canvas;
-			if (d.container) {
-				canvas.width = d.width;
-				canvas.height = d.height;
-			}
+            // Send initial message to worker
+            const { gray, progress } = getWaveformColors();
+            waveformWorker.postMessage({
+                audioSrc: trackAudio.src,
+                dstLen: barCount,
+                method: RESAMPLE_METHOD,
+                width, height,
+                barWidth: BAR_WIDTH,
+                barSpacing: BAR_SPACING,
+                contrastExp: CONTRAST_EXPONENT,
+                maxBarHeightFrac: MAX_BAR_HEIGHT_FRAC,
+                index: i,
+                grayColor: gray,
+                progressColor: progress
+            });
+        }
 
-			const barCount = Math.max(1, Math.floor(canvas.width / (BAR_WIDTH + BAR_SPACING)));
-			waveforms[d.index] = {
-				canvas: canvas,
-				ctx: canvas.getContext('2d'),
-				src: d.trackAudio.src,
-				waveformData: null,
-				bitmapGray: null,
-				bitmapProgress: null,
-				barCount: barCount
-			};
-			canvas.dataset.waveformIndex = d.index;
-			srcIndexMap.set(d.trackAudio.src, d.index);
-		}
+        // ResizeObserver on containers
+        if (window.ResizeObserver) {
+            resizeObserver = new ResizeObserver(handleResizeEntries);
+            waveforms.forEach(w => resizeObserver.observe(w.bgCanvas.parentElement));
+        }
 
-		// Set up ResizeObserver
-		if (window.ResizeObserver) {
-			resizeObserver = new ResizeObserver(handleResizeEntries);
-			waveforms.forEach(w => resizeObserver.observe(w.canvas));
-		} else {
-			console.warn('ResizeObserver not supported, falling back to window.resize');
-			window.addEventListener('resize', handleWindowResize);
-		}
-		prepareLoadQueue();
-		processLoadQueue();
+        // Timeupdate listener
+        if (pAudio) {
+            pAudio.addEventListener('timeupdate', () => {
+                const index = srcIndexMap.get(pAudio.src);
+                if (index !== undefined) {
+                    updateProgressForWaveform(waveforms[index]);
+                }
+                updateTimeDisplay();
+            });
+        } else {
+            console.warn('pAudio not available yet');
+        }
+    }
 
-		if (pAudio.readyState >= 1) {
-			updateTimeDisplay();
-		}
-	}
-
-    /*-------RESIZE HANDLING (ResizeObserver callback)-------*/
     function handleResizeEntries(entries) {
-        // Use requestAnimationFrame to coalesce multiple entries in one frame
         requestAnimationFrame(() => {
-            for (let entry of entries) {
-                const canvas = entry.target;
-                const index = canvas.dataset.waveformIndex;
-                if (index === undefined) continue;
+            for (const entry of entries) {
+                const container = entry.target;
+                const bgCanvas = container.querySelector('.waveform-bg');
+                if (!bgCanvas) continue;
+                const index = bgCanvas.dataset.waveformIndex;
                 const w = waveforms[index];
                 if (!w) continue;
 
                 const { width, height } = entry.contentRect;
-                // Only update if dimensions actually changed (avoid infinite loops)
-                if (w.canvas.width !== width || w.canvas.height !== height) {
-                    w.canvas.width = width;
-                    w.canvas.height = height;
+                if (w.bgCanvas.width !== width || w.bgCanvas.height !== height) {
+                    w.bgCanvas.width = w.fgCanvas.width = width;
+                    w.bgCanvas.height = w.fgCanvas.height = height;
+
                     w.barCount = Math.max(1, Math.floor(width / (BAR_WIDTH + BAR_SPACING)));
 
-                    // Regenerate waveform with new dimensions – only if worker exists
-                    if (w.waveformData && waveformWorker) {
+                    if (waveformWorker) {
+                        const { gray, progress } = getWaveformColors();
                         waveformWorker.postMessage({
-                            srcArray: w.waveformData,
+                            audioSrc: w.src,
                             dstLen: w.barCount,
                             method: RESAMPLE_METHOD,
-                            width: width,
-                            height: height,
+                            width, height,
                             barWidth: BAR_WIDTH,
                             barSpacing: BAR_SPACING,
                             contrastExp: CONTRAST_EXPONENT,
                             maxBarHeightFrac: MAX_BAR_HEIGHT_FRAC,
-                            index: index
+                            index,
+                            grayColor: gray,
+                            progressColor: progress
                         });
                     }
                 }
@@ -158,174 +171,40 @@
         });
     }
 
-    /*-------EVENT DELEGATION-------*/
     document.addEventListener('click', function(e) {
-        const canvas = e.target.closest('.track-waveform');
-        if (!canvas) return;
-        handleSeek(e, canvas);
+        const bgCanvas = e.target.closest('.waveform-bg');
+        if (!bgCanvas) return;
+        handleSeek(e, bgCanvas);
     });
 
-    /*-------LOAD QUEUE-------*/
-    function prepareLoadQueue() {
-        const srcs = [...new Set(waveforms.map(w => w.src))];
-        for (let src of srcs) {
-            loadQueue.push(src);
-        }
-    }
-
-    function processLoadQueue() {
-        while (activeLoads < CONCURRENT_LOADS && loadQueue.length) {
-            const src = loadQueue.shift();
-            activeLoads++;
-            loadWaveformJson(src).finally(() => {
-                activeLoads--;
-                processLoadQueue();
-            });
-        }
-    }
-
-    /*-------JSON LOADING & WORKER OFFLOAD (with automatic gzip decompression)-------*/
-    function getJsonUrlFromAudioSrc(src) {	
-        return src 
-		.replace('/mp3/', '/waveforms/') 	// replace /mp3/ with /waveforms/
-		.replace(/\.(mp3|ogg|opus)$/, '.json.gz');	// and .mp3/.ogg with .json
-	}
-
-    async function loadWaveformJson(src) {
-        const jsonUrl = getJsonUrlFromAudioSrc(src);
-
-        try {
-            const response = await fetch(jsonUrl);
-            if (!response.ok) throw new Error(`HTTP ${response.status}`);
-
-            const arrayBuffer = await response.arrayBuffer();
-            let jsonText;
-
-            // Check for gzip magic number (first two bytes: 0x1F 0x8B)
-            const isGzipped = arrayBuffer.byteLength >= 2 &&
-                new Uint8Array(arrayBuffer, 0, 2)[0] === 0x1F &&
-                new Uint8Array(arrayBuffer, 0, 2)[1] === 0x8B;
-
-            if (isGzipped) {
-                // Decompress using native browser API
-                if (!('DecompressionStream' in window)) {
-                    throw new Error('DecompressionStream not supported. Please use a modern browser.');
-                }
-                const stream = new Response(arrayBuffer).body
-                    .pipeThrough(new DecompressionStream('gzip'));
-                const decompressedBuffer = await new Response(stream).arrayBuffer();
-                jsonText = new TextDecoder('utf-8').decode(decompressedBuffer);
-            }
-
-            const json = JSON.parse(jsonText);
-
-            let peaks;
-            if (json.peaks) {
-                peaks = json.peaks;
-            } else if (json.data) {
-                peaks = json.data.map(v => Math.abs(v - 128) / 128);
-            } else {
-                console.warn('Unknown JSON format for', src);
-                return;
-            }
-
-            const amplitudes = Float32Array.from(peaks);
-            waveformCache.set(src, amplitudes);
-
-            // Find all waveforms with this src and send them to the worker (if available)
-            for (let i = 0; i < waveforms.length; i++) {
-                const w = waveforms[i];
-                if (w.src === src) {
-                    w.waveformData = amplitudes; // store original data
-
-                    // Update canvas size and bar count (in case layout changed since init)
-                    const container = w.canvas.parentElement;
-                    if (container) {
-                        w.canvas.width = container.clientWidth;
-                        w.canvas.height = container.clientHeight;
-                    }
-                    w.barCount = Math.max(1, Math.floor(w.canvas.width / (BAR_WIDTH + BAR_SPACING)));
-
-                    // Only send to worker if it exists
-                    if (waveformWorker) {
-                        waveformWorker.postMessage({
-                            srcArray: amplitudes,
-                            dstLen: w.barCount,
-                            method: RESAMPLE_METHOD,
-                            width: w.canvas.width,
-                            height: w.canvas.height,
-                            barWidth: BAR_WIDTH,
-                            barSpacing: BAR_SPACING,
-                            contrastExp: CONTRAST_EXPONENT,
-                            maxBarHeightFrac: MAX_BAR_HEIGHT_FRAC,
-                            index: i
-                        });
-                    }
-                }
-            }
-        } catch (err) {
-            console.warn('Failed to load waveform JSON:', jsonUrl, err);
-        }
-    }
-
-    /*-------SEEK-------*/
-    function handleSeek(e, canvas) {
+    function handleSeek(e, bgCanvas) {
         if (!pAudio.duration) return;
-        const index = canvas.dataset.waveformIndex;
+        const index = bgCanvas.dataset.waveformIndex;
         if (index === undefined) return;
         const w = waveforms[index];
         if (w.src !== pAudio.src) return;
-        const rect = canvas.getBoundingClientRect();
+        const rect = bgCanvas.getBoundingClientRect();
         const clickX = e.clientX - rect.left;
-        const seekPercent = Math.max(0, Math.min(1, clickX / canvas.width));
+        const seekPercent = Math.max(0, Math.min(1, clickX / bgCanvas.width));
         pAudio.currentTime = seekPercent * pAudio.duration;
-        updateProgress();  // immediate progress update
-    }
-
-    /*-------PROGRESS-------*/
-    function updateProgress() {
-        if (!pAudio.duration) return;
-        const index = srcIndexMap.get(pAudio.src);
-        if (index === undefined) return;
-        updateProgressForWaveform(waveforms[index]);
+        updateProgressForWaveform(w);
     }
 
     function updateProgressForWaveform(w) {
-        if (!w.bitmapGray) return;
-        const ctx = w.ctx;
-        ctx.clearRect(0, 0, w.canvas.width, w.canvas.height);
-        ctx.drawImage(w.bitmapGray, 0, 0);
-
-        if (!w.bitmapProgress) return;
+        if (!w.fgCanvas) return;
         const progress = pAudio.currentTime / pAudio.duration;
-        const width = w.canvas.width * progress;
-
-        ctx.save();
-        ctx.beginPath();
-        ctx.rect(0, 0, width, w.canvas.height);
-        ctx.clip();
-        ctx.drawImage(w.bitmapProgress, 0, 0);
-        ctx.restore();
+        const clipPercent = (1 - progress) * 100;
+        w.fgCanvas.style.clipPath = `inset(0 ${clipPercent}% 0 0)`;
     }
 
-    /*-------PLAYBACK LOOP-------*/
-    let rafPlaying = false;
-    function playbackLoop() {
-        if (!rafPlaying) return;
-        updateTimeDisplay();
-        updateProgress();
-        requestAnimationFrame(playbackLoop);
+    window.addEventListener("beforeunload", () => {
+        waveformWorker && waveformWorker.terminate();
+        resizeObserver && resizeObserver.disconnect();
+    });
+
+    if (document.readyState === 'loading') {
+        document.addEventListener("DOMContentLoaded", initWaveforms);
+    } else {
+        initWaveforms();
     }
-    pAudio.addEventListener('play', () => { rafPlaying = true; playbackLoop(); });
-    pAudio.addEventListener('pause', () => { rafPlaying = false; });
-    pAudio.addEventListener('ended', () => { rafPlaying = false; });
-
-    /*-------CLEANUP (optional)-------*/
-	window.addEventListener("beforeunload", () => {
-		waveformWorker && waveformWorker.terminate(), resizeObserver && resizeObserver.disconnect() 
-	});
-
-    /*-------START-------*/
-	"loading" === document.readyState ?
-	document.addEventListener("DOMContentLoaded", initWaveforms) : initWaveforms();
 })();

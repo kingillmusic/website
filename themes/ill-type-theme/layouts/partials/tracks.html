@@ -1,7 +1,8 @@
 {{ range (.Paginator 200).Pages }}
     <div class="row">
-		<div class="waveform-per-track">
-			<canvas class="track-waveform"></canvas>
+		<div class="waveform-container">
+			<canvas class="waveform-bg"></canvas>
+			<canvas class="waveform-progress"></canvas>
 		</div>
 
 		<div class="Track">
