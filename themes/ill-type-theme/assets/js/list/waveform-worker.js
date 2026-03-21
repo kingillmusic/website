@@ -10,7 +10,7 @@ async function loadWaveformData(src) {
     // Build JSON URL
     const jsonUrl = src
         .replace('/mp3/', '/waveforms/')
-        .replace(/\.(mp3|ogg|opus)$/, '.json.gz');
+        .replace(/\.opus$/, '.json.gz');
 
     try {
         const response = await fetch(jsonUrl);
