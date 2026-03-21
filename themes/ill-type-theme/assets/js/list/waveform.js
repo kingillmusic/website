@@ -1,9 +1,11 @@
+import { pAudio } from "./music.js";
+
 (function() {
     pAudio || console.error("Waveform: PlayerAudio not found");
 
     const BAR_WIDTH = 1;
     const BAR_SPACING = 3;
-    const MAX_BAR_HEIGHT_FRAC = 0.7;
+    const MAX_BAR_HEIGHT_FRAC = 0.6;
     const RESAMPLE_METHOD = 'mean';
     const CONTRAST_EXPONENT = 2;
 
@@ -14,10 +16,15 @@
 
     if (window.Worker) {
         try {
-            waveformWorker = new Worker('/js/list/waveform-worker.js');
+			const workerUrl = window.WAVEFORM_WORKER_URL;
+			if (!workerUrl) {
+				console.error('Waveform worker URL no set');
+				return;
+			}
+			waveformWorker = new Worker(workerUrl, { type: "module" });
             waveformWorker.onmessage = handleWorkerMessage;
             waveformWorker.onerror = (err) => console.error('Waveform worker error:', err);
-        } catch (e) {
+		} catch (e) {
             console.error('Failed to create waveform worker.', e);
         }
     } else {
@@ -62,7 +69,7 @@
         }
     }
 
-    function initWaveforms() {
+	function initWaveforms() {
         if (!waveformWorker) return;
 
         const rows = document.querySelectorAll('.row');
@@ -97,21 +104,23 @@
             srcIndexMap.set(trackAudio.src, i);
 
             // Send initial message to worker
-            const { gray, progress } = getWaveformColors();
-            waveformWorker.postMessage({
-                audioSrc: trackAudio.src,
-                dstLen: barCount,
-                method: RESAMPLE_METHOD,
-                width, height,
-                barWidth: BAR_WIDTH,
-                barSpacing: BAR_SPACING,
-                contrastExp: CONTRAST_EXPONENT,
-                maxBarHeightFrac: MAX_BAR_HEIGHT_FRAC,
-                index: i,
-                grayColor: gray,
-                progressColor: progress
-            });
-        }
+			if (width > 0 && height > 0) {
+            	const { gray, progress } = getWaveformColors();
+            	waveformWorker.postMessage({
+					audioSrc: trackAudio.src,
+					dstLen: barCount,
+					method: RESAMPLE_METHOD,
+					width, height,
+					barWidth: BAR_WIDTH,
+					barSpacing: BAR_SPACING,
+					contrastExp: CONTRAST_EXPONENT,
+					maxBarHeightFrac: MAX_BAR_HEIGHT_FRAC,
+					index: i,
+					grayColor: gray,
+					progressColor: progress
+            	});
+        	}
+		}
 
         // ResizeObserver on containers
         if (window.ResizeObserver) {
@@ -143,8 +152,15 @@
                 const w = waveforms[index];
                 if (!w) continue;
 
-                const { width, height } = entry.contentRect;
-                if (w.bgCanvas.width !== width || w.bgCanvas.height !== height) {
+				const { width, height } = entry.contentRect;
+
+				if (width <= 0 || height <= 0) {
+					w.bgCtx.clearRect(0, 0, w.bgCanvas.width, w.bgCanvas.height);
+					w.fgCtx.clearRect(0, 0, w.fgCanvas.width, w.fgCanvas.height);
+					continue;
+				}
+
+				if (w.bgCanvas.width !== width || w.bgCanvas.height !== height) {
                     w.bgCanvas.width = w.fgCanvas.width = width;
                     w.bgCanvas.height = w.fgCanvas.height = height;
 
@@ -208,3 +224,4 @@
         initWaveforms();
     }
 })();
+

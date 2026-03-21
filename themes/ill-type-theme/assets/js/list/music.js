@@ -1,3 +1,5 @@
+export { pAudio, go, row, trt };
+
 const
 	pAudio = document.getElementById("PlayerAudio"),
 	go = document.getElementById("GotoTrack"),
@@ -95,3 +97,4 @@ nx.addEventListener("click", () => { sh ? next() : (n = trn, next()) }),
 sb.addEventListener("click", () => { sh ? soa() : sha() }),
 rp.addEventListener("click", () => { rpb ? drpt() : rpt() }),
 pAudio.addEventListener("ended", () => { rpb ? rpt() : next() });
+

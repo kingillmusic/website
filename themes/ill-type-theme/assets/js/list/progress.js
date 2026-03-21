@@ -1,3 +1,5 @@
+import { pAudio } from "./music.js";
+
 const
     sDuration = document.getElementById("StartDuration"),
     eDuration = document.getElementById("EndDuration");

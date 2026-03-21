@@ -1,7 +1,7 @@
 /*----BASE----*/
 
 body {
-	margin: 0 0 20vmax 0;
+	margin: auto auto 20vmax auto;
 	-ms-tap-highlight-color: transparent;
 	-moz-tap-highlight-color: transparent;
 	-webkit-tap-highlight-color: transparent;
@@ -26,8 +26,9 @@ header { background: #ffefef;}
 	place-items: center;
 	justify-content: center;
 	width: 100%;
-	position: position;
+	position: fixed;
 	top: 0;
+	scroll-padding-block-start: 100vh;
     background: #ffffff;
 	text-transform: uppercase;
 	padding: 0.5vmax 0;
@@ -40,9 +41,13 @@ header { background: #ffefef;}
 
 /*----NAV----*/
 
-#tagcloud { text-align: center; }
+#tagcloud { 
+	padding-top: 7rem;
+	background: #ffefef;
+	text-align: center; 
+}
 
-nav { width : 95%; margin: 25px auto 0 auto; }
+nav { width : 95%; margin: auto }
 
 span {
 	font-size : 1em;
@@ -95,9 +100,9 @@ span {
 
 /*----TRACKS----*/
 
-.row { box-shadow: 0px 1px 4px 1px; scroll-margin-top: 3vh;  margin: 10px; }
+.row { box-shadow: 0px 1px 4px 1px; scroll-margin-top: 2.5vh;  margin: 10px; }
 .row > div { display: flex; align-items: center; justify-content: space-between; }
-.Track { padding: 2%; cursor: pointer; background: #eee; gap: 5px; font-size: 120%; }
+.Track { padding: 5px; cursor: pointer; background: #eee; gap: 5px; font-size: 120%; }
 .TrackPlay { max-height: 1.2em; }
 .TrackTitle { text-transform: uppercase; font-weight: 700; }
 .taglist text { font-size: 70%; }
@@ -105,7 +110,7 @@ span {
 .waveform-container {
 	position: relative;
 	background: #fff; 
-	height: 100px; 
+	height: 120px; 
 	width: 100%; 
 	overflow: hidden;
 }
@@ -214,4 +219,5 @@ footer > div {
 @media only screen and (min-width: 1000px) {
    .TitleBar { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
    footer > div { bottom: 4.5vh; }
+   #tagcloud { padding-top: 5rem; }
 }

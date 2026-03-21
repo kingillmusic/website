@@ -1,3 +1,5 @@
+import { row, trt } from "./music.js";
+
 const
     searchBox = document.getElementById("SearchBox"),
 	scrollTop = document.getElementById("top"),

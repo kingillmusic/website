@@ -116,6 +116,10 @@ self.onmessage = async function(e) {
         progressColor = '#87ffff'
     } = e.data;
 
+	if (width <= 0 || height <= 0) {
+		return;
+	}
+
     // 1. Fetch and decompress the waveform data
     const amplitudes = await loadWaveformData(audioSrc);
     if (!amplitudes) {

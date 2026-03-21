@@ -1,3 +1,5 @@
+import { go } from "./music.js";
+
 let outsideClickHandler = null;
 let escapeHandler = null;
 
