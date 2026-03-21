@@ -100,7 +100,7 @@ span {
 
 /*----TRACKS----*/
 
-.row { box-shadow: 0px 1px 4px 1px; scroll-margin-top: 2.5vh;  margin: 10px; }
+.row { box-shadow: 0px 1px 4px 1px; scroll-margin-top: 6.0rem;  margin: 10px; }
 .row > div { display: flex; align-items: center; justify-content: space-between; }
 .Track { padding: 5px; cursor: pointer; background: #eee; gap: 5px; font-size: 120%; }
 .TrackPlay { max-height: 1.2em; }
