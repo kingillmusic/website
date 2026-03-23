@@ -3,4 +3,4 @@ import "./waveform.js";
 import "./progress.js";
 import "./search.js";
 import "./popup.js";
-import "./analytics.js";
+//import "./analytics.js";
