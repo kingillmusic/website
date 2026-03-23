@@ -1,0 +1,14 @@
+{{ $track := . }}
+{{ $slug := $track.File.TranslationBaseName | urlize }}
+
+{{ range $track.Params.variants }}
+{{ $match := index (where site.Data.pricing.variants "key" .) 0 }}
+{{ $sku := printf "%s-%s-%s" $track.Params.sku_prefix $slug $match.sku_suffix }}
+
+<div>
+	<p>{{ $match.name }}</p>
+	<p>SKU: {{ $sku }}</p>
+	<p>Price: {{ $match.price }}</p>
+</div>
+
+{{ end }}

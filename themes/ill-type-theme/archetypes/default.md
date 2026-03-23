@@ -7,36 +7,13 @@ draft = false
 
 url = '/{{ replace .File.ContentBaseName "-" " " | title | lower }}'
 
-audio = ['/mp3/{{ replace .File.ContentBaseName "-" " " | title | lower }}/{{ replace .File.ContentBaseName "-" " " | title | lower }}.mp3']
+audio = ['/mp3/{{ replace .File.ContentBaseName "-" " " | title | lower }}/{{ replace .File.ContentBaseName "-" " " | title | lower }}.opus']
 
 tags = ['']
 
-# This functionality is needed for proper web-market functionality.
-# SKU has to be unique for each contract/lease, which is what the sku script is for.
-
 type = 'products'
 
-productID = '000'
+sku = ""
 
-variant_type = 'package'
-[[variants]]
-name = '50k streams'
-sku = '{{ index (seq 1000 | shuffle) 0 }}'
-price = '35'
-[[variants]]
-name = '250k streams'
-sku = '{{ index (seq 1000 | shuffle) 0 }}'
-price = '100'
-[[variants]]
-name = '1m streams'
-sku = '{{ index (seq 1000 | shuffle) 0 }}'
-price = '200'
-[[variants]]
-name = '4m streams'
-sku = '{{ index (seq 1000 | shuffle) 0 }}'
-price = '600'
-[[variants]]
-name = '16m streams'
-sku = '{{ index (seq 1000 | shuffle) 0 }}'
-price = '2000'
+variants = ["50k", "250k", "1m", "4m", "16m"]
 +++

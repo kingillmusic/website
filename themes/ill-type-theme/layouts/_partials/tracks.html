@@ -5,7 +5,7 @@
 			<canvas class="waveform-progress"></canvas>
 		</div>
 
-		<div class="Track">
+		<div class="Track" data-track-id="{{ .Title | urlize }}">
 			<img src="/svg/play.svg" class="TrackPlay" alt="play">
 			<text class="TrackTitle">{{ .Title }}</text>
 			{{ partial "taglist.html" . }}

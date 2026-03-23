@@ -1,11 +1,11 @@
 +++
+outputs = []
+
 title = 'perk'
 
 date = 2024-05-18T18:32:33+03:00
 
 draft = false
-
-url = '/perk'
 
 audio = ['/mp3/perk/perk.opus']
 
@@ -13,27 +13,7 @@ tags = ['trap']
 
 type = 'products'
 
-productID = '020'
+sku = "0090"
 
-variant_type = 'package'
-[[variants]]
-name = '50k streams'
-sku = '487'
-price = '35'
-[[variants]]
-name = '250k streams'
-sku = '211'
-price = '100'
-[[variants]]
-name = '1m streams'
-sku = '952'
-price = '200'
-[[variants]]
-name = '4m streams'
-sku = '955'
-price = '600'
-[[variants]]
-name = '16m streams'
-sku = '106'
-price = '2000'
+variants = ["50k", "250k", "1m", "4m", "16m"]
 +++

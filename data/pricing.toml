@@ -1,0 +1,31 @@
+variant_type = "package"
+
+[[variants]]
+	key = "50k"
+	name = "50K streams"
+	price = "10"
+	sku_suffix = "50K"
+
+[[variants]]
+	key = "250k"
+	name = "250K streams + stems"
+	price = "50"
+	sku_suffix = "100K"
+
+[[variants]]
+	key = "1m"
+	name = "1M streams + stems"
+	price = "100"
+	sku_suffix = "1M"
+
+[[variants]]
+	key = "4m"
+	name = "4M streams + stems"
+	price = "300"
+	sku_suffix = "4M"
+
+[[variants]]
+	key = "16m"
+	name = "16M streams + stems"
+	price = "1000"
+	sku_suffix = "16M"

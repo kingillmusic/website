@@ -1,2 +1,6 @@
 public/
 static/mp3/*/*.zip
+content/analytics
+themes/ill-type-theme/assets/js/list/analytics.js
+themes/ill-type-theme/layouts/analytics
+themes/ill-type-theme/static/analytics 

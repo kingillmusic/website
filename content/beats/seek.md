@@ -1,11 +1,11 @@
 +++
+outputs = []
+
 title = 'seek'
 
 date = 2024-05-18T19:24:58+03:00
 
 draft = false
-
-url = '/seek'
 
 audio = ['/mp3/seek/seek.opus']
 
@@ -13,27 +13,7 @@ tags = ['exp']
 
 type = 'products'
 
-productID = '136'
+sku = "0100"
 
-variant_type = 'package'
-[[variants]]
-name = '50k streams'
-sku = '599'
-price = '35'
-[[variants]]
-name = '250k streams'
-sku = '350'
-price = '100'
-[[variants]]
-name = '1m streams'
-sku = '639'
-price = '200'
-[[variants]]
-name = '4m streams'
-sku = '6djcak53'
-price = '600'
-[[variants]]
-name = '16m streams'
-sku = '166'
-price = '2000'
+variants = ["50k", "250k", "1m", "4m", "16m"]
 +++

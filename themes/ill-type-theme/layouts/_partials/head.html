@@ -1,7 +1,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5">
 <meta name="robots" content="index, follow">
-<meta name="description" content="Official website of music producer ill x eezyh aka king ill music, which displays the artists entire discography of instrumentals or beats, accessible for listening purposes through a music player with waveform visualization, the genres of these tracks are: Afro Chill Dabke Drill EDM Experimental and Trap.">
+<meta name="description" content="Stream experimental, trap, EDM, and chill study music with no ads, fast loading and easy access.">
+<meta name="keywords" content="music streaming, trap, EDM, chill study music, experimental music">
+
+<meta property="og:title" content="Stream Music, Ad-Free | Experimental, Trap, EDM & Chill">
+<meta property="og:description" content="Stream experimental, trap, EDM, and chill study music with no ads, fast loading and easy access.">
+<!--meta property="og:image" content="https://kingillmusic.com/cover.jpg"-->
+<meta property="og:url" content="https://kingillmusic.com">
+<meta property="og:type" content="website">
 
 {{ $worker := resources.Get "js/list/waveform-worker.js" | js.Build | minify | fingerprint }}
 <script>window.WAVEFORM_WORKER_URL = "{{ $worker.RelPermalink }}";</script>
