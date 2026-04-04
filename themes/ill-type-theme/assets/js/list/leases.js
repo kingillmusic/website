@@ -242,7 +242,8 @@ if (payButton) {
     } catch (error) {
       console.error(error);
       const errorMsg = document.createElement('div');
-      errorMsg.textContent = 'Could not start payment. Please try again.';
+      //errorMsg.textContent = 'Could not start payment. Please try again.';
+      errorMsg.textContent = 'Payment service not yet initialized, coming soon.';
       errorMsg.style.color = 'red';
       errorMsg.style.fontSize = '12px';
       errorMsg.style.marginTop = '10px';
