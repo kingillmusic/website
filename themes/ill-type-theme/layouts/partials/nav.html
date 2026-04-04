@@ -3,7 +3,7 @@
 
 <div id="tagcloud">
 	<nav>
-		<label for="touch"><span>genres</span><span>...</span></label>
+		<label for="touch"><span id="genres">genres</span><span>...</span></label>
 		<input type="checkbox" id="touch">
 		<ul class="slide">
 			{{ range $name, $items := .Site.Taxonomies.tags }}

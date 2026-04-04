@@ -1,0 +1,23 @@
+#!/bin/sh
+
+SOURCE_DIR="."
+TARGET_DIR="storage"
+
+# Create storage directory if it doesn't exist
+mkdir -p "$TARGET_DIR"
+
+# Loop through .md files
+for file in "$SOURCE_DIR"/*.md
+do
+    # Handle case where no files match
+		[ -f "$file" ] || continue
+
+			# Extract filename without path
+				name=${file##*/}
+
+					# Remove .md extension
+						name=${name%.md}
+
+							# Create directory
+								mkdir -p "$TARGET_DIR/$name"
+								done

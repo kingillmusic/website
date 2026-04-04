@@ -43,13 +43,13 @@ header { background: #ffefef;}
 
 #tagcloud { 
 	padding-top: 7rem;
-	background: #ffefef;
+	background: #fee;
 	text-align: center; 
 }
 
-nav { width : 95%; margin: auto }
+nav { width : 95%; margin: auto; }
 
-span {
+#genres {
 	font-size : 1em;
 	text-transform: uppercase;
 	cursor : pointer;
@@ -132,16 +132,165 @@ span {
 
 footer > div {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	position: fixed;
 	left: 0;
 	right: 0;
 	bottom: 14vh;
 }
 
-/*----BUTTONS----*/
+/*----LEASE----*/
 
-#top, #share { 
+button {
+	margin-top: 1rem;
+	width: 100%;
+	padding: 10px;
+	background: #97ffff;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+button:hover {
+	background: #7fe0e0;
+}
+	
+.lease-table {
+	display: flex;
+	align-items: center;
+	margin: 10px 0;
+}
+
+.lease-option > span, .lease-table > span {
+	text-align: center;
+	flex: 0 0 33.3333%;
+}
+
+.modal-content {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) ;
+	background-color: #fefefe;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+	max-width: 500px;
+	border-radius: 8px;
+	position: fixed;
+}
+
+.modal-content > div { margin-top: 1rem; text-align: right; }
+
+.lease-option {
+    display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	margin: 5px 0;
+	background: #eeeeee;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+.lease-option.selected {
+	background: #97ffff;
+}
+
+/*----CART----*/
+
+.itemcount {
+	position: absolute;
+	top: -5px;
+	right: -5px;
+	background: red;
+	color: white;
+	border-radius: 50%;
+	padding: 0 5px;
+	font-size: 16px;
+	display: none;
+}
+
+.cart-items-scroll {
+    max-height: 100vh;        /* Adjust as needed (e.g., 50vh) */
+    overflow-y: auto;
+}
+
+#showLeasesBtn {
+	position: relative;
+}
+
+#shoppingcart {
+	border-collapse: collapse;
+}
+
+#shoppingcart thead, #shoppingcart tbody {
+	display: block;
+	width: 100%;
+}
+
+
+#shoppingcart tbody {
+	max-height: 200px;
+	width: 100%;
+}
+
+#shoppingcart tr {
+	display: table;
+	width: 100%;
+	table-layout: fixed;
+}
+
+#shoppingcart th,
+#shoppingcart td {
+	text-align: center;
+    padding: 8px 0;
+	text-transform: uppercase;
+}
+
+#shoppingcart thead {
+	position: sticky;
+	top: 0;
+	z-index: 1;
+	background: white;
+	border-bottom: 1px solid #cccccc;
+	text-transform: uppercase;
+}
+
+strong { text-transform: uppercase; }
+
+/*----CHECKOUT----*/
+
+.invalid {
+	border: 2px solid red;
+	background-color: #ffe6e6;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+}
+                                        
+#customer-info {
+	width: 100%;
+	margin: 5px auto;
+	background-color: white;
+}
+
+#customer-info input {
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 4px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+	font-size: 16px;
+	margin: 4px 0;
+}
+
+#artistName { font-size: 12px; color: #777; margin: 5px 0; text-align: center; }
+
+/*----FOOTER SVG----*/
+
+#top, #share, #showLeasesBtn { 
 	cursor: pointer;
 	width: 125px;
 	box-shadow: 0px 1px 4px 1px;
@@ -149,8 +298,17 @@ footer > div {
 	border-radius: 5px;
 	place-items: center;
 	background: #97ffff;
-	margin: 0 3%
-} #share > img, #top > img { display: block; max-height: 1.5em; padding: 0.8vh 1vh; z-index: 2; } 
+	margin: 0 3%;
+} 
+
+#share > img, #top > img, #showLeasesBtn > img { 
+	display: block; 
+	max-height: 1.5em; 
+	padding: 0.8vh 1vh; 
+	z-index: 2; 
+}
+
+/*----SHARE----*/
 
 #CopiedMessage {
 	display: none;
@@ -161,10 +319,12 @@ footer > div {
 	text-transform: uppercase;
 	transform: translate(-50%, -50%) ;
 	font-size: 120%;
-	width: 280px;
-	box-shadow: 0px 1px 4px 1px;
-	background: #fff;
-} #beatstars, #paypal {color: #87a0f1}
+	width: 250px;
+	border: 2px solid #aaa;
+	border-radius: 4px;
+	background: #ffe;
+}
+#CopiedMessage > p a { padding: 4px; color: #fff; background: #87a0f1;}
 
 #email {
 	cursor: pointer ;
@@ -175,14 +335,15 @@ footer > div {
 	text-align: left;
 }
 
-/*----MUSIC PLAYER----*/
+/*----PLAYER----*/
 
 #PlayerControls {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
 	position: fixed;
-	width: 95%; 
+	width: 95%;
+	max-width: 555px;
 	border-radius: 8px;
 	bottom: 0;
 	left: 50%;
@@ -212,12 +373,7 @@ footer > div {
 	.TitleBar { grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); }
 }
 
-@media only screen and (min-width: 700px) {
-	#PlayerControls { width: 40%; }
-}
-
 @media only screen and (min-width: 1000px) {
    .TitleBar { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
-   footer > div { bottom: 4.5vh; }
-   #tagcloud { padding-top: 5rem; }
+	#tagcloud { padding-top: 5rem; }
 }

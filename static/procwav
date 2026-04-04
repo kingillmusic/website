@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/bin/sh -x
 
 # extract amplitude info using audiowaveform
 # https://github.com/bbc/audiowaveform
-exwf() {
-	find mp3 -name "*.ogg" | while read track; do
+#exwf() {
+	find mp3 -name "*.opus" | while read track; do
 		outfile="waveforms/${track#mp3/}"
-		outfile="${outfile%.ogg}.json"
+		outfile="${outfile%.opus}.json"
     
 		mkdir -p "$(dirname "$outfile")"
   
@@ -15,16 +15,21 @@ exwf() {
 			echo "Processing $track -> $outfile"
 			audiowaveform -i "$track" -o "$outfile"
 		fi
-	done
-}
+	done &&
+#}
 
 # compress using pigz (re-named gzip for compatibility)
-cmwf() {
+#cmwf() {
 	for dir in waveforms/*/; do
 		for file in "$dir"*.json; do
 			[ -f "$file" ] && gzip -4 "$file"
 		done
 	done
-}
+#}
 
-exwf && cmwf
+case "$1" in
+	exwf) x ;;
+	cmwf) z ;;
+	*) ;;
+esac
+

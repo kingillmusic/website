@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Successful</title>
+</head>
+<body>
+    <h1>Thank You for Your Purchase!</h1>
+
+    <div id="download-section" style="display: none;">
+        <p>Your files are ready. Click the button below to download:</p>
+        <a id="download-link" href="#" download>Download Your Files</a>
+    </div>
+
+    <div id="check-email" style="display: block;">
+        <p>Your download link has been sent to your email address.</p>
+    </div>
+
+    <a href="/">Back to Home</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Clear cart (always)
+            localStorage.removeItem('cart');
+            if (typeof updateCartCount === 'function') {
+                updateCartCount();
+            }
+
+            // Get token and debug flag from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            const debug = urlParams.get('debug') === '1';
+
+            // Show download link only if debug mode is enabled and token exists
+            if (debug && token) {
+                const downloadLink = `http://localhost:8080/download?token=${token}`;
+                const downloadAnchor = document.getElementById('download-link');
+                if (downloadAnchor) {
+                    downloadAnchor.href = downloadLink;
+                    document.getElementById('download-section').style.display = 'block';
+                    document.getElementById('check-email').style.display = 'none';
+                }
+            } else {
+                // Normal case: show "check email" message
+                document.getElementById('check-email').style.display = 'block';
+                document.getElementById('download-section').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

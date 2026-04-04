@@ -1,4 +1,13 @@
-{{ range (.Paginator 200).Pages }}
+{{ $pages := slice }}
+{{ if eq .Kind "term" }}
+  {{ $pages = .Pages }}
+{{ else }}
+  {{ $pages = (.Site.GetPage "/beats").Pages }}
+{{ end }}
+
+{{ $paginator := .Paginate $pages 200 }} 
+
+{{ range $paginator.Pages }}
     <div class="row">
 		<div class="waveform-container">
 			<canvas class="waveform-bg"></canvas>
@@ -11,11 +20,15 @@
 			{{ partial "taglist.html" . }}
 			&nbsp;
 		</div>
-	
+		
 		{{ range .Params.audio }}
 		<audio class="TrackAudio" src="{{ . }}" preload="none" type="audio/mpeg">
 				Your browser doesn't support embedded audio.
 		</audio>
 		{{ end }} {{/* range .Params.audio */}}
+
+		<div class="variants-container" style="display: none;">
+			{{ partial "variants.html" . }}
+		</div>
 	</div>
 {{ end }}

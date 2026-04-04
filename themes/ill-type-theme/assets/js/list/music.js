@@ -1,4 +1,4 @@
-export { pAudio, go, row, trt };
+export { pAudio, go, row, trt, a, n };
 
 const
 	pAudio = document.getElementById("PlayerAudio"),
@@ -84,10 +84,10 @@ previous = () => {
 },
 
 play = () => {
-    pAudio.play(),
-    pp.src = "/svg/pause.svg",
+	pAudio.play(),
 	go.style.color = "#ff8d00",
-    trp[trn].src = "/svg/stop.svg"
+	pp.src = "/svg/pause.svg",
+	trp[trn].src = "/svg/stop.svg"
 };
 
 go.addEventListener("click", () => { row[trn].scrollIntoView({ behavior:"smooth" }) }),

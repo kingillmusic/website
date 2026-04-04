@@ -1,7 +1,7 @@
 +++
 outputs = []
 
-title = 'baile-pt-2'
+title = 'baile2'
 
 date = 2024-05-18T18:34:00+03:00
 
@@ -15,5 +15,5 @@ type = 'products'
 
 sku = "0008"
 
-variants = ["50k", "250k", "1m", "4m", "16m"]
+variants = ["35k", "250k", "1m", "4m", "16m"]
 +++

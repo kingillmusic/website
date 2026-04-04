@@ -15,5 +15,5 @@ type = 'prodcuts'
 
 sku = "0174"
 
-variants = ["50k", "250k", "1m", "4m", "16m"]
+variants = ["35k", "250k", "1m", "4m", "16m"]
 +++

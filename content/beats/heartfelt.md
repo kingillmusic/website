@@ -15,5 +15,5 @@ type = 'products'
 
 sku = "0057"
 
-variants = ["50k", "250k", "1m", "4m", "16m"]
+variants = ["35k", "250k", "1m", "4m", "16m"]
 +++

@@ -6,13 +6,14 @@ let escapeHandler = null;
 dcm = () => {
     const cm = document.querySelector("#CopiedMessage");
 
-    // Copy link to clipboard
+    /* Copy link to clipboard
     if (typeof go === 'undefined' || !go.innerText) {
         console.error('go element not found or empty');
         return;
     }
     const link = 'https://kingillmusic.com/' + go.innerText;
     navigator.clipboard.writeText(link).catch(err => console.error('Copy failed:', err));
+	*/
 
     // Show the popup
     cm.style.display = "block";

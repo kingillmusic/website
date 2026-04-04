@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# Loop through all regular files in current directory
+find . -type f | while IFS= read -r file; do
+    # Use sed to replace "35k" with "35k"
+    # Only matches exactly "35k"
+    sed 's/"35k"/"35k"/g' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+done
