@@ -4,4 +4,7 @@ title = 'Stream My Music Ad-Free | Experimental, Trap, EDM & Chill'
 theme = 'ill-type-theme'
 
 [params]
-favicon = '/favicon.png'
+	favicon = '/favicon.png'
+
+[taxonomies]
+	tag = 'tags'

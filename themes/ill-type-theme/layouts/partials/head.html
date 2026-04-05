@@ -16,7 +16,7 @@
 {{ $js := resources.Get "js/list/main.js" | js.Build | minify | fingerprint }}
 <script type="text/javascript" src="{{ $js.RelPermalink }}" defer></script>
 
-<link rel="stylesheet preload" as="style" type="text/css" href="/css/style.css">
+<link rel="stylesheet preload" as="style" type="text/css" href="{{ "css/style.css" | relURL }}">
 
 <title>{{ .Site.Title | lower }}</title>
 {{ if isset .Params "tags" }}<meta name="keywords" content="{{ with .Params.tags }}{{ delimit . ", " }}{{ end }}">{{ end -}}
