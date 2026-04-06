@@ -33,7 +33,7 @@ header { background: #ffefef;}
 	text-transform: uppercase;
 	padding: 0.5vmax 0;
 	z-index: 1;
-	box-shadow: 0px 1px 4px 1px;
+	box-shadow: 0px 1px 4px 1px #777;
 }
 
 #GotoTrack { cursor: pointer; margin: 0; font-size: 2.2em }
@@ -91,7 +91,7 @@ nav { width : 95%; margin: auto; }
 	width: 100%;
 	border: none;
 	outline: none;
-	box-shadow: 0 -3px 4px 0px;
+	box-shadow: 0 -3px 4px 0px #777;
 	padding: 15px;
 	font-style: italic;
 	text-transform: uppercase;
@@ -100,7 +100,7 @@ nav { width : 95%; margin: auto; }
 
 /*----TRACKS----*/
 
-.row { box-shadow: 0px 1px 4px 1px; scroll-margin-top: 6.0rem;  margin: 10px; }
+.row { border: 2px solid #ccc; scroll-margin-top: 6.0rem;  margin: 10px; }
 .row > div { display: flex; align-items: center; justify-content: space-between; }
 .Track { padding: 5px; cursor: pointer; background: #eee; gap: 5px; font-size: 120%; }
 .TrackPlay { max-height: 1.2em; }
@@ -169,13 +169,13 @@ button:hover {
 .modal-content {
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%) ;
+	transform: translate(-50%, -50%);
 	background-color: #fefefe;
 	padding: 20px;
-	border: 1px solid #888;
+	box-shadow: 0 0px 18px 1px #777;
 	width: 80%;
 	max-width: 500px;
-	border-radius: 8px;
+	border-radius: 4px;
 	position: fixed;
 }
 
@@ -293,9 +293,9 @@ form {
 #top, #share, #showLeasesBtn { 
 	cursor: pointer;
 	width: 125px;
-	box-shadow: 0px 1px 4px 1px;
+	box-shadow: 0px 1px 4px 1px #777;
 	opacity: 0.7;
-	border-radius: 5px;
+	border-radius: 4px;
 	place-items: center;
 	background: #97ffff;
 	margin: 0 3%;
@@ -344,14 +344,14 @@ form {
 	position: fixed;
 	width: 95%;
 	max-width: 555px;
-	border-radius: 8px;
+	border-radius: 4px;
 	bottom: 0;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	background: #97ffff;
 	opacity: 0.7;
 	font-size: 120%;
-	box-shadow: 0px 1px 4px 1px;
+	box-shadow: 0px 1px 4px 1px #777;
 	z-index: 1;
 }
 
