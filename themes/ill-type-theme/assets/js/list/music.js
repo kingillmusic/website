@@ -25,7 +25,7 @@ fy = (a,b,c,d) => { // minified fisher-yates shuffle algo.
 (soa = () => {
     sh=!1,
         fy(a = na(tro.length)),
-       	sb.style.background = "#97ffff",
+       	sb.style.background = "#d7ffff",
 		a.sort((x,y) => { return x - y });
         pAudio.paused ? load() : addEventListener("ended", load)
 })(),
@@ -44,7 +44,7 @@ rpt = () => {
         pAudio.addEventListener("ended", play)
 },
 
-drpt = () => { rpb = !1, rp.style.background = "#97ffff" },
+drpt = () => { rpb = !1, rp.style.background = "#d7ffff" },
 
 window.onload = () => {
 	const container = document.querySelector('main');
@@ -66,7 +66,8 @@ const pause = () => {
         pAudio.pause(),
         pp.src = "/svg/play.svg",
 		go.style.color = "#000",
-		trp[s].src = "/svg/play.svg" 
+		trp[s].src = "/svg/play.svg",
+		row[s].style.boxShadow = "none"
 },
 
 next = () => {
@@ -85,9 +86,11 @@ previous = () => {
 
 play = () => {
 	pAudio.play(),
-	go.style.color = "#ff8d00",
+	go.style.color = "#bab",
 	pp.src = "/svg/pause.svg",
-	trp[trn].src = "/svg/stop.svg"
+	trp[trn].src = "/svg/stop.svg", 
+	row[trn].style.boxShadow = "0px 4px 4px 0px #bab",
+	row[trn].style.transition = "box-shadow 0.2s ease-in-out" 
 };
 
 go.addEventListener("click", () => { row[trn].scrollIntoView({ behavior:"smooth" }) }),

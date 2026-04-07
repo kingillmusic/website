@@ -9,22 +9,23 @@
     
 		mkdir -p "$(dirname "$outfile")"
   
-		if [ -f "$outfile" ]; then
+		if [ -f "$outfile.gz" ]; then
 			echo "Skipping $track (JSON already exists)"
 		else
 			echo "Processing $track -> $outfile"
-			audiowaveform -i "$track" -o "$outfile"
+			audiowaveform -i "$track" -o "$outfile" &&
+			gzip -4 "$outfile"
 		fi
-	done &&
+	done
 #}
 
 # compress using pigz (re-named gzip for compatibility)
 #cmwf() {
-	for dir in waveforms/*/; do
-		for file in "$dir"*.json; do
-			[ -f "$file" ] && gzip -4 "$file"
-		done
-	done
+#	for dir in waveforms/*/; do
+#		for file in "$dir"*.json; do
+#			[ -f "$file" ] && gzip -4 "$file"
+#		done
+#	done
 #}
 
 case "$1" in

@@ -1,22 +1,28 @@
 <div class="lease-table">
   <span>STREAMS</span><span>STEMS</span><span>PRICE</span>
 </div>
+
 {{ $track := . }}
-	{{ $slug := $track.File.TranslationBaseName | urlize }}
-	{{ range $track.Params.variants }}
-		{{ $match := index (where site.Data.pricing.variants "key" .) 0 }}
-		{{ if and $match $match.sku_suffix }}
-			{{ $sku := printf "%s_%s" $slug $match.sku_suffix }}
-			<div class="lease-option" 
-			data-sku="{{ $sku }}" 
-			data-title="{{ $track.Title }}" 
-			data-variantname="{{ $match.name }}" 
-			data-price="{{ $match.price }}">
-				<span>{{ $match.name | upper }}</span>
-				<span>{{ $match.stems | upper }}</span>
-				<span>${{ $match.price }}</span>
-				<!--span>SKU: {{ $sku }}</span--> 
-			</div>
-		{{ end }}
+{{ $slug := $track.File.TranslationBaseName | urlize }}
+{{ range $track.Params.variants }}
+	{{ $match := index (where site.Data.pricing.variants "key" .) 0 }}
+	{{ if and $match $match.sku_suffix }}
+		{{ $sku := printf "%s_%s" $slug $match.sku_suffix }}
+		<div class="lease-option" 
+		data-sku="{{ $sku }}" 
+		data-title="{{ $track.Title }}" 
+		data-variantname="{{ $match.name }}" 
+		data-price="{{ $match.price }}">
+			<span>{{ $match.name | upper }}</span>
+			<span>{{ $match.stems | upper }}</span>
+			<span>${{ $match.price }}</span>
+			<!--span>SKU: {{ $sku }}</span--> 
+		</div>
 	{{ end }}
+{{ end }}
+
+<a href="/mp3/{{ .Title }}/{{ .Title }}.opus" download>
+	<button class="free-download">FREE FOR NON-PROFIT USE</button>
+</a>
+
 <button class="checkout">CART</button>
