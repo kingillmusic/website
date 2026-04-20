@@ -5,3 +5,4 @@ import "./search.js";
 import "./popup.js";
 import "./leases.js";
 import "./webshop.js";
+import "./redirect.js";

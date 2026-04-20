@@ -21,7 +21,7 @@ window.populateCart = function() {
     let cartTotal = 0;
 
     if (cart.length === 0) {
-        tbody.innerHTML = '<td colspan="4">Your shopping cart is currently empty.</td></tr>';
+        tbody.innerHTML = '<td colspan="4">Nothing in cart.</td></tr>';
         document.querySelectorAll('.carttotal').forEach(el => el.innerHTML = '0');
         updateCartCount();
         return;

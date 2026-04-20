@@ -146,16 +146,18 @@ button {
 	margin-top: 0.5rem;
 	width: 100%;
 	padding: 10px;
-	background: #97ffff;
+	background: #d7ffff;
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
 }
 
 button:hover {
-	background: #7fe0e0;
+	background: #a7ffff;
 }
 	
+h2 { text-align: center; margin: -5% 0 5% 0 }
+
 .lease-table {
 	display: flex;
 	align-items: center;
@@ -171,9 +173,9 @@ button:hover {
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	background-color: #fefefe;
+	background-color: #fff;
 	padding: 20px;
-	box-shadow: 0 2px 6px 0px #bab;
+	box-shadow: 0 0 6px 0px #bab;
 	width: 80%;
 	max-width: 500px;
 	border-radius: 4px;
@@ -187,7 +189,7 @@ button:hover {
 	justify-content: space-between;
 	padding: 10px;
 	margin: 5px 0;
-	background: #eeeeee;
+	background: #eee;
 	cursor: pointer;
 	border-radius: 4px;
 }
@@ -196,7 +198,8 @@ button:hover {
 	background: #97ffff;
 }
 
-.free-download { margin-top: 0; background: #afb }
+.free-download { margin-top: 5%; background: #afb }
+.free-download:hover { margin-top: 5%; background: #bfb }
 
 /*----CART----*/
 

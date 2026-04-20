@@ -58,12 +58,6 @@ function closeCartModal() {
   cartModal.style.display = 'none';
 }
 
-function openCheckoutModal() {
-  cartModal.style.display = 'none';
-  // Optionally populate the form with previously entered data if needed
-  checkoutModal.style.display = 'block';
-}
-
 function closeCheckoutModal() {
   checkoutModal.style.display = 'none';
 }
@@ -178,84 +172,59 @@ function loadPayPalSDK() {
     });
 }
 
-function renderPayPalButton(paypalOrderId, internalOrderId) {
+// Render the PayPal button immediately when the checkout modal is shown.
+function renderPayPalButton() {
     const container = document.getElementById('paypal-button-container');
-    if (!container) {
-        console.error('PayPal button container not found');
-        return;
-    }
+    if (!container) return;
+
     container.style.display = 'block';
-    container.innerHTML = '';
+    container.innerHTML = ''; // Clear any previous instance
 
     paypal.Buttons({
-        createOrder: function() {
-            return paypalOrderId;
-        },
-        onApprove: async function() {
-            try {
-                const response = await fetch(`${BACKEND_URL}/api/orders/${internalOrderId}/capture`, {
-                    method: 'POST'
-                });
-                const result = await response.json();
-                if (!response.ok) throw new Error(result.error);
-                window.location.href = `/success/?order_id=${internalOrderId}`;
-            } catch (err) {
-                console.error('Capture error:', err);
-                alert('Payment capture failed. Please contact support.');
+        style: {
+            layout: 'horizontal',
+            color:  'silver',
+            shape:  'rect',
+            label:  'paypal',
+            height: 40,
+            tagline: false
+		},
+        // This function is called when the user clicks the PayPal button.
+        createOrder: async function() {
+            // Gather form data and cart (same as before)
+            const name = document.getElementById('customer-name').value.trim();
+            const email = document.getElementById('customer-email').value.trim();
+            const artistName = document.getElementById('artist-name').value.trim();
+            const address = document.getElementById('customer-address').value.trim();
+
+            // Validate form before proceeding
+            if (!name || !email || !address || !artistName) {
+                alert('Please fill all required fields.');
+                throw new Error('Form incomplete');
             }
-        },
-        onCancel: function() {
-            window.location.href = '/cancel';
-        },
-        onError: function(err) {
-            console.error('PayPal error:', err);
-            alert('Payment error. Please try again.');
-        }
-    }).render(container);
-}
 
-if (payButton) {
-    payButton.addEventListener('click', async (e) => {
-        e.preventDefault();
-
-        // Gather form data
-        const name = document.getElementById('customer-name').value.trim();
-        const email = document.getElementById('customer-email').value.trim();
-        const artistName = document.getElementById('artist-name').value.trim();
-        const address = document.getElementById('customer-address').value.trim();
-
-        if (!name || !email || !address || !artistName) {
-            alert('Please fill all fields');
-            return;
-        }
-
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        if (cart.length === 0) {
-            alert('Your cart is empty.');
-            return;
-        }
-
-        const metadata = {
-            cart: cart.map(item => ({
-                track_name: item.title,
-                lease_type: item.variantname
-            })),
-            customer: {
-                legal_name: name,
-                legal_address: address,
-                artist_name: artistName,
-                email: email
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                alert('Your cart is empty.');
+                throw new Error('Cart empty');
             }
-        };
 
-        const total = cart.reduce((sum, i) => sum + i.price, 0).toFixed(2);
+            const metadata = {
+                cart: cart.map(item => ({
+                    track_name: item.title,
+                    lease_type: item.variantname
+                })),
+                customer: {
+                    legal_name: name,
+                    legal_address: address,
+                    artist_name: artistName,
+                    email: email
+                }
+            };
 
-        payButton.textContent = 'Creating order...';
-        payButton.disabled = true;
+            const total = cart.reduce((sum, i) => sum + i.price, 0).toFixed(2);
 
-        try {
-            await loadPayPalSDK();
-
+            // Call your backend
             const response = await fetch(`${BACKEND_URL}/api/orders`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
@@ -270,18 +239,40 @@ if (payButton) {
             const data = await response.json();
             if (!response.ok) throw new Error(data.error || 'Failed to create order');
 
-            currentInternalOrderId = data.order_id;
+            // Return the PayPal Order ID to the SDK
+            return data.paypal_order_id;
+        },
+        onApprove: async function(data) {
+            // Capture on backend using internal order ID
+            const internalOrderId = localStorage.getItem('currentInternalOrderId');
+            if (!internalOrderId) {
+                alert('Order ID missing. Please contact support.');
+                return;
+            }
 
-            // Hide the PAY button, show PayPal button container
-            payButton.style.display = 'none';
-            renderPayPalButton(data.paypal_order_id, data.order_id);
-        } catch (err) {
-            console.error(err);
-            alert('Failed to create order: ' + err.message);
-            payButton.textContent = 'Pay';
-            payButton.disabled = false;
+            const response = await fetch(`${BACKEND_URL}/api/orders/${internalOrderId}/capture`, {
+                method: 'POST'
+            });
+            const result = await response.json();
+            if (!response.ok) throw new Error(result.error);
+
+            window.location.href = `/success/?order_id=${internalOrderId}`;
+        },
+        onCancel: function() {
+            window.location.href = '/cancel';
+        },
+        onError: function(err) {
+            console.error('PayPal error:', err);
+            alert('Payment error. Please try again.');
         }
-    });
+    }).render(container);
+}
+
+// Call renderPayPalButton when the checkout modal is opened
+function openCheckoutModal() {
+    cartModal.style.display = 'none';
+    checkoutModal.style.display = 'block';
+    renderPayPalButton(); // <-- Show PayPal button immediately
 }
 
 // Initial cart badge update

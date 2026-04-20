@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html>
-<head><title>Payment Successful</title></head>
+<head>
+    <meta charset="utf-8">
+    <title>Processing...</title>
+</head>
 <body>
-    <h1>Thank You!</h1>
-    <p>Your order <span id="order-id"></span> is complete.</p>
-    <p>You will receive an email with download instructions shortly.</p>
-    <a href="/">Back to Home</a>
     <script>
-        const params = new URLSearchParams(window.location.search);
-        document.getElementById('order-id').textContent = params.get('order_id') || '';
-        localStorage.removeItem('cart');
-        if (window.updateCartCount) window.updateCartCount();
+        (function() {
+            const params = new URLSearchParams(window.location.search);
+            const orderId = params.get('order_id');
+            // Redirect to main page with payment success indicator
+            window.location.href = '/?payment=success&order_id=' + encodeURIComponent(orderId || '');
+        })();
     </script>
 </body>
 </html>
