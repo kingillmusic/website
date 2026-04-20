@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>Payment Successful</title></head>
+<body>
+    <h1>Thank You!</h1>
+    <p>Your order <span id="order-id"></span> is complete.</p>
+    <p>You will receive an email with download instructions shortly.</p>
+    <a href="/">Back to Home</a>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById('order-id').textContent = params.get('order_id') || '';
+        localStorage.removeItem('cart');
+        if (window.updateCartCount) window.updateCartCount();
+    </script>
+</body>
+</html>
