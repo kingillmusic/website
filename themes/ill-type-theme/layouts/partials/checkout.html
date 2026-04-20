@@ -4,12 +4,17 @@
 			<div id="artistName">Legal fullname and address are required for contract validity.</div>
 			<form>
     			<input type="text" id="customer-name" placeholder="Fullname" required>
+                <span class="error-message" id="name-error"></span> 
 				<input type="text" id="customer-address" placeholder="Full address" required>
+                <span class="error-message" id="address-error"></span> 
 				<input type="email" id="customer-email" placeholder="Email for sending files" required>
+                <span class="error-message" id="email-error"></span> 
 				<input type="text" id="artist-name" placeholder="Artist name" required>
+                <span class="error-message" id="artist-error"></span> 
 			</form>
 		</div>
 		<button id="backToCartBtn" class="back-btn">BACK</button> 
 		<div id="paypal-button-container" style="display:none;"></div>
+        <div id="form-incomplete-message"></div> 
     </div>
 </div>
