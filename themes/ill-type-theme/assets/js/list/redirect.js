@@ -1,54 +1,36 @@
-// Run on page load
-document.addEventListener('DOMContentLoaded', function() {
-    const params = new URLSearchParams(window.location.search);
-    const paymentStatus = params.get('payment');
-    const orderId = params.get('order_id');
+function showPaymentIcon(success) {
+    const modal = document.getElementById('modal');
+    const content = document.getElementById('modal-content');
+    
+    // Replace content with icon only
+    content.innerHTML = success 
+        ? '<span style="font-size: 5rem; color: #2e7d32;">✅</span>'
+        : '<span style="font-size: 5rem; color: #c62828;">❌</span>';
+    
+    // Remove any extra padding/margins that might be there from previous uses
+    content.style.textAlign = 'center';
+    content.style.padding = '2rem';
+    
+    // Show modal
+    modal.style.display = 'block';
+    
+    // Auto-dismiss after 3 seconds
+    setTimeout(() => {
+        modal.style.display = 'none';
+        // Optional: restore default content if needed later
+    }, 3000);
+}
 
-    if (paymentStatus === 'success') {
-        showPaymentSuccessModal(orderId);
-        // Clean the URL to prevent re‑triggering on refresh
+// Trigger on homepage with query params
+(function() {
+    const params = new URLSearchParams(window.location.search);
+    const status = params.get('payment');
+    
+    if (status === 'success') {
+        showPaymentIcon(true);
         window.history.replaceState({}, document.title, '/');
-    } else if (paymentStatus === 'cancelled') {
-        showPaymentCancelledModal();
+    } else if (status === 'cancelled') {
+        showPaymentIcon(false);
         window.history.replaceState({}, document.title, '/');
     }
-});
-
-function showPaymentSuccessModal(orderId) {
-    // Example using your existing modal system
-    const modal = document.createElement('div');
-    modal.className = 'modal';
-    modal.innerHTML = `
-        <div class="modal-content">
-            <h2>Payment Successful!</h2>
-            <p>Your order <strong>${orderId}</strong> has been completed.</p>
-            <p>You will receive an email with download instructions shortly.</p>
-            <button class="close-modal">Close</button>
-        </div>
-    `;
-    document.body.appendChild(modal);
-    modal.style.display = 'block';
-
-    modal.querySelector('.close-modal').addEventListener('click', () => {
-        modal.remove();
-    });
-}
-
-function showPaymentCancelledModal() {
-    // Similar implementation
-    const modal = document.createElement('div');
-    modal.className = 'modal';
-    modal.innerHTML = `
-        <div class="modal-content">
-            <h2>Payment Cancelled</h2>
-            <p>Your order was not completed.</p>
-            <button class="close-modal">Close</button>
-        </div>
-    `;
-    document.body.appendChild(modal);
-    modal.style.display = 'block';
-
-    modal.querySelector('.close-modal').addEventListener('click', () => {
-        modal.remove();
-    });
-}
+})();
