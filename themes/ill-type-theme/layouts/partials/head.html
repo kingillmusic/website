@@ -15,6 +15,7 @@
 
 {{ $js := resources.Get "js/list/main.js" | js.Build | minify | fingerprint }}
 <script type="text/javascript" src="{{ $js.RelPermalink }}" defer></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AedM7x_UmXo1zFQWkQQpoVySNYP1wkjbovaK5w43NTdf6aYx1zrcEHZULEyUhnyJgWVSneTn2RKnN8lM&currency=USD"></script>
 
 <link rel="stylesheet preload" as="style" type="text/css" href="{{ "css/style.css" | relURL }}">
 

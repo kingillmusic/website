@@ -158,106 +158,128 @@ if (showLeasesBtn) {
   });
 }
 
-// ---------- Pay button (unchanged except maybe small improvements) ----------
-if (payButton) {
-  const artistNameInput = document.getElementById('artist-name');
-  const nameInput = document.getElementById('customer-name');
-  const addressInput = document.getElementById('customer-address');
-  const emailInput = document.getElementById('customer-email');
+// ---------- Pay button ----------
+const BACKEND_URL = 'https://kimstore.fly.dev';
+//const PAYPAL_CLIENT_ID = 'Acq7j2qfe8QY4vkHy6l7EPh-ehOzvNJyAJLGzNbZLM0SMVOSCe83mc3AEkp1tBc8UWX3TyxeiNFk9SEv';
+const PAYPAL_CLIENT_ID = 'AbJ0sYwJCxsUtdxnFX4RkWot_yjFUHAMGghnSNypRe6FxPSgwuAYem8bjobOtx7ntgVZ8rnv4YNee8Bw';
 
-  function removeInvalidClass(e) {
-    e.target.classList.remove('invalid');
-  }
-  nameInput.addEventListener('input', removeInvalidClass);
-  emailInput.addEventListener('input', removeInvalidClass);
-  artistNameInput.addEventListener('input', removeInvalidClass);
-  addressInput.addEventListener('input', removeInvalidClass);
+let currentInternalOrderId = null;
 
-  payButton.addEventListener('click', async () => {
-    const name = nameInput.value.trim();
-    const email = emailInput.value.trim();
-    const artistName = artistNameInput.value.trim();
-    const address = addressInput.value.trim();
-
-    const visitorId = localStorage.getItem('visitor_id');
-    const sessionId = sessionStorage.getItem('session_id');
-
-    let isValid = true;
-
-    if (!name) {
-      nameInput.classList.add('invalid');
-      isValid = false;
-    }
-    if (!email) {
-      emailInput.classList.add('invalid');
-      isValid = false;
-    }
-    if (!address) {
-      addressInput.classList.add('invalid');
-      isValid = false;
-    }
-    if (!artistName) {
-      artistNameInput.classList.add('invalid');
-      isValid = false;
-    }
-
-    if (!isValid) return;
-
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    if (cart.length === 0) return;
-
-    const total = cart.reduce((sum, item) => sum + item.price, 0);
-
-    payButton.textContent = 'Creating payment...';
-    payButton.disabled = true;
-
-    try {
-      const response = await fetch('http://localhost:8080/create-payment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          cart,
-          total,
-          customerName: name,
-          customerAddress: address,
-          customerEmail: email,
-          artistName: artistName,
-          visitorId: visitorId,
-          sessionId: sessionId
-        }),
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        if (data.downloadUrl) {
-          window.location.href = data.downloadUrl;
-        } else if (data.paymentUrl) {
-          window.location.href = data.paymentUrl;
-        } else {
-          throw new Error('No payment URL or download URL returned');
+function loadPayPalSDK() {
+    return new Promise((resolve, reject) => {
+        if (window.paypal && typeof window.paypal.Buttons === 'function') {
+            return resolve();
         }
-      } else {
-        throw new Error(data.error || 'Payment creation failed');
-      }
-    } catch (error) {
-      console.error(error);
-      const errorMsg = document.createElement('div');
-      //errorMsg.textContent = 'Could not start payment. Please try again.';
-      errorMsg.textContent = 'Payment service not yet initialized, coming soon.';
-      errorMsg.style.color = 'red';
-      errorMsg.style.fontSize = '12px';
-      errorMsg.style.marginTop = '10px';
-      const modalContent = document.querySelector('#checkoutModal .modal-content');
-      const existingError = modalContent.querySelector('.payment-error');
-      if (existingError) existingError.remove();
-      errorMsg.className = 'payment-error';
-      modalContent.appendChild(errorMsg);
-      setTimeout(() => errorMsg.remove(), 3000);
-    } finally {
-      payButton.textContent = 'Pay';
-      payButton.disabled = false;
+
+        // Define a global callback that PayPal will call when ready
+        window.paypalOnInit = resolve; 
+    });
+}
+
+function renderPayPalButton(paypalOrderId, internalOrderId) {
+    const container = document.getElementById('paypal-button-container');
+    if (!container) {
+        console.error('PayPal button container not found');
+        return;
     }
-  });
+    container.style.display = 'block';
+    container.innerHTML = '';
+
+    paypal.Buttons({
+        createOrder: function() {
+            return paypalOrderId;
+        },
+        onApprove: async function() {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/orders/${internalOrderId}/capture`, {
+                    method: 'POST'
+                });
+                const result = await response.json();
+                if (!response.ok) throw new Error(result.error);
+                window.location.href = `/success/?order_id=${internalOrderId}`;
+            } catch (err) {
+                console.error('Capture error:', err);
+                alert('Payment capture failed. Please contact support.');
+            }
+        },
+        onCancel: function() {
+            window.location.href = '/cancel';
+        },
+        onError: function(err) {
+            console.error('PayPal error:', err);
+            alert('Payment error. Please try again.');
+        }
+    }).render(container);
+}
+
+if (payButton) {
+    payButton.addEventListener('click', async (e) => {
+        e.preventDefault();
+
+        // Gather form data
+        const name = document.getElementById('customer-name').value.trim();
+        const email = document.getElementById('customer-email').value.trim();
+        const artistName = document.getElementById('artist-name').value.trim();
+        const address = document.getElementById('customer-address').value.trim();
+
+        if (!name || !email || !address || !artistName) {
+            alert('Please fill all fields');
+            return;
+        }
+
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cart.length === 0) {
+            alert('Your cart is empty.');
+            return;
+        }
+
+        const metadata = {
+            cart: cart.map(item => ({
+                track_name: item.title,
+                lease_type: item.variantname
+            })),
+            customer: {
+                legal_name: name,
+                legal_address: address,
+                artist_name: artistName,
+                email: email
+            }
+        };
+
+        const total = cart.reduce((sum, i) => sum + i.price, 0).toFixed(2);
+
+        payButton.textContent = 'Creating order...';
+        payButton.disabled = true;
+
+        try {
+            await loadPayPalSDK();
+
+            const response = await fetch(`${BACKEND_URL}/api/orders`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    currency: 'USD',
+                    amount: total,
+                    description: 'Music Lease Purchase',
+                    metadata: metadata
+                })
+            });
+
+            const data = await response.json();
+            if (!response.ok) throw new Error(data.error || 'Failed to create order');
+
+            currentInternalOrderId = data.order_id;
+
+            // Hide the PAY button, show PayPal button container
+            payButton.style.display = 'none';
+            renderPayPalButton(data.paypal_order_id, data.order_id);
+        } catch (err) {
+            console.error(err);
+            alert('Failed to create order: ' + err.message);
+            payButton.textContent = 'Pay';
+            payButton.disabled = false;
+        }
+    });
 }
 
 // Initial cart badge update
