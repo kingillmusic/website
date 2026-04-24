@@ -9,10 +9,9 @@ const cartModal = document.getElementById('cartModal');               // renamed
 const checkoutModal = document.getElementById('checkoutModal');       // separate
 
 const backToLeasesBtn = document.getElementById('backToLeasesBtn');
-const backToCartBtn = document.getElementById('backToCartBtn');
 const checkoutButton = document.getElementById('checkoutButton');     // inside cartModal
 const payButton = document.getElementById('payButton'); 
-const cartTotal = document.getElementsByClassName('.carttotal'); 
+const cartTotal = document.getElementsByClassName('carttotal'); 
 
 // Get form elements
 const nameInput = document.getElementById('customer-name');
@@ -72,6 +71,10 @@ function openCartModal() {
   if (typeof populateCart === 'function') populateCart();
 }
 
+function closeCheckoutModal() {
+  if (checkoutModal) checkoutModal.style.display = 'none';
+}
+
 function closeCartModal() {
   cartModal.style.display = 'none';
 }
@@ -128,48 +131,7 @@ if (checkoutButton) {
   });
 }
 
-if (backToLeasesBtn) {
-  backToLeasesBtn.addEventListener('click', () => {
-    closeCartModal();
-    toggleLeasesModal();
-  });
-}
-
-// ---------- Checkout modal interaction ----------
-if (backToCartBtn) {
-  backToCartBtn.addEventListener('click', () => {
-    closeCheckoutModal();
-    openCartModal();
-  });
-}
-
-// Close modals when clicking outside
-window.addEventListener('click', (event) => {
-  if (event.target === cartModal) {
-    closeCartModal(); 
-  }
-  if (event.target === checkoutModal) {
-    closeCheckoutModal();
-  }
-});
-
-// ShowLeasesBtn: close other modals if open, then toggle leases modal
-if (showLeasesBtn) {
-  showLeasesBtn.addEventListener('click', () => {
-    const isOpen = leasesModal && leasesModal.style.display === 'block';
-    if (isOpen) {
-      leasesModal.style.display = 'none';
-      showLeasesBtn.style.backgroundColor = '#d7ffff';
-    } else {
-      updateLeasesModalContent();
-      leasesModal.style.display = 'block';
-      showLeasesBtn.style.backgroundColor = '#bfb';
-    }
-  });
-} 
-
-// ---------- Pay button ----------
-
+// ---------- Pay button ---------- 
 let currentInternalOrderId = null;
 
 function loadPayPalSDK() {
@@ -326,7 +288,60 @@ function updatePayPalButtonState() {
     input.addEventListener('input', updatePayPalButtonState);
 });
 
-// Initial cart badge update
-if (typeof updateCartCount === 'function') {
-  updateCartCount();
+// Wait for DOM to be ready, then attach all modal listeners
+function initLeaseModals() {
+  // ShowLeasesBtn click handler
+  if (showLeasesBtn) {
+    showLeasesBtn.addEventListener('click', () => {
+      // Read state captured in mousedown (before global listener closed everything)
+      const before = window._modalOpenBeforeClick || {};
+      const anyLeaseOpen = before['leasesModal'] || before['cartModal'] || before['checkoutModal'];
+
+      if (anyLeaseOpen) {
+        // Something was open – global listener already closed everything → do nothing
+        showLeasesBtn.style.backgroundColor = '#d7ffff';
+      } else {
+        // Nothing was open → open leases modal
+        updateLeasesModalContent();
+        leasesModal.style.display = 'block';
+        showLeasesBtn.style.backgroundColor = '#bfb';
+      }
+    });
+  }
+
+  // Back button: cart → leases
+  if (backToLeasesBtn) {
+    backToLeasesBtn.addEventListener('click', () => {
+      closeCartModal();
+      toggleLeasesModal();       // open leases modal
+    });
+  }
+
+  // Back button: checkout → cart
+  const backToCartBtn = document.getElementById('backToCartBtn');
+  if (backToCartBtn) {
+    backToCartBtn.addEventListener('click', () => {
+      closeCheckoutModal();
+      openCartModal();
+    });
+  }
+
+  // Checkout button inside cart
+  if (checkoutButton) {
+    checkoutButton.addEventListener('click', () => {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      if (cart.length === 0) return;
+      openCheckoutModal();
+    });
+  }
+
+  // Initial cart count update
+  if (typeof updateCartCount === 'function') updateCartCount();
+}
+
+// Run after DOM is ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initLeaseModals);
+} else {
+  initLeaseModals();
 }
