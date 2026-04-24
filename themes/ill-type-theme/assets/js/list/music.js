@@ -1,4 +1,4 @@
-export { pAudio, go, row, trt, a, n };
+export { pAudio, go, row, trt, a, n, playTrackByIndex, trn };
 
 const
 	pAudio = document.getElementById("PlayerAudio"),
@@ -13,7 +13,7 @@ const
 	tro = Array.from(document.getElementsByClassName("TrackAudio")),
 	trt = Array.from(document.getElementsByClassName("TrackTitle"));
 
-let sh = !1, rpb = !1, a = [], n = 0;
+let sh = !1, rpb = !1, a = [], n = 0, trn;
 
 load = () => { trn = a[n], pAudio.src = tro[trn].src, go.innerHTML = trt[trn].innerHTML },
 
@@ -92,6 +92,16 @@ play = () => {
 	row[trn].style.boxShadow = "0px 4px 4px 0px #bab",
 	row[trn].style.transition = "box-shadow 0.2s ease-in-out" 
 };
+
+// Play a track by its row index (0‑based). Does NOT reshuffle or change the global `a` array.
+function playTrackByIndex(idx) {
+    if (!row[idx]) return;
+    trn = idx;                // set current track
+    pAudio.src = tro[idx].src;
+    go.innerHTML = trt[idx].innerHTML;
+    pause();                  // resets all play icons and stops audio
+    play();                   // starts playback & updates UI for the new track
+}
 
 go.addEventListener("click", () => { row[trn].scrollIntoView({ behavior:"smooth" }) }),
 pr.addEventListener("click", () => { sh ? previous() : n = trn, previous() }),

@@ -36,7 +36,7 @@ header { background: #d7ffff;}
 	box-shadow: 0px 2px 8px 2px #bab;
 }
 
-#GotoTrack { cursor: pointer; margin: 0; font-size: 2.2em }
+#GotoTrack { cursor: pointer; margin: 0; font-size: 2.2em } 
 #name { font-size: 0.7em; }
 
 /*----NAV----*/
@@ -153,7 +153,7 @@ button {
 }
 
 button:hover {
-	background: #a7ffff;
+	background: #a7ffff; 
 }
 	
 h2 { text-align: center; margin: -5% 0 5% 0 }
@@ -198,8 +198,8 @@ h2 { text-align: center; margin: -5% 0 5% 0 }
 	background: #97ffff;
 }
 
-.free-download { margin-top: 5%; background: #afb }
-.free-download:hover { margin-top: 5%; background: #bfb }
+.free-download { margin-top: 5%; background: #bfb }
+.free-download:hover { margin-top: 5%; background: #afb }
 
 /*----CART----*/
 
@@ -221,7 +221,7 @@ h2 { text-align: center; margin: -5% 0 5% 0 }
 }
 
 #showLeasesBtn {
-	position: relative;
+	position: relative; 
 }
 
 #shoppingcart {
@@ -305,9 +305,9 @@ input.invalid { border-color: #c00; }
 
 /*----FOOTER SVG----*/
 
-#top, #share, #showLeasesBtn { 
+.footerButtons {
 	cursor: pointer;
-	width: 125px;
+	width: 70px;
 	box-shadow: 0px 1px 4px 1px #bab;
 	opacity: 0.8;
 	border-radius: 4px;
@@ -316,7 +316,7 @@ input.invalid { border-color: #c00; }
 	margin: 0 3%;
 } 
 
-#share > img, #top > img, #showLeasesBtn > img { 
+.footerButtons > img {
 	display: block; 
 	max-height: 1.5em; 
 	padding: 0.8vh 1vh; 
@@ -337,7 +337,8 @@ input.invalid { border-color: #c00; }
 	width: 250px;
 	border: 2px solid #aaa;
 	border-radius: 4px;
-	background: #fee;
+	background: #fff;
+	box-shadow: 0 0 6px 0px #bab;
 }
 #CopiedMessage > p a { padding: 4px; color: #fff; background: #87a0f1;}
 
@@ -392,3 +393,147 @@ input.invalid { border-color: #c00; }
    .TitleBar { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
 	#tagcloud { padding-top: 5rem; }
 }
+
+/*----PLAYLIST----*/
+
+/* Overlay background */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+/* Dialog box */
+.modal-dialog {
+  background: #fff;
+  padding: 20px;
+  border-radius: 6px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.3);
+  width: 80%;
+  max-width: 360px;
+  max-height: 80vh;                 /* restrict height */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  pointer-events: auto;
+}
+
+.modal-dialog h2 {
+  margin: 0 0 5px 0;
+  text-align: center;
+}
+
+.modal-dialog input[type="text"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.modal-dialog button {
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background: #d7ffff;
+  cursor: pointer;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.modal-dialog button:hover { background: #a7ffff; }
+
+/* Scrollable playlist container */
+.playlist-scroll {
+  max-height: 150px;        /* adjust to show ~5 items */
+  overflow-y: auto;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+
+/* Each playlist row */
+.playlist-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  border-bottom: 1px solid #eee;
+  background: #fafafa;
+  cursor: pointer;
+}
+
+.playlist-item:last-child { border-bottom: none; }
+
+.playlist-item span {
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 70%;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 5px;
+}
+
+/* Remove row-level background and padding; use child elements */
+.playlist-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;                    /* no padding on the row itself */
+  background: #fafafa;           /* default background for the entire row */
+  border-bottom: 1px solid #eee;
+}
+
+/* Name section – fills available space */
+.playlist-name {
+  flex: 1;
+  padding: 12px 12px;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.playlist-name:hover {
+  background: #d7ffff;           /* highlight only the name area */ 
+  transition: background 0.15s;
+}
+
+/* Actions section (plus/minus buttons) */
+.playlist-actions {
+  display: flex;
+}
+
+.playlist-actions button {
+  background: transparent;
+  border: none;
+  padding: 13px 13px;             /* tappable area */
+  cursor: pointer;
+  font-size: 1.2em;
+  line-height: 1;
+  transition: background 0.15s;
+}
+
+.row.hidden-row {
+  display: none;
+}
+
+/* Each button gets its own hover area */
+.add-to-existing-btn,
+.delete-playlist-btn{
+	margin: 0
+}
+
+.add-to-existing-btn:hover,
+.delete-playlist-btn:hover {
+} 

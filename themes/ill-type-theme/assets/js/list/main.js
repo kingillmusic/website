@@ -1,8 +1,10 @@
 import "./music.js";
 import "./waveform.js";
 import "./progress.js";
+import "./playlist.js";
 import "./search.js";
 import "./popup.js";
 import "./leases.js";
 import "./webshop.js";
 import "./redirect.js";
+import "./modals.js";

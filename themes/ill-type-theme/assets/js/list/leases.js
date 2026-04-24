@@ -58,30 +58,22 @@ function updateLeasesModalContent() {
 }
 
 function toggleLeasesModal() {
-  if (leasesModal.style.display === 'none') {
-    updateLeasesModalContent();
-    leasesModal.style.display = 'block';
-  } else {
-    leasesModal.style.display = 'none';
-  }
+  const isOpen = leasesModal.style.display === 'block';
+  leasesModal.style.display = isOpen ? 'none' : 'block';
+  showLeasesBtn.style.backgroundColor = isOpen ? '#d7ffff' : '#bfb';
+  if (!isOpen) updateLeasesModalContent();
 }
 
 function openCartModal() {
-  // Close any other modal
-  leasesModal.style.display = 'none';
-  checkoutModal.style.display = 'none';
-  if (typeof populateCart === 'function') {
-    populateCart(); // fill cart table
-  }
-  cartModal.style.display = 'block';
+  // Close source modal (leases modal)
+  if (leasesModal) leasesModal.style.display = 'none';
+  // Open cart modal
+  if (cartModal) cartModal.style.display = 'block';
+  if (typeof populateCart === 'function') populateCart();
 }
 
 function closeCartModal() {
   cartModal.style.display = 'none';
-}
-
-function closeCheckoutModal() {
-  checkoutModal.style.display = 'none';
 }
 
 // ---------- Leases modal interaction ----------
@@ -116,7 +108,16 @@ if (leasesModalContent) {
   });
 }
 
-// ---------- Cart modal interaction ----------
+// ---------- Cart modal interaction ---------- 
+function openCheckoutModal() {
+  // Close source modal (cart modal)
+  if (cartModal) cartModal.style.display = 'none';
+  // Open checkout modal
+  if (checkoutModal) checkoutModal.style.display = 'block';
+  paypalRendered = false;
+  updatePayPalButtonState();
+}
+
 if (checkoutButton) { 
 	checkoutButton.addEventListener('click', () => { 
 		const cart = JSON.parse(localStorage.getItem('cart')) || []; 
@@ -155,24 +156,17 @@ window.addEventListener('click', (event) => {
 // ShowLeasesBtn: close other modals if open, then toggle leases modal
 if (showLeasesBtn) {
   showLeasesBtn.addEventListener('click', () => {
-    const isLeasesOpen = leasesModal && leasesModal.style.display === 'block';
-    const isCartOpen = cartModal && cartModal.style.display === 'block';
-    const isCheckoutOpen = checkoutModal && checkoutModal.style.display === 'block';
-
-    const anyModalOpen = isLeasesOpen || isCartOpen || isCheckoutOpen;
-
-    if (anyModalOpen) {
-      // Close all modals
-      if (leasesModal) leasesModal.style.display = 'none';
-      if (cartModal) cartModal.style.display = 'none';
-      if (checkoutModal) checkoutModal.style.display = 'none';
+    const isOpen = leasesModal && leasesModal.style.display === 'block';
+    if (isOpen) {
+      leasesModal.style.display = 'none';
+      showLeasesBtn.style.backgroundColor = '#d7ffff';
     } else {
-      // No modal open → open leases modal
-      updateLeasesModalContent();   // refresh content before showing
+      updateLeasesModalContent();
       leasesModal.style.display = 'block';
+      showLeasesBtn.style.backgroundColor = '#bfb';
     }
   });
-}
+} 
 
 // ---------- Pay button ----------
 
@@ -331,14 +325,6 @@ function updatePayPalButtonState() {
 [nameInput, addressInput, emailInput, artistInput].forEach(input => {
     input.addEventListener('input', updatePayPalButtonState);
 });
-
-// When checkout modal opens, reset state and trigger validation
-function openCheckoutModal() {
-    cartModal.style.display = 'none';
-    checkoutModal.style.display = 'block';
-    paypalRendered = false;
-    updatePayPalButtonState();
-}
 
 // Initial cart badge update
 if (typeof updateCartCount === 'function') {
