@@ -1,0 +1,29 @@
+{{ $tracks := .Site.GetPage "/beats" }}
+{{ range $tracks.Pages }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicRecording",
+  "name": "{{ .Title }}",
+  {{- if .Params.tags -}}
+  {{- $primary := index .Params.tags 0 -}}
+  "genre": "{{ $primary }}",
+  {{- end -}}
+  "byArtist": { "@type": "MusicGroup", "name": "ill x eezyh" }, 
+  {{ if or .Params.key .Params.bpm }}
+  "additionalProperty": [
+    {{ if .Params.key }}{
+      "@type": "PropertyValue",
+      "name": "musical key",
+      "value": "{{ .Params.key }}"
+    }{{ end }}{{ if and .Params.key .Params.bpm }},{{ end }}
+    {{ if .Params.bpm }}{
+      "@type": "PropertyValue",
+      "name": "tempo",
+      "value": "{{ .Params.bpm }}",
+      "unitText": "BPM"
+    }{{ end }}
+  ]{{ end }}
+}
+</script>
+{{ end }}

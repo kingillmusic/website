@@ -23,3 +23,5 @@
 <title>{{ .Site.Title | lower }}</title>
 {{ if isset .Params "tags" }}<meta name="keywords" content="{{ with .Params.tags }}{{ delimit . ", " }}{{ end }}">{{ end -}}
 {{ with .Site.Params.favicon }}<link rel="icon" href="{{ . }}">{{ end -}}
+
+{{ partial "schema.html" . }} 
