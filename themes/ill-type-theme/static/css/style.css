@@ -101,12 +101,14 @@ nav { width : 95%; margin: auto; }
 
 /*----TRACKS----*/
 
-.row { overflow:hidden; border-radius: 4px; border: 2px solid #eee; scroll-margin-top: 6.0rem;  margin: 10px; }
-.row > div { display: flex; align-items: center; justify-content: space-between; }
-.Track { padding: 5px; cursor: pointer; background: #eee; gap: 5px; font-size: 120%; }
-.TrackPlay { max-height: 1.2em; }
-.TrackTitle { text-transform: uppercase; font-weight: 700; }
-.taglist text { font-size: 70%; }
+.row { overflow: hidden; border-radius: 4px; border: 2px solid #eee; scroll-margin-top: 6.0rem; margin: 10px }
+.row > div { display: flex; align-items: center; justify-content: space-between }
+.Track { padding: 5px; cursor: pointer; background: #eee }
+.TrackPlay { max-height: 1.2em }
+.TrackTitle { text-transform: uppercase; font-weight: 700 }
+.taglist text { font-size: 70% }
+.songkey text { font-size: 70%; font-weight: 700 }
+.bpm text { font-size: 70%; font-weight: 700 }
 
 .waveform-container {
 	position: relative;

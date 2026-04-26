@@ -8,7 +8,7 @@
 {{ $paginator := .Paginate $pages 200 }} 
 
 {{ range $paginator.Pages }}
-    <div class="row">
+    <div class="row" data-bpm="{{ .Params.bpm }}">
 		<div class="waveform-container">
 			<canvas class="waveform-bg"></canvas>
 			<canvas class="waveform-progress"></canvas>
@@ -18,6 +18,8 @@
 			<img src="/svg/play.svg" class="TrackPlay" alt="play">
 			<text class="TrackTitle">{{ .Title }}</text>
 			{{ partial "taglist.html" . }}
+			{{ partial "bpm.html" . }}
+			{{ partial "songkey.html" . }}
 			&nbsp;
 		</div>
 		

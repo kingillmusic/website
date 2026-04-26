@@ -1,0 +1,16 @@
+{{- with .Params.bpm -}}
+    {{- $bpm := slice -}}
+    {{- if reflect.IsSlice . -}}
+        {{- $bpm = . -}}
+    {{- else -}}
+        {{- $bpm = slice . -}}
+    {{- end -}}
+    {{- if gt (len $bpm) 0 -}}
+<div class="bpm">
+        {{- range $bpm -}}
+            {{- $url := printf "bpm/%s" (. | urlize ) -}}
+    <text id="bpm_{{ . }}"><a href="{{ $url }}">{{ . | title }}</a></text>
+        {{- end -}}
+</div>
+    {{- end -}}
+{{- end -}}

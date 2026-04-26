@@ -1,0 +1,16 @@
+{{- with .Params.key -}}
+    {{- $keys := slice -}}
+    {{- if reflect.IsSlice . -}}
+        {{- $keys = . -}}
+    {{- else -}}
+        {{- $keys = slice . -}}
+    {{- end -}}
+    {{- if gt (len $keys) 0 -}}
+<div class="songkey">
+        {{- range $keys -}}
+            {{- $url := printf "key/%s" (. | urlize ) -}}
+    <text id="key_{{ . }}"><a href="{{ $url }}">{{ . | title }}</a></text>
+        {{- end -}}
+</div>
+    {{- end -}}
+{{- end -}}
