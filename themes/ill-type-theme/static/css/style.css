@@ -154,9 +154,7 @@ button {
 	cursor: pointer;
 }
 
-button:hover {
-	background: #a7ffff; 
-}
+button:hover { background: #a7ffff; }
 	
 h2 { text-align: center; margin: -5% 0 5% 0 }
 
@@ -315,7 +313,8 @@ input.invalid { border-color: #c00; }
 	border-radius: 4px;
 	place-items: center;
 	background: #d7ffff;
-	margin: 0 3%;
+	margin: -0.5% 3%; 
+	transition: background 0.3s ease;
 } 
 
 .footerButtons > img {
