@@ -166,6 +166,7 @@ function renderPlaylistList() {
       <span class="playlist-name" data-name="${name}">${name}</span>
       <div class="playlist-actions">
         <button class="add-to-existing-btn" title="Add current track">➕</button>
+    	<button class="share-playlist-btn" title="Share playlist">☍</button> 
         <button class="delete-playlist-btn" title="Delete playlist">➖</button>
       </div>
     `;
@@ -174,6 +175,11 @@ function renderPlaylistList() {
       e.stopPropagation();
       showPlaylist(name);
     });
+
+	div.querySelector('.share-playlist-btn').addEventListener('click', (e) => {
+	  e.stopPropagation();
+	  sharePlaylist(name);
+	});
 
     div.querySelector('.add-to-existing-btn').addEventListener('click', (e) => {
       e.stopPropagation();
@@ -199,6 +205,25 @@ function addToExistingPlaylist(name) {
     savePlaylists(playlists);
   }
   renderPlaylistList();
+}
+
+function sharePlaylist(name) {
+  const playlists = getPlaylists();
+  const trackIds = playlists[name];
+  if (!trackIds) return;
+
+  const exportObj = { name, trackIds };
+  // Encode the object as a JSON string, then encode for a URL
+  const json = JSON.stringify(exportObj);
+  const hash = 'importPlaylist=' + encodeURIComponent(json);
+  const url = window.location.origin + window.location.pathname + '#' + hash;
+
+  navigator.clipboard.writeText(url).then(() => {
+    alert('Shareable link copied to clipboard!');
+  }).catch(() => {
+    // Fallback: show the link in a prompt
+    prompt('Copy this link to share the playlist:', url);
+  });
 }
 
 function deletePlaylist(name) {
@@ -306,6 +331,55 @@ function closeModal() {
   if (modal) modal.style.display = 'none';
   const addBtn = document.getElementById('add');
   if (addBtn) addBtn.style.background = '#d7ffff';
+}
+
+
+// ========== SHARE PLAYLIST ==========
+// Auto‑import playlist if URL contains #importPlaylist=
+function checkForImportHash() {
+  const hash = window.location.hash;
+  if (!hash.startsWith('#importPlaylist=')) return;
+
+  try {
+    const encoded = hash.slice('#importPlaylist='.length);
+    const json = decodeURIComponent(encoded);
+    const { name, trackIds } = JSON.parse(json);
+
+    if (!name || !Array.isArray(trackIds)) throw new Error('Invalid data');
+
+    const playlists = getPlaylists();
+    // Avoid overwriting an existing playlist – ask the user
+    if (playlists[name]) {
+      if (!confirm(`A playlist named "${name}" already exists. Overwrite it?`)) {
+        // Optionally, add as a copy
+        const newName = name + ' (imported)';
+        playlists[newName] = trackIds;
+        savePlaylists(playlists);
+        alert(`Imported as "${newName}".`);
+      } else {
+        playlists[name] = trackIds;
+        savePlaylists(playlists);
+      }
+    } else {
+      playlists[name] = trackIds;
+      savePlaylists(playlists);
+    }
+
+    // Clean the URL (optional)
+    history.replaceState(null, '', window.location.pathname);
+
+    // Show the imported playlist
+    showPlaylist(name);
+  } catch (e) {
+    console.error('Invalid playlist import hash', e);
+  }
+}
+
+// Run on load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', checkForImportHash);
+} else {
+  checkForImportHash();
 }
 
 // ========== MODAL EVENTS ==========

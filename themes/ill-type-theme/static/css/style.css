@@ -523,7 +523,8 @@ input.invalid { border-color: #c00; }
   font-size: 1.2em;
   line-height: 1;
   transition: background 0.15s;
-}
+  margin: 0
+} 
 
 .row.hidden-row {
   display: none;
