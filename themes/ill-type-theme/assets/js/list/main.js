@@ -1,4 +1,3 @@
-import "./music.js";
 import "./waveform.js";
 import "./progress.js";
 import "./playlist.js";

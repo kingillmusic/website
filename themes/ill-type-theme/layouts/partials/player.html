@@ -1,3 +1,6 @@
+{{ $music := resources.Get "js/list/music.js" | js.Build | minify | fingerprint }}
+<script type="module" src="{{ $music.RelPermalink }}"></script>
+
 {{ $worker := resources.Get "js/list/waveform-worker.js" | js.Build | minify | fingerprint }}
 <script>window.WAVEFORM_WORKER_URL = "{{ $worker.RelPermalink }}";</script>
 
