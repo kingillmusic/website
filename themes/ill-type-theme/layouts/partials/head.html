@@ -10,13 +10,14 @@
 <meta property="og:url" content="https://kingillmusic.com">
 <meta property="og:type" content="website">
 
-{{ $music := resources.Get "js/list/music.js" | js.Build | minify | fingerprint }}
-<script type="module" src="{{ $music.RelPermalink }}"></script>
-
-<link rel="stylesheet preload" as="style" type="text/css" href="{{ "css/style.css" | relURL }}">
+<link rel="preload" href="{{ "css/style.css" | relURL }}" as="style">
+<link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
 
 <title>{{ .Site.Title | lower }}</title>
 {{ if isset .Params "tags" }}<meta name="keywords" content="{{ with .Params.tags }}{{ delimit . ", " }}{{ end }}">{{ end -}}
 {{ with .Site.Params.favicon }}<link rel="icon" href="{{ . }}">{{ end -}}
+
+{{ $music := resources.Get "js/list/music.js" | js.Build | minify | fingerprint }}
+<script type="module" src="{{ $music.RelPermalink }}"></script> 
 
 {{ partial "schema.html" . }} 
