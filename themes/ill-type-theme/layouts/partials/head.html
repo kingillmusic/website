@@ -16,7 +16,10 @@
 {{ $js := resources.Get "js/list/main.js" | js.Build | minify | fingerprint }}
 <script type="text/javascript" src="{{ $js.RelPermalink }}" defer></script>
 
+<!--production-->
 <script src="https://www.paypal.com/sdk/js?client-id=Acq7j2qfe8QY4vkHy6l7EPh-ehOzvNJyAJLGzNbZLM0SMVOSCe83mc3AEkp1tBc8UWX3TyxeiNFk9SEv&currency=USD&disable-funding=paylater"></script>
+<!--development-->
+<!--script src="https://www.paypal.com/sdk/js?client-id=AbJ0sYwJCxsUtdxnFX4RkWot_yjFUHAMGghnSNypRe6FxPSgwuAYem8bjobOtx7ntgVZ8rnv4YNee8Bw&currency=USD&disable-funding=paylater"></script-->
 
 <link rel="stylesheet preload" as="style" type="text/css" href="{{ "css/style.css" | relURL }}">
 

@@ -24,11 +24,12 @@ const addressError = document.getElementById('address-error');
 const emailError = document.getElementById('email-error');
 const artistError = document.getElementById('artist-error');
 
-const BACKEND_URL = 'https://kimstore.fly.dev';
 // live
+const BACKEND_URL = 'https://kimstore.fly.dev';
 const PAYPAL_CLIENT_ID = 'Acq7j2qfe8QY4vkHy6l7EPh-ehOzvNJyAJLGzNbZLM0SMVOSCe83mc3AEkp1tBc8UWX3TyxeiNFk9SEv';
 // sandbox
-// const PAYPAL_CLIENT_ID = 'AbJ0sYwJCxsUtdxnFX4RkWot_yjFUHAMGghnSNypRe6FxPSgwuAYem8bjobOtx7ntgVZ8rnv4YNee8Bw';
+//const BACKEND_URL = 'http://localhost:8080'
+//const PAYPAL_CLIENT_ID = 'AbJ0sYwJCxsUtdxnFX4RkWot_yjFUHAMGghnSNypRe6FxPSgwuAYem8bjobOtx7ntgVZ8rnv4YNee8Bw';
 
 const paypalContainer = document.getElementById('paypal-button-container');
 const incompleteMessage = document.getElementById('form-incomplete-message');

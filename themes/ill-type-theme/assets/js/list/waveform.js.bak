@@ -8,29 +8,23 @@ import { pAudio } from "./music.js";
     const MAX_BAR_HEIGHT_FRAC = 0.6;
     const RESAMPLE_METHOD = 'mean';
     const CONTRAST_EXPONENT = 2;
-    const MAX_CONCURRENT_WORKER_MESSAGES = 6; // Match browser connection limit
 
     const waveforms = [];
     const srcIndexMap = new Map();
     let resizeObserver = null;
     let waveformWorker = null;
-    let intersectionObserver = null;
-
-    // Request queue for worker messages
-    const workerQueue = [];
-    let activeWorkerMessages = 0;
 
     if (window.Worker) {
         try {
-            const workerUrl = window.WAVEFORM_WORKER_URL;
-            if (!workerUrl) {
-                console.error('Waveform worker URL not set');
-                return;
-            }
-            waveformWorker = new Worker(workerUrl, { type: "module" });
+			const workerUrl = window.WAVEFORM_WORKER_URL;
+			if (!workerUrl) {
+				console.error('Waveform worker URL no set');
+				return;
+			}
+			waveformWorker = new Worker(workerUrl, { type: "module" });
             waveformWorker.onmessage = handleWorkerMessage;
             waveformWorker.onerror = (err) => console.error('Waveform worker error:', err);
-        } catch (e) {
+		} catch (e) {
             console.error('Failed to create waveform worker.', e);
         }
     } else {
@@ -45,32 +39,13 @@ import { pAudio } from "./music.js";
         };
     }
 
-    function processWorkerQueue() {
-        if (workerQueue.length === 0 || activeWorkerMessages >= MAX_CONCURRENT_WORKER_MESSAGES) {
-            return;
-        }
-
-        const message = workerQueue.shift();
-        activeWorkerMessages++;
-        waveformWorker.postMessage(message.data);
-    }
-
-    function queueWorkerMessage(data) {
-        workerQueue.push({ data });
-        processWorkerQueue();
-    }
-
     function handleWorkerMessage(e) {
-        activeWorkerMessages--;
-        processWorkerQueue();
-
         const { index, grayBitmap, progressBitmap } = e.data;
         const w = waveforms[index];
         if (!w) return;
 
         w.bitmapGray = grayBitmap;
         w.bitmapProgress = progressBitmap;
-        w.hasRendered = true;
 
         w.bgCtx.clearRect(0, 0, w.bgCanvas.width, w.bgCanvas.height);
         w.bgCtx.drawImage(grayBitmap, 0, 0);
@@ -94,19 +69,10 @@ import { pAudio } from "./music.js";
         }
     }
 
-    function initWaveforms() {
+	function initWaveforms() {
         if (!waveformWorker) return;
 
         const rows = document.querySelectorAll('.row');
-
-        // Setup intersection observer for lazy loading
-        if (window.IntersectionObserver) {
-            intersectionObserver = new IntersectionObserver(handleIntersectionEntries, {
-                rootMargin: '400px 0px', // Start loading 400px before visible
-                threshold: 0
-            });
-        }
-
         for (let i = 0; i < rows.length; i++) {
             const trackAudio = rows[i].querySelector('.TrackAudio');
             const bgCanvas = rows[i].querySelector('.waveform-bg');
@@ -132,30 +98,34 @@ import { pAudio } from "./music.js";
                 waveformData: null,
                 bitmapGray: null,
                 bitmapProgress: null,
-                barCount,
-                hasRendered: false,
-                isQueued: false
+                barCount
             };
             bgCanvas.dataset.waveformIndex = i;
             srcIndexMap.set(trackAudio.src, i);
 
-            // Observe the row for lazy loading
-            if (intersectionObserver) {
-                intersectionObserver.observe(rows[i]);
-            } else {
-                // Fallback: render immediately if no IntersectionObserver
-                renderWaveform(i, width, height, barCount);
-            }
-        }
+            // Send initial message to worker
+			if (width > 0 && height > 0) {
+            	const { gray, progress } = getWaveformColors();
+            	waveformWorker.postMessage({
+					audioSrc: trackAudio.src,
+					dstLen: barCount,
+					method: RESAMPLE_METHOD,
+					width, height,
+					barWidth: BAR_WIDTH,
+					barSpacing: BAR_SPACING,
+					contrastExp: CONTRAST_EXPONENT,
+					maxBarHeightFrac: MAX_BAR_HEIGHT_FRAC,
+					index: i,
+					grayColor: gray,
+					progressColor: progress
+            	});
+        	}
+		}
 
         // ResizeObserver on containers
         if (window.ResizeObserver) {
             resizeObserver = new ResizeObserver(handleResizeEntries);
-            waveforms.forEach(w => {
-                if (w && w.bgCanvas) {
-                    resizeObserver.observe(w.bgCanvas.parentElement);
-                }
-            });
+            waveforms.forEach(w => resizeObserver.observe(w.bgCanvas.parentElement));
         }
 
         // Timeupdate listener
@@ -172,53 +142,6 @@ import { pAudio } from "./music.js";
         }
     }
 
-    function handleIntersectionEntries(entries) {
-        for (const entry of entries) {
-            if (entry.isIntersecting) {
-                const row = entry.target;
-                const bgCanvas = row.querySelector('.waveform-bg');
-                if (!bgCanvas) continue;
-
-                const index = parseInt(bgCanvas.dataset.waveformIndex, 10);
-                const w = waveforms[index];
-                if (!w || w.hasRendered || w.isQueued) continue;
-
-                const container = w.bgCanvas.parentElement;
-                const width = container.clientWidth;
-                const height = container.clientHeight;
-
-                if (width > 0 && height > 0) {
-                    renderWaveform(index, width, height, w.barCount);
-                }
-
-                // Stop observing this row once queued
-                intersectionObserver.unobserve(row);
-            }
-        }
-    }
-
-    function renderWaveform(index, width, height, barCount) {
-        const w = waveforms[index];
-        if (!w) return;
-
-        w.isQueued = true;
-        const { gray, progress } = getWaveformColors();
-
-        queueWorkerMessage({
-            audioSrc: w.src,
-            dstLen: barCount,
-            method: RESAMPLE_METHOD,
-            width, height,
-            barWidth: BAR_WIDTH,
-            barSpacing: BAR_SPACING,
-            contrastExp: CONTRAST_EXPONENT,
-            maxBarHeightFrac: MAX_BAR_HEIGHT_FRAC,
-            index: index,
-            grayColor: gray,
-            progressColor: progress
-        });
-    }
-
     function handleResizeEntries(entries) {
         requestAnimationFrame(() => {
             for (const entry of entries) {
@@ -229,25 +152,35 @@ import { pAudio } from "./music.js";
                 const w = waveforms[index];
                 if (!w) continue;
 
-                const { width, height } = entry.contentRect;
+				const { width, height } = entry.contentRect;
 
-                if (width <= 0 || height <= 0) {
-                    w.bgCtx.clearRect(0, 0, w.bgCanvas.width, w.bgCanvas.height);
-                    w.fgCtx.clearRect(0, 0, w.fgCanvas.width, w.fgCanvas.height);
-                    continue;
-                }
+				if (width <= 0 || height <= 0) {
+					w.bgCtx.clearRect(0, 0, w.bgCanvas.width, w.bgCanvas.height);
+					w.fgCtx.clearRect(0, 0, w.fgCanvas.width, w.fgCanvas.height);
+					continue;
+				}
 
-                if (w.bgCanvas.width !== width || w.bgCanvas.height !== height) {
+				if (w.bgCanvas.width !== width || w.bgCanvas.height !== height) {
                     w.bgCanvas.width = w.fgCanvas.width = width;
                     w.bgCanvas.height = w.fgCanvas.height = height;
 
                     w.barCount = Math.max(1, Math.floor(width / (BAR_WIDTH + BAR_SPACING)));
 
                     if (waveformWorker) {
-                        // Reset state and re-queue
-                        w.hasRendered = false;
-                        w.isQueued = false;
-                        renderWaveform(index, width, height, w.barCount);
+                        const { gray, progress } = getWaveformColors();
+                        waveformWorker.postMessage({
+                            audioSrc: w.src,
+                            dstLen: w.barCount,
+                            method: RESAMPLE_METHOD,
+                            width, height,
+                            barWidth: BAR_WIDTH,
+                            barSpacing: BAR_SPACING,
+                            contrastExp: CONTRAST_EXPONENT,
+                            maxBarHeightFrac: MAX_BAR_HEIGHT_FRAC,
+                            index,
+                            grayColor: gray,
+                            progressColor: progress
+                        });
                     }
                 }
             }
@@ -283,7 +216,6 @@ import { pAudio } from "./music.js";
     window.addEventListener("beforeunload", () => {
         waveformWorker && waveformWorker.terminate();
         resizeObserver && resizeObserver.disconnect();
-        intersectionObserver && intersectionObserver.disconnect();
     });
 
     if (document.readyState === 'loading') {
@@ -292,3 +224,4 @@ import { pAudio } from "./music.js";
         initWaveforms();
     }
 })();
+
