@@ -10,6 +10,9 @@
 <meta property="og:url" content="https://kingillmusic.com">
 <meta property="og:type" content="website">
 
+{{ $music := resources.Get "js/list/music.js" | js.Build | minify | fingerprint }}
+<script type="module" src="{{ $music.RelPermalink }}"></script>
+
 <link rel="stylesheet preload" as="style" type="text/css" href="{{ "css/style.css" | relURL }}">
 
 <title>{{ .Site.Title | lower }}</title>
