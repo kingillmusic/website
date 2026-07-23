@@ -101,7 +101,16 @@ nav { width : 95%; margin: auto; }
 
 /*----TRACKS----*/
 
-.row { overflow: hidden; border-radius: 4px; border: 2px solid #eee; scroll-margin-top: 6.0rem; margin: 10px }
+.row {
+	overflow: hidden; 
+	border-radius: 4px; 
+	border: 2px solid #eee; 
+	scroll-margin-top: 6.0rem; 
+	margin: 10px;
+	content-visibility: auto;
+    contain-intrinsic-size: auto 60px; /* approximate row height */
+}
+
 .row > div { display: flex; align-items: center; justify-content: space-between }
 .Track { padding: 5px; cursor: pointer; background: #eee }
 .TrackPlay { max-height: 1.2em }

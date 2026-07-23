@@ -1,3 +1,9 @@
+{{ $worker := resources.Get "js/list/waveform-worker.js" | js.Build | minify | fingerprint }}
+<script>window.WAVEFORM_WORKER_URL = "{{ $worker.RelPermalink }}";</script>
+
+{{ $js := resources.Get "js/list/main.js" | js.Build | minify | fingerprint }}
+<script type="text/javascript" src="{{ $js.RelPermalink }}" fetchpriority="low" defer></script>
+
 <div id="MusicPlayer">
 	<div id="PlayerControls">
 		<img id="Shuffle" src="/svg/shuffle.svg" alt="shuffle">
