@@ -1,6 +1,6 @@
 # ill x eezyh official hugo theme
 
-"ill type theme" is intended to be an an extremely minimal yet fully featured Hugo theme for putting your music on display and accepting donations. I currently use it for my personal website, [kingillmusic.com](https://kingillmusic.com).
+"ill type theme" is intended to be an a (relatively) minimal yet fully featured Hugo theme for a beatstore. I currently use it for my personal website, [kingillmusic.com](https://kingillmusic.com). It's a single page site that offers audio amplitude visualization, and allows users to stream, create and share playlists, as well as purchase leases.
 
 ## get started
 
@@ -16,11 +16,7 @@ echo "theme = 'ill-type-theme'" >> hugo.toml
 - `titlebar.html` or header, clickable song title that scrolls down to song location in the tracklist.
 - share button that copies song link, positioned next to song title and includes artist name (i.e. x eezyh), displays pop up with links.
 - `tagcloud.html` tags displayed at the top of the page, automatically get removed or added based on your tag variable in content/beats/*.md.
-- `search.html` search bar.
+- `search.html` search track title or bpm.
 - `tracks.html` all content added to static/mp3 automatically show up, no need to touch it unless you want to change the play button svg.
 - `taglist.html` displays tags next to track title.
-- `player.html` music player with next, previous, repeat and shuffle options.
-
-## TODO
-
-- Pretty much done. Most of it taken from hugocodex.org/add-ons/webshop/ but needed editing to fit beat market style cart and shopping.
+- `player.html` music player with next, previous, repeat and shuffle options. 
